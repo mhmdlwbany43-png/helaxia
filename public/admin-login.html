@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>HELAXIA | دخول وإنشاء حساب المدير</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at 30% 20%, #1A2A3A, #0F1A24);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .star {
+            position: fixed;
+            background: radial-gradient(circle, #FFFFFF, #C0E0FF);
+            border-radius: 50%;
+            opacity: 0;
+            pointer-events: none;
+            animation: starTwinkle 4s infinite ease-in-out;
+        }
+        @keyframes starTwinkle {
+            0% { opacity: 0; transform: scale(0.8); }
+            50% { opacity: 0.9; transform: scale(1.2); }
+            100% { opacity: 0; transform: scale(0.8); }
+        }
+
+        .glass-card {
+            background: rgba(20, 35, 45, 0.45);
+            backdrop-filter: blur(14px);
+            border-radius: 32px;
+            border: 1px solid rgba(200, 220, 250, 0.25);
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 480px;
+            margin: 2rem;
+            padding: 2rem;
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #F0F4FA, #C0D0E0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #A0B8D0;
+            font-size: 0.85rem;
+            margin-bottom: 2rem;
+        }
+
+        .tabs-header {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(10, 20, 30, 0.3);
+            border-radius: 60px;
+            padding: 0.3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tab-btn {
+            flex: 1;
+            background: transparent;
+            border: none;
+            padding: 0.6rem;
+            border-radius: 50px;
+            color: #A0B8D0;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            background: rgba(192, 224, 255, 0.2);
+            color: #C0E0FF;
+            box-shadow: 0 0 15px rgba(192, 224, 255, 0.3);
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group label {
+            display: block;
+            color: #C0D0E0;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .password-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .password-wrapper input {
+            width: 100%;
+            background: rgba(10, 20, 30, 0.5);
+            border: 1px solid rgba(200, 220, 250, 0.3);
+            border-radius: 60px;
+            padding: 0.9rem 1.2rem;
+            color: #E0E8F0;
+            font-size: 1rem;
+            transition: all 0.3s;
+            outline: none;
+        }
+        .password-wrapper input:focus {
+            border-color: rgba(200, 220, 250, 0.8);
+            box-shadow: 0 0 15px rgba(192, 224, 255, 0.3);
+        }
+        .toggle-password {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #C0D0E0;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+        .toggle-password:hover {
+            color: #C0E0FF;
+            text-shadow: 0 0 8px #C0E0FF;
+        }
+
+        .btn {
+            width: 100%;
+            background: rgba(90, 140, 170, 0.3);
+            border: 1px solid #C0E0FF;
+            border-radius: 60px;
+            padding: 0.8rem;
+            color: #E0E8F0;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 0.5rem;
+        }
+
+        .btn:hover {
+            background: rgba(192, 224, 255, 0.2);
+            box-shadow: 0 0 18px #C0E0FF;
+            transform: scale(1.01);
+        }
+
+        .step {
+            display: none;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        .error-msg {
+            color: #FF8A7A;
+            font-size: 0.8rem;
+            margin-top: 0.8rem;
+            text-align: center;
+        }
+
+        .success-msg {
+            color: #A0E0C0;
+            font-size: 0.8rem;
+            margin-top: 0.8rem;
+            text-align: center;
+        }
+
+        .info-text {
+            color: #A0B8D0;
+            font-size: 0.75rem;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .forgot-password {
+            text-align: left;
+            margin-top: -0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .forgot-password a {
+            color: #A0B8D0;
+            font-size: 0.75rem;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .forgot-password a:hover {
+            color: #C0E0FF;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div id="starsContainer"></div>
+
+<div class="glass-card login-container">
+    <div class="logo">HELAXIA</div>
+    <div class="subtitle">⚡ لوحة التحكم المركزية ⚡</div>
+
+    <!-- تبويبات: تسجيل دخول / إنشاء حساب -->
+    <div class="tabs-header">
+        <button class="tab-btn active" onclick="switchTab('login')">تسجيل الدخول</button>
+        <button class="tab-btn" onclick="switchTab('signup')">إنشاء حساب مدير</button>
+    </div>
+
+    <!-- ========== قسم تسجيل الدخول ========== -->
+    <div id="loginSection" class="step active">
+        <form id="adminLoginForm" onsubmit="event.preventDefault(); startAdminLogin();">
+            <div class="input-group">
+                <label>📧 البريد الإلكتروني</label>
+                <input type="email" id="loginEmail" placeholder="admin@helaxia.com" autocomplete="email">
+            </div>
+            <div class="input-group">
+                <label>🔒 كلمة السر</label>
+                <div class="password-wrapper">
+                    <input type="password" id="loginPassword" placeholder="••••••••" autocomplete="current-password">
+                    <button type="button" class="toggle-password" onclick="togglePassword('loginPassword')">👁️</button>
+                </div>
+            </div>
+            <div class="forgot-password">
+                <a onclick="showForgotPassword()">نسيت كلمة المرور؟</a>
+            </div>
+            <button type="submit" class="btn">➡️ تسجيل الدخول</button>
+        </form>
+        <div id="loginError" class="error-msg"></div>
+    </div>
+
+    <!-- ========== قسم إنشاء حساب مدير جديد ========== -->
+    <div id="signupSection" class="step">
+        <form id="adminSignupForm" onsubmit="event.preventDefault(); requestAdminSignup();">
+            <div class="input-group">
+                <label>👤 الاسم الكامل</label>
+                <input type="text" id="signupName" placeholder="مثال: أحمد محمد" autocomplete="name">
+            </div>
+            <div class="input-group">
+                <label>📧 البريد الإلكتروني</label>
+                <input type="email" id="signupEmail" placeholder="ahmed@helaxia.com" autocomplete="email">
+            </div>
+            <div class="input-group">
+                <label>🔒 كلمة السر</label>
+                <div class="password-wrapper">
+                    <input type="password" id="signupPassword" placeholder="••••••••" autocomplete="new-password">
+                    <button type="button" class="toggle-password" onclick="togglePassword('signupPassword')">👁️</button>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>📱 رقم الهاتف (واتساب)</label>
+                <input type="tel" id="signupPhone" placeholder="963XXXXXXXXX" autocomplete="tel">
+            </div>
+            <button type="submit" class="btn">📝 طلب إنشاء حساب</button>
+        </form>
+        <div class="info-text">*سيتم إرسال كود إلى إيميل المدير التنفيذي للموافقة على إنشاء حسابك</div>
+        <div id="signupError" class="error-msg"></div>
+        <div id="signupSuccess" class="success-msg"></div>
+    </div>
+
+    <!-- مودال إدخال كود التفعيل (بعد طلب إنشاء الحساب) -->
+    <div id="codeModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); backdrop-filter:blur(12px); z-index:1000; justify-content:center; align-items:center;">
+        <div style="background:rgba(20,35,45,0.95); border-radius:28px; padding:2rem; width:90%; max-width:400px; border:1px solid #C0E0FF;">
+            <h3 style="color:#C0E0FF; margin-bottom:1rem;">🔐 إدخال كود التفعيل</h3>
+            <p style="color:#A0B8D0; margin-bottom:1rem;">تم إرسال الكود إلى إيميل المدير التنفيذي</p>
+            <input type="text" id="signupCodeInput" placeholder="أدخل الكود المكون من 6 أرقام" maxlength="6" style="width:100%; padding:0.8rem; background:rgba(255,255,255,0.1); border:1px solid #C0E0FF; border-radius:40px; color:#E0E8F0; margin-bottom:1rem; text-align:center; letter-spacing:4px;">
+            <button onclick="verifySignupCode()" style="width:100%; padding:0.8rem; background:rgba(90,140,170,0.6); border:1px solid #C0E0FF; border-radius:40px; color:#E0E8F0; cursor:pointer;">✅ تفعيل الحساب</button>
+            <button onclick="resendSignupCode()" style="width:100%; margin-top:0.5rem; padding:0.8rem; background:none; border:1px solid rgba(200,220,250,0.3); border-radius:40px; color:#A0B8D0; cursor:pointer;">🔄 إعادة إرسال الكود</button>
+            <button onclick="closeCodeModal()" style="width:100%; margin-top:0.5rem; padding:0.8rem; background:none; border:1px solid rgba(200,220,250,0.3); border-radius:40px; color:#FF8A7A; cursor:pointer;">إلغاء</button>
+            <div id="codeError" style="color:#FF8A7A; margin-top:0.5rem; text-align:center;"></div>
+        </div>
+    </div>
+
+    <!-- مودال نسيت كلمة المرور -->
+    <div id="forgotModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); backdrop-filter:blur(12px); z-index:1000; justify-content:center; align-items:center;">
+        <div style="background:rgba(20,35,45,0.95); border-radius:28px; padding:2rem; width:90%; max-width:400px; border:1px solid #C0E0FF;">
+            <h3 style="color:#C0E0FF; margin-bottom:1rem;">🔐 إعادة تعيين كلمة المرور</h3>
+            <input type="email" id="forgotEmail" placeholder="البريد الإلكتروني" style="width:100%; padding:0.8rem; background:rgba(255,255,255,0.1); border:1px solid #C0E0FF; border-radius:40px; color:#E0E8F0; margin-bottom:1rem;">
+            <button onclick="sendResetCode()" style="width:100%; padding:0.8rem; background:rgba(90,140,170,0.6); border:1px solid #C0E0FF; border-radius:40px; color:#E0E8F0; cursor:pointer;">إرسال رمز إعادة التعيين</button>
+            <button onclick="closeForgotModal()" style="width:100%; margin-top:0.5rem; padding:0.8rem; background:none; border:1px solid rgba(200,220,250,0.3); border-radius:40px; color:#A0B8D0; cursor:pointer;">إلغاء</button>
+            <div id="forgotError" style="color:#FF8A7A; margin-top:0.5rem; text-align:center;"></div>
+        </div>
+    </div>
+
+    <script>
+        function createStars() {
+            const starsContainer = document.getElementById('starsContainer');
+            for (let i = 0; i < 120; i++) {
+                let star = document.createElement('div');
+                star.classList.add('star');
+                let size = Math.random() * 3 + 1;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 5 + 's';
+                star.style.animationDuration = Math.random() * 3 + 2 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+        createStars();
+
+        let signupTempToken = null;
+
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            if (input) {
+                input.type = input.type === 'password' ? 'text' : 'password';
+            }
+        }
+
+        function showForgotPassword() {
+            document.getElementById('forgotModal').style.display = 'flex';
+        }
+
+        function closeForgotModal() {
+            document.getElementById('forgotModal').style.display = 'none';
+            document.getElementById('forgotEmail').value = '';
+            document.getElementById('forgotError').innerText = '';
+        }
+
+        async function sendResetCode() {
+            const email = document.getElementById('forgotEmail').value.trim();
+            if (!email) {
+                document.getElementById('forgotError').innerText = '❌ الرجاء إدخال البريد الإلكتروني';
+                return;
+            }
+            try {
+                const res = await fetch('/api/admin/forgot-password', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+                const data = await res.json();
+                if (!res.ok) {
+                    document.getElementById('forgotError').innerText = data.error || '❌ فشل إرسال الرمز';
+                    return;
+                }
+                alert('✅ تم إرسال رمز إعادة التعيين إلى بريدك الإلكتروني');
+                closeForgotModal();
+            } catch(err) {
+                document.getElementById('forgotError').innerText = '⚠️ خطأ في الاتصال بالخادم';
+            }
+        }
+
+        function switchTab(tab) {
+            document.getElementById('loginSection').classList.remove('active');
+            document.getElementById('signupSection').classList.remove('active');
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            if (tab === 'login') {
+                document.getElementById('loginSection').classList.add('active');
+                document.querySelector('.tab-btn:first-child').classList.add('active');
+            } else {
+                document.getElementById('signupSection').classList.add('active');
+                document.querySelector('.tab-btn:last-child').classList.add('active');
+            }
+            document.getElementById('loginError').innerText = '';
+            document.getElementById('signupError').innerText = '';
+            document.getElementById('signupSuccess').innerText = '';
+        }
+
+        function closeCodeModal() {
+            document.getElementById('codeModal').style.display = 'none';
+            document.getElementById('signupCodeInput').value = '';
+            document.getElementById('codeError').innerText = '';
+        }
+
+        // ========== تسجيل دخول المدير ==========
+        async function startAdminLogin() {
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value.trim();
+
+            if (!email || !password) {
+                document.getElementById('loginError').innerText = '❌ الرجاء إدخال البريد الإلكتروني وكلمة السر';
+                return;
+            }
+
+            try {
+                const res = await fetch('/api/admin/init-login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                const data = await res.json();
+                if (!res.ok) {
+                    document.getElementById('loginError').innerText = data.error || '❌ فشل التحقق من البريد أو كلمة السر';
+                    return;
+                }
+                localStorage.setItem('adminToken', data.adminToken);
+                window.location.href = '/admin';
+            } catch (err) {
+                document.getElementById('loginError').innerText = '⚠️ خطأ في الاتصال بالخادم';
+            }
+        }
+
+        // ========== إنشاء حساب مدير جديد ==========
+        async function requestAdminSignup() {
+            const name = document.getElementById('signupName').value.trim();
+            const email = document.getElementById('signupEmail').value.trim();
+            const password = document.getElementById('signupPassword').value.trim();
+            const phone = document.getElementById('signupPhone').value.trim();
+
+            if (!name || !email || !password) {
+                document.getElementById('signupError').innerText = '❌ الرجاء إدخال جميع البيانات';
+                return;
+            }
+
+            try {
+                const res = await fetch('/api/admin/signup-request', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, password, phone })
+                });
+                const data = await res.json();
+                if (!res.ok) {
+                    document.getElementById('signupError').innerText = data.error || '❌ فشل طلب إنشاء الحساب';
+                    return;
+                }
+                
+                signupTempToken = data.tempToken;
+                document.getElementById('codeModal').style.display = 'flex';
+                document.getElementById('codeError').innerText = '';
+                
+            } catch (err) {
+                document.getElementById('signupError').innerText = '⚠️ خطأ في الاتصال بالخادم';
+            }
+        }
+
+        async function verifySignupCode() {
+            const code = document.getElementById('signupCodeInput').value.trim();
+            if (!code || code.length !== 6) {
+                document.getElementById('codeError').innerText = '❌ الرجاء إدخال كود صحيح مكون من 6 أرقام';
+                return;
+            }
+            
+            try {
+                const res = await fetch('/api/admin/verify-signup-code', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ tempToken: signupTempToken, code })
+                });
+                const data = await res.json();
+                if (!res.ok) {
+                    document.getElementById('codeError').innerText = data.error || '❌ كود غير صحيح';
+                    return;
+                }
+                
+                closeCodeModal();
+                document.getElementById('signupSection').innerHTML = `
+                    <div class="success-msg">✅ ${data.message}</div>
+                    <button class="btn" onclick="switchTab('login')">الذهاب إلى تسجيل الدخول</button>
+                `;
+                
+            } catch (err) {
+                document.getElementById('codeError').innerText = '⚠️ خطأ في الاتصال بالخادم';
+            }
+        }
+
+        async function resendSignupCode() {
+            if (!signupTempToken) {
+                document.getElementById('codeError').innerText = '❌ جلسة منتهية، يرجى إعادة طلب إنشاء الحساب';
+                return;
+            }
+            
+            try {
+                const res = await fetch('/api/admin/resend-signup-code', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ tempToken: signupTempToken })
+                });
+                const data = await res.json();
+                if (!res.ok) {
+                    document.getElementById('codeError').innerText = data.error || '❌ فشل إعادة إرسال الكود';
+                    return;
+                }
+                document.getElementById('codeError').innerText = '✅ تم إعادة إرسال الكود إلى إيميل المدير التنفيذي';
+                setTimeout(() => {
+                    if (document.getElementById('codeError').innerText === '✅ تم إعادة إرسال الكود إلى إيميل المدير التنفيذي') {
+                        document.getElementById('codeError').innerText = '';
+                    }
+                }, 3000);
+            } catch(err) {
+                document.getElementById('codeError').innerText = '⚠️ خطأ في الاتصال بالخادم';
+            }
+        }
+    </script>
+</body>
+</html>

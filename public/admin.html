@@ -1,0 +1,1774 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    
+    <!-- ========== SEO Meta Tags ========== -->
+    <title>HELAXIA | لوحة إدارة المنصة - تحكم كامل بالمبيعات والمتاجر</title>
+    <meta name="description" content="لوحة تحكم المدير في HELAXIA. إدارة الأقسام، المنتجات، الطلبات، التجار، المدن، الشحن، التقارير المالية، والمدراء. تحكم كامل بمنصة الأزياء.">
+    <meta name="keywords" content="لوحة تحكم, إدارة, مدير, HELAXIA, أقسام, منتجات, طلبات, تجار, مدن, شحن, تقارير مالية, مدراء">
+    <meta name="author" content="HELAXIA">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="language" content="Arabic">
+    
+    <!-- ========== Open Graph (لـ Facebook, WhatsApp, Telegram) ========== -->
+    <meta property="og:title" content="HELAXIA | لوحة إدارة المنصة">
+    <meta property="og:description" content="لوحة تحكم المدير في HELAXIA - إدارة كاملة للمنصة">
+    <meta property="og:image" content="https://helaxia.com/images/logo.png">
+    <meta property="og:url" content="https://helaxia.com/admin.html">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ar_SY">
+    
+    <!-- ========== Twitter Card ========== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="HELAXIA | لوحة إدارة المنصة">
+    <meta name="twitter:description" content="لوحة تحكم المدير في HELAXIA">
+    
+    <!-- ========== Canonical URL ========== -->
+    <link rel="canonical" href="https://helaxia.com/admin.html">
+    
+    <!-- ========== Favicon ========== -->
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Cairo', 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at 30% 20%, #1A2A3A, #0F1A24);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        .star {
+            position: fixed;
+            background: radial-gradient(circle, #FFFFFF, #C0E0FF);
+            border-radius: 50%;
+            opacity: 0;
+            pointer-events: none;
+            animation: starTwinkle 4s infinite ease-in-out;
+            z-index: 0;
+        }
+        @keyframes starTwinkle {
+            0% { opacity: 0; transform: scale(0.8); }
+            50% { opacity: 0.9; transform: scale(1.2); }
+            100% { opacity: 0; transform: scale(0.8); }
+        }
+        .glass-nav {
+            background: rgba(10, 20, 30, 0.45);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(200, 220, 250, 0.3);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+        }
+        .glass-card {
+            background: rgba(20, 35, 45, 0.45);
+            backdrop-filter: blur(14px);
+            border-radius: 28px;
+            border: 1px solid rgba(200, 220, 250, 0.25);
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        .glass-card:hover {
+            border-color: rgba(200, 220, 250, 0.6);
+            box-shadow: 0 0 28px rgba(192, 224, 255, 0.4);
+            transform: translateY(-2px);
+        }
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+        .admin-name { color: #C0D0E0; font-size: 0.9rem; }
+        .admin-name span { color: #C0E0FF; font-weight: bold; }
+        .top-icons { display: flex; gap: 1.5rem; align-items: center; }
+        .icon-btn {
+            background: rgba(10, 20, 30, 0.3);
+            padding: 0.4rem 0.8rem;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #C0D0E0;
+        }
+        .icon-btn:hover {
+            background: rgba(192, 224, 255, 0.2);
+            box-shadow: 0 0 12px #C0E0FF;
+            transform: scale(1.02);
+        }
+        .icon-svg {
+            width: 20px;
+            height: 20px;
+            stroke: #C0D0E0;
+            stroke-width: 1.5;
+            fill: none;
+        }
+        .tabs-container {
+            padding-top: 5.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+        .tabs-header {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(10, 20, 30, 0.3);
+            border-radius: 60px;
+            padding: 0.3rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .tab-btn {
+            flex: 1;
+            background: transparent;
+            border: none;
+            padding: 0.8rem 1rem;
+            border-radius: 50px;
+            color: #A0B8D0;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .tab-btn svg { width: 20px; height: 20px; stroke: #A0B8D0; }
+        .tab-btn.active { background: rgba(192, 224, 255, 0.2); color: #C0E0FF; box-shadow: 0 0 15px rgba(192, 224, 255, 0.3); }
+        .tab-btn.active svg { stroke: #C0E0FF; }
+        .tab-btn:hover:not(.active) { background: rgba(192, 224, 255, 0.1); color: #C0D0E0; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .stat-card {
+            background: rgba(20, 35, 45, 0.45);
+            backdrop-filter: blur(14px);
+            border-radius: 24px;
+            border: 1px solid rgba(200, 220, 250, 0.25);
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .stat-number { font-size: 2.5rem; font-weight: bold; color: #C0E0FF; margin-top: 0.5rem; }
+        .stat-label { color: #A0B8D0; font-size: 0.9rem; }
+        .welcome-text {
+            background: rgba(20, 35, 45, 0.35);
+            border-radius: 24px;
+            padding: 1.5rem;
+            text-align: center;
+            color: #C0D0E0;
+            margin-bottom: 2rem;
+        }
+        .data-table { width: 100%; border-collapse: collapse; color: #C0D0E0; }
+        .data-table th, .data-table td { padding: 1rem; text-align: right; border-bottom: 1px solid rgba(200, 220, 250, 0.2); }
+        .data-table th { color: #C0E0FF; font-weight: 600; }
+        .action-btn {
+            background: rgba(90, 140, 170, 0.3);
+            border: 1px solid rgba(200, 220, 250, 0.3);
+            border-radius: 30px;
+            padding: 0.3rem 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            color: #C0D0E0;
+        }
+        .action-btn:hover { background: rgba(192, 224, 255, 0.2); box-shadow: 0 0 10px #C0E0FF; }
+        .btn-danger { border-color: rgba(255, 100, 100, 0.5); color: #FF8A7A; }
+        .btn-danger:hover { background: rgba(255, 100, 100, 0.2); box-shadow: 0 0 10px #FF8A7A; }
+        .btn-success { border-color: rgba(100, 255, 150, 0.5); color: #A0E0C0; }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: rgba(20, 35, 45, 0.95);
+            border-radius: 28px;
+            padding: 2rem;
+            width: 90%;
+            max-width: 700px;
+            border: 1px solid #C0E0FF;
+            position: relative;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+        .close-modal { cursor: pointer; color: #C0E0FF; font-size: 1.5rem; }
+        .modal input, .modal select, .modal textarea {
+            width: 100%;
+            background: rgba(10, 20, 30, 0.5);
+            border: 1px solid rgba(200, 220, 250, 0.3);
+            border-radius: 40px;
+            padding: 0.8rem 1rem;
+            color: #E0E8F0;
+            margin-bottom: 1rem;
+        }
+        .search-box { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
+        .search-box input { flex: 1; background: rgba(10, 20, 30, 0.5); border: 1px solid rgba(200, 220, 250, 0.3); border-radius: 40px; padding: 0.8rem 1rem; color: #E0E8F0; }
+        .folder-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .folder-card {
+            background: rgba(20, 35, 45, 0.45);
+            border-radius: 20px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid rgba(200, 220, 250, 0.25);
+        }
+        .folder-card:hover { border-color: rgba(200, 220, 250, 0.6); transform: translateY(-3px); }
+        
+        /* منتجات القسم */
+        .category-products-container {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(10, 20, 30, 0.3);
+            border-radius: 20px;
+        }
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .back-btn {
+            background: rgba(192, 224, 255, 0.2);
+            border: 1px solid #C0E0FF;
+            border-radius: 40px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            color: #C0E0FF;
+        }
+        .products-grid-admin {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        .product-admin-card {
+            background: rgba(20, 35, 45, 0.45);
+            border-radius: 20px;
+            padding: 1rem;
+            border: 1px solid rgba(200, 220, 250, 0.25);
+            transition: all 0.3s;
+        }
+        .product-admin-card:hover { transform: translateY(-3px); border-color: rgba(200, 220, 250, 0.6); }
+        .product-admin-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 0.5rem;
+        }
+        .product-admin-name { font-weight: bold; color: #E0E8F0; margin-bottom: 0.3rem; }
+        .product-admin-price { color: #C0E0FF; font-size: 0.9rem; margin-bottom: 0.5rem; }
+        .product-admin-actions { display: flex; gap: 0.5rem; margin-top: 0.5rem; }
+        
+        /* إعدادات المدير التنفيذي */
+        .settings-section {
+            margin-bottom: 2rem;
+        }
+        .settings-section h3 {
+            color: #C0E0FF;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            border-right: 3px solid #C0E0FF;
+            padding-right: 0.8rem;
+        }
+        .settings-input {
+            width: 100%;
+            background: rgba(10, 20, 30, 0.5);
+            border: 1px solid rgba(200, 220, 250, 0.3);
+            border-radius: 40px;
+            padding: 0.8rem 1rem;
+            color: #E0E8F0;
+            margin-bottom: 1rem;
+        }
+        .settings-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .settings-row .settings-input {
+            flex: 1;
+            margin-bottom: 0;
+        }
+        .save-all-btn {
+            width: 100%;
+            background: rgba(90, 140, 170, 0.6);
+            border: 1px solid #C0E0FF;
+            border-radius: 40px;
+            padding: 0.8rem;
+            font-weight: bold;
+            cursor: pointer;
+            color: #E0E8F0;
+            transition: 0.2s;
+            margin-top: 1.5rem;
+        }
+        .save-all-btn:hover {
+            background: rgba(192, 224, 255, 0.2);
+            box-shadow: 0 0 15px #C0E0FF;
+            transform: scale(1.01);
+        }
+        
+        /* معاينة الصور */
+        .images-preview-container {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        .image-preview-item {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(200,220,250,0.3);
+        }
+        .image-preview-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .image-preview-item .remove-img {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            width: 20px;
+            height: 20px;
+            background: #FF4444;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 12px;
+            color: white;
+        }
+
+        /* إدارة الشحن */
+        .shipping-orders-table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+        .shipping-orders-table th, .shipping-orders-table td { padding: 0.8rem; text-align: center; border-bottom: 1px solid rgba(200,220,250,0.2); }
+        .shipping-orders-table th { color: #C0E0FF; }
+        .vendor-shipping-list { margin-top: 1rem; max-height: 300px; overflow-y: auto; }
+        .vendor-shipping-item { display: flex; justify-content: space-between; padding: 0.5rem; border-bottom: 1px solid rgba(200,220,250,0.1); }
+        
+        /* صورة شام كاش */
+        .payment-proof-img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .payment-proof-img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 12px #C0E0FF;
+        }
+        .modal-img-full {
+            width: 100%;
+            max-height: 500px;
+            object-fit: contain;
+            border-radius: 16px;
+        }
+        
+        /* جدول المدن */
+        .cities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .city-card {
+            background: rgba(20, 35, 45, 0.45);
+            border-radius: 20px;
+            padding: 1rem;
+            border: 1px solid rgba(200, 220, 250, 0.25);
+            transition: all 0.3s;
+        }
+        .city-card:hover { transform: translateY(-3px); border-color: rgba(200, 220, 250, 0.6); }
+        .city-name { font-size: 1.1rem; font-weight: bold; color: #E0E8F0; margin-bottom: 0.3rem; }
+        .city-status { font-size: 0.8rem; margin-top: 0.5rem; }
+        .city-actions { display: flex; gap: 0.5rem; margin-top: 0.8rem; }
+        
+        /* تحسين التجاوب مع الشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .tabs-header { flex-direction: column; border-radius: 20px; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+            .products-grid-admin { grid-template-columns: 1fr 1fr; }
+            .settings-row { flex-direction: column; }
+            .top-bar { flex-direction: column; gap: 1rem; }
+            .top-icons { flex-wrap: wrap; justify-content: center; }
+            .tabs-container { padding-top: 8rem; }
+        }
+        
+        @media (max-width: 480px) {
+            .stats-grid { grid-template-columns: 1fr; }
+            .products-grid-admin { grid-template-columns: 1fr; }
+            .modal-content { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+<div id="starsContainer"></div>
+
+<nav class="glass-nav">
+    <div class="top-bar">
+        <div class="icon-btn" id="settingsTabBtn" onclick="switchToExecutiveTab()">
+            <svg class="icon-svg" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 2L15 8.5L22 9.5L17 14L18.5 21L12 17.5L5.5 21L7 14L2 9.5L9 8.5L12 2z"/></svg>
+            <span id="executiveBtnText">المدير التنفيذي</span>
+        </div>
+        <div class="admin-name"><svg class="icon-svg" viewBox="0 0 24 24" stroke="currentColor" style="width:16px;height:16px;display:inline;"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> <span id="adminNameText">المدير التنفيذي</span> : محمد لوباني</div>
+        <div class="top-icons">
+            <div class="icon-btn" id="languageBtn" onclick="toggleLanguage()">
+                <svg class="icon-svg" viewBox="0 0 24 24" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                <span id="languageBtnText">EN</span>
+            </div>
+            <div class="icon-btn" onclick="logout()"><svg class="icon-svg" viewBox="0 0 24 24" stroke="currentColor"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg> <span id="logoutBtnText">خروج</span></div>
+        </div>
+    </div>
+</nav>
+
+<!-- باقي محتوى الصفحة كما هو تماماً (لم يتغير) -->
+<div class="tabs-container">
+    <div class="tabs-header">
+        <button class="tab-btn active" data-tab="dashboard"><svg viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg> <span class="tab-text">Dashboard</span></button>
+        <button class="tab-btn" data-tab="categories"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M4 4h16v16H4z"/><path d="M9 9h6v6H9z"/></svg> <span class="tab-text">الأقسام</span></button>
+        <button class="tab-btn" data-tab="products"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> <span class="tab-text">المنتجات</span></button>
+        <button class="tab-btn" data-tab="orders"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M22 12h-4l-3 9-4-18-3 9H2"/></svg> <span class="tab-text">الطلبات</span></button>
+        <button class="tab-btn" data-tab="vendors"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg> <span class="tab-text">التجار</span></button>
+        <button class="tab-btn" data-tab="cities"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M12 2v4M12 22v-4M4 12H2M22 12h-2"/><circle cx="12" cy="12" r="4"/><path d="M6 6l2 2M18 18l2 2M18 6l2-2M6 18l2-2"/></svg> <span class="tab-text">المدن</span></button>
+        <button class="tab-btn" data-tab="shipping"><svg viewBox="0 0 24 24" stroke="currentColor"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><circle cx="8" cy="19" r="2"/><circle cx="16" cy="19" r="2"/></svg> <span class="tab-text">إدارة الشحن</span></button>
+        <button class="tab-btn" data-tab="reports"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M21 12v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M12 2v8M9 7l3-3 3 3"/></svg> <span class="tab-text">التقارير المالية</span></button>
+        <button class="tab-btn" data-tab="executive"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M12 2L15 8.5L22 9.5L17 14L18.5 21L12 17.5L5.5 21L7 14L2 9.5L9 8.5L12 2z"/></svg> <span class="tab-text">المدير التنفيذي</span></button>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard" class="tab-content active">
+        <div class="welcome-text glass-card"><h2 id="welcomeTitle">✨ مرحباً بك في مقر قيادة HELAXIA ✨</h2><p id="welcomeSub">من هنا، تدير إمبراطورية الأزياء. كل قرار يبدأ بنقرة.</p></div>
+        <div class="stats-grid" id="statsGrid">
+            <div class="stat-card"><svg width="32" height="32" viewBox="0 0 24 24" stroke="#C0E0FF"><path d="M4 4h16v16H4z"/><path d="M9 9h6v6H9z"/></svg><div class="stat-number" id="statCategories">0</div><div class="stat-label" id="statCategoriesLabel">الأقسام</div></div>
+            <div class="stat-card"><svg width="32" height="32" viewBox="0 0 24 24" stroke="#C0E0FF"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg><div class="stat-number" id="statProducts">0</div><div class="stat-label" id="statProductsLabel">المنتجات</div></div>
+            <div class="stat-card"><svg width="32" height="32" viewBox="0 0 24 24" stroke="#C0E0FF"><path d="M22 12h-4l-3 9-4-18-3 9H2"/></svg><div class="stat-number" id="statOrders">0</div><div class="stat-label" id="statOrdersLabel">الطلبات</div></div>
+            <div class="stat-card"><svg width="32" height="32" viewBox="0 0 24 24" stroke="#C0E0FF"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><div class="stat-number" id="statVendors">0</div><div class="stat-label" id="statVendorsLabel">التجار</div></div>
+        </div>
+    </div>
+
+    <!-- الأقسام -->
+    <div id="categories" class="tab-content">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <h2 style="color: #C0E0FF;" id="categoriesTitle">📁 الأقسام (كمجلدات)</h2>
+            <button class="action-btn" id="addCategoryBtn" onclick="openAddCategoryModal()">+ إضافة قسم جديد</button>
+        </div>
+        <div id="foldersGrid" class="folder-grid"></div>
+        <div id="categoryProductsView" style="display: none;">
+            <div class="category-header">
+                <button class="back-btn" id="backToCategoriesBtn" onclick="closeCategoryProducts()">← رجوع إلى الأقسام</button>
+                <button class="action-btn" id="addProductToCatBtn" onclick="openAddProductToCategoryModal()">+ إضافة منتج</button>
+            </div>
+            <div id="categoryProductsGrid" class="products-grid-admin"></div>
+        </div>
+    </div>
+
+    <!-- المنتجات -->
+    <div id="products" class="tab-content">
+        <h2 style="color: #C0E0FF; margin-bottom: 1rem;" id="productsTitle">📦 جميع منتجات المنصة</h2>
+        <div style="overflow-x: auto;">
+            <table class="data-table" id="productsTable">
+                <thead><tr><th id="thImage">الصورة</th><th id="thName">المنتج</th><th id="thCategory">القسم</th><th id="thStore">المتجر</th><th id="thTimes">عدد مرات الشراء</th><th id="thPrice">السعر</th><th id="thActions">الإجراءات</th></tr></thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- الطلبات -->
+    <div id="orders" class="tab-content">
+        <h2 style="color: #C0E0FF; margin-bottom: 1rem;" id="ordersTitle">📋 إدارة الطلبات</h2>
+        <div class="search-box"><input type="text" id="orderSearchInput" placeholder="🔍 بحث حسب رقم الطلب"><button class="action-btn" id="searchBtn" onclick="searchOrder()">بحث</button><button class="action-btn" id="showAllBtn" onclick="loadOrders()">عرض الكل</button></div>
+        <div style="overflow-x: auto;">
+            <table class="data-table" id="ordersTable">
+                <thead>
+                    <tr>
+                        <th id="orderNumberTh">رقم الطلب</th>
+                        <th id="customerTh">العميل</th>
+                        <th id="amountTh">المبلغ</th>
+                        <th id="statusTh">الحالة</th>
+                        <th id="dateTh">التاريخ</th>
+                        <th id="pickupLocationTh">📍 مكان التسليم</th>
+                        <th id="actionsTh">الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- التجار -->
+    <div id="vendors" class="tab-content">
+        <h2 style="color: #C0E0FF; margin-bottom: 1rem;" id="vendorsTitle">🏪 طلبات تسجيل التجار</h2>
+        <div style="overflow-x: auto;">
+            <table class="data-table" id="vendorsTable">
+                <thead>
+                    <tr>
+                        <th id="storeNameTh">اسم المتجر</th>
+                        <th id="emailTh">الإيميل</th>
+                        <th id="phoneTh">رقم الهاتف</th>
+                        <th id="cityTh">📍 المدينة</th>
+                        <th id="paymentProofTh">صورة الدفع (شام كاش)</th>
+                        <th id="statusVendorTh">الحالة</th>
+                        <th id="actionsVendorTh">الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- المدن -->
+    <div id="cities" class="tab-content">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem;">
+            <h2 style="color: #C0E0FF;" id="citiesTitle">🏙️ إدارة المدن</h2>
+            <button class="action-btn" id="addCityBtn" onclick="openAddCityModal()">+ إضافة مدينة جديدة</button>
+        </div>
+        <div id="citiesGrid" class="cities-grid">جاري التحميل...</div>
+    </div>
+
+    <!-- إدارة الشحن -->
+    <div id="shipping" class="tab-content">
+        <h2 style="color: #C0E0FF; margin-bottom: 1.5rem;" id="shippingTitle">📦 إدارة الشحن</h2>
+        <div style="overflow-x: auto;">
+            <table class="shipping-orders-table glass-card" style="width:100%; padding:1rem;">
+                <thead>
+                    <tr>
+                        <th>رقم الطلب</th>
+                        <th>العميل</th>
+                        <th>عدد المنتجات</th>
+                        <th>عدد التجار</th>
+                        <th>حالة الطلب</th>
+                        <th>الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody id="shippingOrdersList">
+                    <tr><td colspan="6" class="empty-state">جاري التحميل...</td><tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- التقارير المالية -->
+    <div id="reports" class="tab-content">
+        <h2 style="color: #C0E0FF; margin-bottom: 1.5rem;" id="reportsTitle">📊 التقارير المالية (جرد)</h2>
+        <div class="search-box" style="margin-bottom:1rem;">
+            <input type="date" id="reportStartDate">
+            <input type="date" id="reportEndDate">
+            <button class="action-btn" onclick="loadFinancialReport()">عرض التقرير</button>
+            <button class="action-btn" onclick="exportReportAsImage()">📸 تصدير كصورة</button>
+        </div>
+        <div id="financialReportContainer" class="glass-card" style="padding:1.5rem;">
+            <div class="empty-state">✨ اختر تاريخ لعرض التقرير ✨</div>
+        </div>
+    </div>
+
+    <!-- المدير التنفيذي -->
+    <div id="executive" class="tab-content">
+        <h2 style="color: #C0E0FF; margin-bottom: 1.5rem;" id="executiveTitle">👑 صلاحيات المدير التنفيذي</h2>
+        
+        <div class="settings-section">
+            <h3 id="exchangeRateTitle">💱 سعر صرف الدولار مقابل الليرة السورية</h3>
+            <input type="number" id="exchangeRateInput" class="settings-input" placeholder="مثال: 15000">
+        </div>
+
+        <div class="settings-section">
+            <h3 id="whatsappPaymentTitle">📞 رقم واتساب للتواصل مع العملاء</h3>
+            <input type="text" id="whatsappPaymentInput" class="settings-input" placeholder="مثال: 963XXXXXXXXX">
+        </div>
+
+        <div class="settings-section">
+            <h3 id="executiveEmailTitle">📧 إيميل المدير التنفيذي (استلام الأكواد)</h3>
+            <input type="email" id="executiveEmail" class="settings-input" placeholder="مثال: admin@helaxia.com">
+        </div>
+
+        <div class="settings-section">
+            <h3 id="adminsManagementTitle">👥 إدارة المدراء العاديين</h3>
+            <div style="overflow-x: auto; margin-bottom: 1rem;">
+                <table class="data-table" id="adminsTable">
+                    <thead><tr><th id="adminEmailTh">الإيميل</th><th id="adminNameTh">الاسم</th><th id="adminStatusTh">الحالة</th><th id="adminActionsTh">الإجراءات</th></tr></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <button class="action-btn" id="addAdminBtn" onclick="openAddAdminModal()">➕ إضافة مدير جديد</button>
+        </div>
+
+        <button class="save-all-btn" id="saveAllSettingsBtn" onclick="saveAllExecutiveSettings()">💾 حفظ جميع التغييرات</button>
+    </div>
+</div>
+
+<!-- المودالات (كلها موجودة نفس ما هي، ما حذفت ولا غيرت شي) -->
+<div id="imageModal" class="modal" onclick="closeImageModal()">
+    <div class="modal-content" style="max-width:600px; text-align:center;" onclick="event.stopPropagation()">
+        <div class="modal-header">
+            <h3 style="color:#C0E0FF;" id="imageModalTitle">صورة الدفع (شام كاش)</h3>
+            <span class="close-modal" onclick="closeImageModal()">&times;</span>
+        </div>
+        <img id="fullImage" class="modal-img-full" src="">
+        <button class="action-btn" style="margin-top:1rem;" onclick="closeImageModal()">إغلاق</button>
+    </div>
+</div>
+
+<div id="addCategoryModal" class="modal"><div class="modal-content"><div class="modal-header"><h3 style="color:#C0E0FF;" id="addCategoryModalTitle">إضافة قسم جديد</h3><span class="close-modal" onclick="closeAddCategoryModal()">&times;</span></div><input type="text" id="newCategoryName" placeholder="اسم القسم"><button class="action-btn" style="width:100%;" id="confirmAddCategoryBtn" onclick="addCategory()">إضافة</button></div></div>
+
+<div id="addProductToCategoryModal" class="modal">
+    <div class="modal-content" style="max-width:800px;">
+        <div class="modal-header">
+            <h3 style="color:#C0E0FF;" id="addProductModalTitle">إضافة منتج إلى القسم</h3>
+            <span class="close-modal" onclick="closeAddProductToCategoryModal()">&times;</span>
+        </div>
+        <div style="display:flex; gap:1rem; margin-bottom:1rem;">
+            <button class="action-btn" style="flex:1;" id="newProductOptionBtn" onclick="showNewProductForm()">منتج جديد</button>
+            <button class="action-btn" style="flex:1;" id="existingProductOptionBtn" onclick="showExistingProductsList()">منتج موجود</button>
+        </div>
+        <div id="newProductForm" style="display:none;">
+            <input type="text" id="newProductName" placeholder="اسم المنتج">
+            <input type="number" id="newProductPrice" placeholder="السعر">
+            <div style="margin-bottom:0.5rem;">
+                <label style="color:#A0B8D0;">صور المنتج (يمكن اختيار 6 صور)</label>
+                <input type="file" id="newProductImages" accept="image/*" multiple>
+                <div id="newProductImagesPreview" class="images-preview-container"></div>
+            </div>
+            <input type="text" id="newProductFabric" placeholder="نوع القماش">
+            <input type="text" id="newProductSizes" placeholder="القياسات">
+            <input type="text" id="newProductColors" placeholder="الألوان">
+            <textarea id="newProductDescription" placeholder="وصف المنتج" rows="3"></textarea>
+            <button class="action-btn" style="width:100%;" id="confirmAddProductBtn" onclick="addNewProductToCategory()">إضافة المنتج</button>
+        </div>
+        <div id="existingProductsList" style="display:none; max-height:400px; overflow-y:auto;"></div>
+    </div>
+</div>
+
+<div id="editProductModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 style="color:#C0E0FF;" id="editProductModalTitle">تعديل المنتج</h3>
+            <span class="close-modal" onclick="closeEditProductModal()">&times;</span>
+        </div>
+        <input type="hidden" id="editProductId">
+        <input type="text" id="editProductName" placeholder="اسم المنتج">
+        <input type="number" id="editProductPrice" placeholder="السعر">
+        <div style="margin-bottom:0.5rem;">
+            <label style="color:#A0B8D0;">صور جديدة (اختياري، يمكن رفع 6 صور)</label>
+            <input type="file" id="editProductImages" accept="image/*" multiple>
+            <div id="editProductImagesPreview" class="images-preview-container"></div>
+        </div>
+        <input type="text" id="editProductFabric" placeholder="نوع القماش">
+        <input type="text" id="editProductSizes" placeholder="القياسات">
+        <input type="text" id="editProductColors" placeholder="الألوان">
+        <textarea id="editProductDescription" placeholder="وصف المنتج" rows="3"></textarea>
+        <button class="action-btn" style="width:100%;" id="saveEditProductBtn" onclick="saveEditProduct()">حفظ التغييرات</button>
+    </div>
+</div>
+
+<div id="addAdminModal" class="modal"><div class="modal-content"><div class="modal-header"><h3 style="color:#C0E0FF;" id="addAdminModalTitle">➕ إضافة مدير جديد</h3><span class="close-modal" onclick="closeAddAdminModal()">&times;</span></div><input type="text" id="newAdminName" placeholder="الاسم الكامل"><input type="email" id="newAdminEmail" placeholder="البريد الإلكتروني"><input type="password" id="newAdminPassword" placeholder="كلمة السر"><input type="text" id="newAdminPhone" placeholder="رقم الهاتف"><button class="action-btn" style="width:100%;" id="confirmAddAdminBtn" onclick="addNewAdmin()">إضافة مدير</button></div></div>
+
+<div id="cityModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 style="color:#C0E0FF;" id="cityModalTitle">إضافة مدينة جديدة</h3>
+            <span class="close-modal" onclick="closeCityModal()">&times;</span>
+        </div>
+        <input type="hidden" id="editCityId">
+        <input type="text" id="cityName" placeholder="اسم المدينة">
+        <input type="text" id="cityDeliveryFee" placeholder="رسوم التوصيل (ل.س)">
+        <div style="margin: 0.5rem 0;">
+            <label style="color:#A0B8D0;">حالة المدينة</label>
+            <select id="cityStatus">
+                <option value="active">نشط</option>
+                <option value="inactive">غير نشط</option>
+            </select>
+        </div>
+        <button class="action-btn" style="width:100%;" id="saveCityBtn" onclick="saveCity()">💾 حفظ</button>
+    </div>
+</div>
+
+<div id="executiveCodeModal" class="modal"><div class="modal-content"><div class="modal-header"><h3 style="color:#C0E0FF;" id="executiveCodeModalTitle">🔐 الوصول إلى صلاحيات المدير التنفيذي</h3><span class="close-modal" onclick="closeExecutiveCodeModal()">&times;</span></div><p style="color:#A0B8D0;" id="executiveCodeModalText">تم إرسال كود إلى إيميل المدير التنفيذي:</p><input type="text" id="executiveCodeInput" placeholder="أدخل الكود" maxlength="6"><div style="display:flex; gap:1rem; margin-top:1rem;"><button class="action-btn" style="flex:1;" id="verifyExecutiveCodeBtn" onclick="verifyExecutiveCode()">تأكيد</button><button class="action-btn" style="flex:1;" id="resendExecutiveCodeBtn" onclick="resendExecutiveCode()">إعادة إرسال</button></div><div id="executiveCodeError" style="color:#FF8A7A; margin-top:0.5rem;"></div></div></div>
+
+<div id="shippingModal" class="modal"><div class="modal-content"><div class="modal-header"><h3 id="shippingModalTitle">تحديد تكلفة الشحن</h3><span class="close-modal" onclick="closeShippingModal()">&times;</span></div>
+    <p><strong>رقم الطلب:</strong> <span id="shippingOrderNumber"></span></p>
+    <p><strong>العميل:</strong> <span id="shippingCustomerName"></span></p>
+    <div style="margin:1rem 0;">
+        <label>إجمالي تكلفة الشحن (ل.س):</label>
+        <input type="number" id="shippingTotalCost" placeholder="أدخل تكلفة الشحن">
+    </div>
+    <div id="shippingVendorsList" class="vendor-shipping-list"></div>
+    <button class="action-btn btn-success" style="width:100%; margin-top:1rem;" onclick="saveShippingCost()">💾 حفظ وتطبيق الشحن</button>
+</div></div>
+
+<script>
+    let adminToken = localStorage.getItem('adminToken');
+    let selectedNewProductImages = [];
+    let selectedEditProductImages = [];
+    let currentCategoryId = null;
+    let currentExecutiveTempToken = null;
+    let isEnglish = false;
+    let executiveAccessGranted = false;
+    let currentShippingOrder = null;
+
+    if (!adminToken) window.location.href = '/admin-login';
+
+    function showImageModal(imageUrl, title) {
+        const modal = document.getElementById('imageModal');
+        const img = document.getElementById('fullImage');
+        const titleEl = document.getElementById('imageModalTitle');
+        img.src = imageUrl;
+        if (titleEl) titleEl.innerText = title || 'صورة الدفع (شام كاش)';
+        modal.style.display = 'flex';
+    }
+
+    function closeImageModal() {
+        document.getElementById('imageModal').style.display = 'none';
+        document.getElementById('fullImage').src = '';
+    }
+
+    const translations = {
+        ar: {
+            executive: "المدير التنفيذي", adminExecutive: "المدير التنفيذي", logout: "خروج",
+            dashboard: "Dashboard", categories: "الأقسام", products: "المنتجات", orders: "الطلبات", vendors: "التجار", cities: "المدن", shipping: "إدارة الشحن", reports: "التقارير المالية",
+            welcomeTitle: "✨ مرحباً بك في مقر قيادة HELAXIA ✨",
+            welcomeSub: "من هنا، تدير إمبراطورية الأزياء. كل قرار يبدأ بنقرة.",
+            statCategories: "الأقسام", statProducts: "المنتجات", statOrders: "الطلبات", statVendors: "التجار",
+            categoriesTitle: "📁 الأقسام (كمجلدات)", addCategory: "+ إضافة قسم جديد",
+            backToCategories: "← رجوع إلى الأقسام", addProduct: "+ إضافة منتج",
+            productsTitle: "📦 جميع منتجات المنصة",
+            thImage: "الصورة", thName: "المنتج", thCategory: "القسم", thStore: "المتجر", thTimes: "عدد مرات الشراء", thPrice: "السعر", thActions: "الإجراءات",
+            ordersTitle: "📋 إدارة الطلبات", search: "بحث", showAll: "عرض الكل",
+            orderNumber: "رقم الطلب", customer: "العميل", amount: "المبلغ", status: "الحالة", date: "التاريخ", pickupLocation: "📍 مكان التسليم", actions: "الإجراءات",
+            vendorsTitle: "🏪 طلبات تسجيل التجار",
+            storeName: "اسم المتجر", email: "الإيميل", phone: "رقم الهاتف", city: "📍 المدينة", paymentProof: "صورة الدفع (شام كاش)", statusVendor: "الحالة", actionsVendor: "الإجراءات",
+            citiesTitle: "🏙️ إدارة المدن", addCity: "+ إضافة مدينة جديدة", cityNameCol: "اسم المدينة", deliveryFee: "رسوم التوصيل", cityStatus: "الحالة", cityActions: "الإجراءات",
+            executiveTitle: "👑 صلاحيات المدير التنفيذي",
+            exchangeRate: "💱 سعر صرف الدولار مقابل الليرة السورية",
+            whatsappPayment: "📞 رقم واتساب للتواصل مع العملاء",
+            executiveEmail: "📧 إيميل المدير التنفيذي (استلام الأكواد)",
+            adminsManagement: "👥 إدارة المدراء العاديين",
+            adminEmail: "الإيميل", adminNameCol: "الاسم", adminStatus: "الحالة", adminActions: "الإجراءات",
+            addAdmin: "➕ إضافة مدير جديد", saveAll: "💾 حفظ جميع التغييرات",
+            addCategoryModal: "إضافة قسم جديد", addCategoryConfirm: "إضافة",
+            addProductModal: "إضافة منتج إلى القسم", newProduct: "📦 منتج جديد", existingProduct: "🔄 منتج موجود",
+            addProductConfirm: "إضافة المنتج",
+            editProductModal: "تعديل المنتج", saveChanges: "💾 حفظ التغييرات",
+            addAdminModalTitle: "➕ إضافة مدير جديد", addAdminConfirm: "إضافة مدير",
+            executiveCodeTitle: "🔐 الوصول إلى صلاحيات المدير التنفيذي", executiveCodeText: "تم إرسال كود إلى إيميل المدير التنفيذي:",
+            verify: "تأكيد", resend: "إعادة إرسال",
+            pending: "قيد الانتظار", confirmed: "مؤكد", shipped: "تم الشحن", delivered: "تم التوصيل",
+            active: "مفعل", inactive: "غير نشط", suspended: "معلق", approve: "قبول", reject: "رفض", edit: "تعديل", delete: "حذف", forceLogout: "تسجيل خروج", suspend: "تعليق", activate: "تفعيل",
+            shippingTitle: "📦 إدارة الشحن", reportsTitle: "📊 التقارير المالية (جرد)",
+            orderId: "رقم الطلب", customerName: "العميل", productsCount: "عدد المنتجات", vendorsCount: "عدد التجار", orderStatus: "حالة الطلب", actions: "الإجراءات",
+            setShipping: "تحديد الشحن", saveShipping: "حفظ وتطبيق الشحن", totalShippingCost: "إجمالي تكلفة الشحن (ل.س)",
+            vendorName: "اسم المتجر", vendorSales: "قيمة المبيعات", vendorShare: "حصة الشحن", netAmount: "المبلغ الصافي"
+        },
+        en: {
+            executive: "Executive Director", adminExecutive: "Executive Director", logout: "Logout",
+            dashboard: "Dashboard", categories: "Categories", products: "Products", orders: "Orders", vendors: "Vendors", cities: "Cities", shipping: "Shipping Management", reports: "Financial Reports",
+            welcomeTitle: "✨ Welcome to HELAXIA Command Center ✨",
+            welcomeSub: "From here, you manage the fashion empire. Every decision starts with a click.",
+            statCategories: "Categories", statProducts: "Products", statOrders: "Orders", statVendors: "Vendors",
+            categoriesTitle: "📁 Categories (as Folders)", addCategory: "+ Add New Category",
+            backToCategories: "← Back to Categories", addProduct: "+ Add Product",
+            productsTitle: "📦 All Platform Products",
+            thImage: "Image", thName: "Product", thCategory: "Category", thStore: "Store", thTimes: "Times Ordered", thPrice: "Price", thActions: "Actions",
+            ordersTitle: "📋 Order Management", search: "Search", showAll: "Show All",
+            orderNumber: "Order Number", customer: "Customer", amount: "Amount", status: "Status", date: "Date", pickupLocation: "📍 Pickup Location", actions: "Actions",
+            vendorsTitle: "🏪 Vendor Registration Requests",
+            storeName: "Store Name", email: "Email", phone: "Phone", city: "📍 City", paymentProof: "Payment Proof (Cham Cash)", statusVendor: "Status", actionsVendor: "Actions",
+            citiesTitle: "🏙️ Cities Management", addCity: "+ Add New City", cityNameCol: "City Name", deliveryFee: "Delivery Fee", cityStatus: "Status", cityActions: "Actions",
+            executiveTitle: "👑 Executive Director Privileges",
+            exchangeRate: "💱 USD to SYP Exchange Rate",
+            whatsappPayment: "📞 WhatsApp Number for Customer Communication",
+            executiveEmail: "📧 Executive Director Email (receives codes)",
+            adminsManagement: "👥 Regular Admins Management",
+            adminEmail: "Email", adminNameCol: "Name", adminStatus: "Status", adminActions: "Actions",
+            addAdmin: "➕ Add New Admin", saveAll: "💾 Save All Changes",
+            addCategoryModal: "Add New Category", addCategoryConfirm: "Add",
+            addProductModal: "Add Product to Category", newProduct: "📦 New Product", existingProduct: "🔄 Existing Product",
+            addProductConfirm: "Add Product",
+            editProductModal: "Edit Product", saveChanges: "💾 Save Changes",
+            addAdminModalTitle: "➕ Add New Admin", addAdminConfirm: "Add Admin",
+            executiveCodeTitle: "🔐 Access Executive Privileges", executiveCodeText: "A code has been sent to the Executive Director's email:",
+            verify: "Verify", resend: "Resend",
+            pending: "Pending", confirmed: "Confirmed", shipped: "Shipped", delivered: "Delivered",
+            active: "Active", inactive: "Inactive", suspended: "Suspended", approve: "Approve", reject: "Reject", edit: "Edit", delete: "Delete", forceLogout: "Force Logout", suspend: "Suspend", activate: "Activate",
+            shippingTitle: "📦 Shipping Management", reportsTitle: "📊 Financial Reports (Inventory)",
+            orderId: "Order Number", customerName: "Customer", productsCount: "Products Count", vendorsCount: "Vendors Count", orderStatus: "Order Status", actions: "Actions",
+            setShipping: "Set Shipping", saveShipping: "Save & Apply Shipping", totalShippingCost: "Total Shipping Cost (SYP)",
+            vendorName: "Store Name", vendorSales: "Sales Amount", vendorShare: "Shipping Share", netAmount: "Net Amount"
+        }
+    };
+
+    function t(key) {
+        const lang = isEnglish ? 'en' : 'ar';
+        return translations[lang][key] || key;
+    }
+
+    function updateUILanguage() {
+        document.getElementById('executiveBtnText').innerText = t('executive');
+        document.getElementById('adminNameText').innerText = t('adminExecutive');
+        document.getElementById('languageBtnText').innerText = isEnglish ? 'AR' : 'EN';
+        document.getElementById('logoutBtnText').innerText = t('logout');
+        
+        document.querySelectorAll('.tab-text').forEach((el, idx) => {
+            const texts = [t('dashboard'), t('categories'), t('products'), t('orders'), t('vendors'), t('cities'), t('shipping'), t('reports'), t('executive')];
+            if (el && texts[idx]) el.innerText = texts[idx];
+        });
+        
+        document.getElementById('welcomeTitle').innerHTML = t('welcomeTitle');
+        document.getElementById('welcomeSub').innerHTML = t('welcomeSub');
+        document.getElementById('statCategoriesLabel').innerText = t('statCategories');
+        document.getElementById('statProductsLabel').innerText = t('statProducts');
+        document.getElementById('statOrdersLabel').innerText = t('statOrders');
+        document.getElementById('statVendorsLabel').innerText = t('statVendors');
+        
+        const categoriesTitle = document.getElementById('categoriesTitle');
+        if (categoriesTitle) categoriesTitle.innerHTML = t('categoriesTitle');
+        const addCategoryBtn = document.getElementById('addCategoryBtn');
+        if (addCategoryBtn) addCategoryBtn.innerHTML = t('addCategory');
+        const backBtn = document.getElementById('backToCategoriesBtn');
+        if (backBtn) backBtn.innerHTML = t('backToCategories');
+        const addProductBtn = document.getElementById('addProductToCatBtn');
+        if (addProductBtn) addProductBtn.innerHTML = t('addProduct');
+        
+        document.getElementById('productsTitle').innerHTML = t('productsTitle');
+        document.getElementById('thImage').innerText = t('thImage');
+        document.getElementById('thName').innerText = t('thName');
+        document.getElementById('thCategory').innerText = t('thCategory');
+        document.getElementById('thStore').innerText = t('thStore');
+        document.getElementById('thTimes').innerText = t('thTimes');
+        document.getElementById('thPrice').innerText = t('thPrice');
+        document.getElementById('thActions').innerText = t('thActions');
+        
+        document.getElementById('ordersTitle').innerHTML = t('ordersTitle');
+        document.getElementById('searchBtn').innerHTML = t('search');
+        document.getElementById('showAllBtn').innerHTML = t('showAll');
+        document.getElementById('orderNumberTh').innerText = t('orderNumber');
+        document.getElementById('customerTh').innerText = t('customer');
+        document.getElementById('amountTh').innerText = t('amount');
+        document.getElementById('statusTh').innerText = t('status');
+        document.getElementById('dateTh').innerText = t('date');
+        document.getElementById('pickupLocationTh').innerText = t('pickupLocation');
+        document.getElementById('actionsTh').innerText = t('actions');
+        
+        document.getElementById('vendorsTitle').innerHTML = t('vendorsTitle');
+        document.getElementById('storeNameTh').innerText = t('storeName');
+        document.getElementById('emailTh').innerText = t('email');
+        document.getElementById('phoneTh').innerText = t('phone');
+        const cityTh = document.getElementById('cityTh');
+        if (cityTh) cityTh.innerText = t('city');
+        document.getElementById('paymentProofTh').innerText = t('paymentProof');
+        document.getElementById('statusVendorTh').innerText = t('statusVendor');
+        document.getElementById('actionsVendorTh').innerText = t('actionsVendor');
+        
+        const citiesTitle = document.getElementById('citiesTitle');
+        if (citiesTitle) citiesTitle.innerHTML = t('citiesTitle');
+        const addCityBtn = document.getElementById('addCityBtn');
+        if (addCityBtn) addCityBtn.innerHTML = t('addCity');
+        
+        document.getElementById('executiveTitle').innerHTML = t('executiveTitle');
+        document.getElementById('exchangeRateTitle').innerHTML = t('exchangeRate');
+        document.getElementById('whatsappPaymentTitle').innerHTML = t('whatsappPayment');
+        document.getElementById('executiveEmailTitle').innerHTML = t('executiveEmail');
+        document.getElementById('adminsManagementTitle').innerHTML = t('adminsManagement');
+        document.getElementById('adminEmailTh').innerText = t('adminEmail');
+        document.getElementById('adminNameTh').innerText = t('adminNameCol');
+        document.getElementById('adminStatusTh').innerText = t('adminStatus');
+        document.getElementById('adminActionsTh').innerText = t('adminActions');
+        document.getElementById('addAdminBtn').innerHTML = t('addAdmin');
+        document.getElementById('saveAllSettingsBtn').innerHTML = t('saveAll');
+        
+        document.getElementById('addCategoryModalTitle').innerHTML = t('addCategoryModal');
+        document.getElementById('confirmAddCategoryBtn').innerHTML = t('addCategoryConfirm');
+        document.getElementById('addProductModalTitle').innerHTML = t('addProductModal');
+        document.getElementById('newProductOptionBtn').innerHTML = t('newProduct');
+        document.getElementById('existingProductOptionBtn').innerHTML = t('existingProduct');
+        document.getElementById('confirmAddProductBtn').innerHTML = t('addProductConfirm');
+        document.getElementById('editProductModalTitle').innerHTML = t('editProductModal');
+        document.getElementById('saveEditProductBtn').innerHTML = t('saveChanges');
+        document.getElementById('addAdminModalTitle').innerHTML = t('addAdminModalTitle');
+        document.getElementById('confirmAddAdminBtn').innerHTML = t('addAdminConfirm');
+        document.getElementById('executiveCodeModalTitle').innerHTML = t('executiveCodeTitle');
+        document.getElementById('executiveCodeModalText').innerHTML = t('executiveCodeText');
+        document.getElementById('verifyExecutiveCodeBtn').innerHTML = t('verify');
+        document.getElementById('resendExecutiveCodeBtn').innerHTML = t('resend');
+        
+        const cityModalTitle = document.getElementById('cityModalTitle');
+        if (cityModalTitle) cityModalTitle.innerHTML = document.getElementById('editCityId').value ? t('edit') + ' ' + t('city') : t('addCity');
+        
+        const shippingTitle = document.getElementById('shippingTitle');
+        if (shippingTitle) shippingTitle.innerHTML = t('shippingTitle');
+        const reportsTitle = document.getElementById('reportsTitle');
+        if (reportsTitle) reportsTitle.innerHTML = t('reportsTitle');
+        const shippingModalTitle = document.getElementById('shippingModalTitle');
+        if (shippingModalTitle) shippingModalTitle.innerHTML = t('setShipping');
+    }
+
+    function createStars() {
+        for (let i = 0; i < 150; i++) {
+            let star = document.createElement('div');
+            star.classList.add('star');
+            star.style.width = (Math.random() * 3 + 1) + 'px';
+            star.style.height = star.style.width;
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 5 + 's';
+            document.getElementById('starsContainer').appendChild(star);
+        }
+    }
+    createStars();
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (btn.getAttribute('data-tab') === 'executive') {
+                requestExecutiveCode();
+                return;
+            }
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
+            const tabId = btn.getAttribute('data-tab');
+            if (tabId && document.getElementById(tabId)) document.getElementById(tabId).classList.add('active');
+            if (tabId === 'dashboard') loadStats();
+            if (tabId === 'categories') { loadCategories(); closeCategoryProducts(); }
+            if (tabId === 'products') loadProducts();
+            if (tabId === 'orders') loadOrders();
+            if (tabId === 'vendors') loadVendorRequests();
+            if (tabId === 'cities') loadCitiesList();
+            if (tabId === 'shipping') loadShippingOrders();
+            if (tabId === 'reports') { 
+                document.getElementById('reportStartDate').value = new Date(Date.now() - 7*24*60*60*1000).toISOString().split('T')[0];
+                document.getElementById('reportEndDate').value = new Date().toISOString().split('T')[0];
+            }
+        });
+    });
+
+    function switchToExecutiveTab() {
+        requestExecutiveCode();
+    }
+
+    function getStatusColor(status) {
+        switch(status) {
+            case 'pending': return '#856404';
+            case 'confirmed': return '#28a745';
+            case 'shipped': return '#007bff';
+            case 'delivered': return '#6f42c1';
+            default: return '#6c757d';
+        }
+    }
+
+    async function fetchAPI(endpoint, options = {}) {
+        const res = await fetch(endpoint, { ...options, headers: { 'Authorization': `Bearer ${adminToken}`, 'Content-Type': 'application/json', ...options.headers } });
+        if (res.status === 401) { localStorage.removeItem('adminToken'); window.location.href = '/admin-login'; }
+        return res.json();
+    }
+
+    async function loadStats() {
+        const stats = await fetchAPI('/api/admin/stats');
+        document.getElementById('statCategories').innerText = stats.totalCategories || 0;
+        document.getElementById('statProducts').innerText = stats.totalProducts || 0;
+        document.getElementById('statOrders').innerText = stats.totalOrders || 0;
+        document.getElementById('statVendors').innerText = stats.totalVendors || 0;
+    }
+
+    async function loadCategories() {
+        const categories = await fetchAPI('/api/admin/categories');
+        const subCats = categories.filter(c => c.parent_id !== 0);
+        const container = document.getElementById('foldersGrid');
+        container.innerHTML = '';
+        for (let cat of subCats) {
+            container.innerHTML += `
+                <div class="folder-card">
+                    <div onclick="openCategoryProducts(${cat.id}, '${cat.name}')" style="cursor:pointer;">
+                        <svg width="40" height="40" viewBox="0 0 24 24" stroke="#C0E0FF"><path d="M4 4h16v16H4z"/><path d="M9 9h6v6H9z"/></svg>
+                        <div><strong>${cat.name}</strong></div>
+                        <div style="font-size:0.7rem; color:#A0B8D0;">${cat.store_name || 'المنصة'}</div>
+                    </div>
+                    <button class="action-btn btn-danger" style="margin-top:0.5rem; width:100%;" onclick="deleteCategory(${cat.id})">🗑️ ${t('delete')}</button>
+                </div>
+            `;
+        }
+    }
+
+    function closeCategoryProducts() {
+        document.getElementById('categoryProductsView').style.display = 'none';
+        document.getElementById('foldersGrid').style.display = 'grid';
+    }
+
+    async function openCategoryProducts(catId, catName) {
+        currentCategoryId = catId;
+        document.getElementById('addProductModalTitle').innerText = `${t('addProductModal')} ${catName}`;
+        const products = await fetchAPI(`/api/products/by-category/${catId}`);
+        const grid = document.getElementById('categoryProductsGrid');
+        if (products.length === 0) {
+            grid.innerHTML = '<div class="glass-card" style="padding:2rem; text-align:center;">✨ لا توجد منتجات في هذا القسم بعد ✨</div>';
+        } else {
+            grid.innerHTML = products.map(p => `
+                <div class="product-admin-card">
+                    <img src="${p.image_url || 'https://placehold.co/400x400/2A4A6A/7BA5C0?text=HELAXIA'}" onerror="this.src='https://placehold.co/400x400/2A4A6A/7BA5C0?text=HELAXIA'">
+                    <div class="product-admin-name">${p.name}</div>
+                    <div class="product-admin-price">${p.base_price} ل.س</div>
+                    <div class="product-admin-actions">
+                        <button class="action-btn" onclick="openEditProductModal(${p.id})">✏️ ${t('edit')}</button>
+                        <button class="action-btn btn-danger" onclick="deleteProductFromCategory(${p.id})">🗑️ ${t('delete')}</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        document.getElementById('foldersGrid').style.display = 'none';
+        document.getElementById('categoryProductsView').style.display = 'block';
+    }
+
+    async function deleteProductFromCategory(productId) {
+        if (!confirm('هل أنت متأكد من حذف هذا المنتج؟')) return;
+        await fetchAPI(`/api/admin/products/${productId}`, { method: 'DELETE' });
+        openCategoryProducts(currentCategoryId, '');
+        loadProducts();
+    }
+
+    async function openEditProductModal(productId) {
+        try {
+            const res = await fetch(`/api/admin/products/${productId}`, {
+                headers: { 'Authorization': `Bearer ${adminToken}` }
+            });
+            
+            if (!res.ok) {
+                const error = await res.json();
+                alert('❌ ' + (error.error || 'فشل تحميل بيانات المنتج'));
+                return;
+            }
+            
+            const product = await res.json();
+            
+            document.getElementById('editProductId').value = product.id;
+            document.getElementById('editProductName').value = product.name;
+            document.getElementById('editProductPrice').value = product.base_price;
+            document.getElementById('editProductFabric').value = product.fabric_type || '';
+            document.getElementById('editProductSizes').value = product.sizes || '';
+            document.getElementById('editProductColors').value = product.colors || '';
+            document.getElementById('editProductDescription').value = product.description || '';
+            
+            const previewContainer = document.getElementById('editProductImagesPreview');
+            if (previewContainer) previewContainer.innerHTML = '';
+            selectedEditProductImages = [];
+            
+            document.getElementById('editProductModal').style.display = 'flex';
+            
+        } catch (error) {
+            console.error('Error loading product:', error);
+            alert('❌ خطأ في تحميل بيانات المنتج');
+        }
+    }
+
+    async function saveEditProduct() {
+        const id = document.getElementById('editProductId').value;
+        if (!id) { alert('خطأ: لا يوجد معرف للمنتج'); return; }
+        
+        const formData = new FormData();
+        formData.append('name', document.getElementById('editProductName').value);
+        formData.append('base_price', parseFloat(document.getElementById('editProductPrice').value));
+        formData.append('fabric_type', document.getElementById('editProductFabric').value);
+        formData.append('sizes', document.getElementById('editProductSizes').value);
+        formData.append('colors', document.getElementById('editProductColors').value);
+        formData.append('description', document.getElementById('editProductDescription').value);
+        
+        selectedEditProductImages.forEach(file => { formData.append('images', file); });
+        
+        try {
+            const res = await fetch(`/api/admin/products/${id}`, { 
+                method: 'PUT', 
+                headers: { 'Authorization': `Bearer ${adminToken}` }, 
+                body: formData 
+            });
+            const result = await res.json();
+            if (!res.ok) { alert('فشل تحديث المنتج: ' + (result.error || 'خطأ غير معروف')); return; }
+            alert('تم تحديث المنتج بنجاح');
+            closeEditProductModal();
+            if (currentCategoryId) await openCategoryProducts(currentCategoryId, '');
+            await loadProducts();
+        } catch(e) { console.error(e); alert('فشل تحديث المنتج: خطأ في الاتصال بالخادم'); }
+    }
+
+    function closeEditProductModal() { document.getElementById('editProductModal').style.display = 'none'; }
+
+    async function loadProducts() {
+        const products = await fetchAPI('/api/admin/products');
+        const tbody = document.querySelector('#productsTable tbody');
+        tbody.innerHTML = '';
+        products.forEach(p => {
+            tbody.innerHTML += `<tr>
+                <td><img src="${p.image_url || 'https://placehold.co/50x50/2A4A6A/7BA5C0?text=HELAXIA'}" style="width:40px;height:40px;object-fit:cover;border-radius:10px;"></td>
+                <td>${p.name}</td>
+                <td>${p.category_name || '-'}</td>
+                <td>${p.store_name || '-'}</td>
+                <td>${p.times_ordered || 0}</td>
+                <td>${p.base_price} ل.س</td>
+                <td><button class="action-btn" onclick="openEditProductModal(${p.id})">✏️ ${t('edit')}</button> <button class="action-btn btn-danger" onclick="deleteProductFromCategory(${p.id})">🗑️ ${t('delete')}</button></td>
+            </tr>`;
+        });
+    }
+
+    async function loadOrders(searchNumber = null) {
+        let orders;
+        if (searchNumber) orders = await fetchAPI(`/api/admin/orders/search/${searchNumber}`).then(d => d.order ? [d.order] : []);
+        else orders = await fetchAPI('/api/admin/orders');
+        const tbody = document.querySelector('#ordersTable tbody');
+        tbody.innerHTML = '';
+        orders.forEach(o => {
+            const pickupLocation = o.pickup_location || '-';
+            tbody.innerHTML += `
+                <tr>
+                    <td>${o.order_number}</td>
+                    <td>${o.customer_name}</td>
+                    <td>${o.total || o.total_price} ل.س</td>                     <td>${o.total || o.total_price} ل.س</td>
+                     <td>
+                        <select onchange="updateOrderStatus(${o.id}, this.value)" style="background: ${getStatusColor(o.status)}; color: white; border: none; border-radius: 20px; padding: 5px 10px; font-weight: bold; cursor: pointer;">
+                            <option value="pending" ${o.status === 'pending' ? 'selected' : ''} style="background: #856404;">${t('pending')}</option>
+                            <option value="confirmed" ${o.status === 'confirmed' ? 'selected' : ''} style="background: #28a745;">${t('confirmed')}</option>
+                            <option value="shipped" ${o.status === 'shipped' ? 'selected' : ''} style="background: #007bff;">${t('shipped')}</option>
+                            <option value="delivered" ${o.status === 'delivered' ? 'selected' : ''} style="background: #6f42c1;">${t('delivered')}</option>
+                        </select>
+                     </td>
+                     <td>${new Date(o.created_at).toLocaleDateString()}</td>
+                     <td><span style="color: #A0E0C0;">${pickupLocation}</span></td>
+                     <td><button class="action-btn btn-danger" onclick="deleteOrder(${o.id})">🗑️ ${t('delete')}</button></td>
+                 </tr>
+            `;
+        });
+    }
+    
+    function searchOrder() { loadOrders(document.getElementById('orderSearchInput').value); }
+    async function updateOrderStatus(id, status) { await fetchAPI(`/api/admin/orders/${id}/status`, { method: 'PUT', body: JSON.stringify({ status }) }); loadOrders(); }
+    async function deleteOrder(id) { if(confirm('حذف الطلب؟')) await fetchAPI(`/api/admin/orders/${id}`, { method: 'DELETE' }); loadOrders(); }
+
+    // ========== التجار (مع إضافة المدينة) ==========
+    async function loadVendorRequests() {
+        const requests = await fetchAPI('/api/admin/vendor-requests');
+        const tbody = document.querySelector('#vendorsTable tbody');
+        tbody.innerHTML = '';
+        for (const r of requests) {
+            let phone = r.whatsapp || '-';
+            let paymentProofImage = '';
+            let cityName = '-';
+            try {
+                const storeRes = await fetch(`/api/stores/${r.slug}`, { 
+                    headers: { 'Authorization': `Bearer ${adminToken}` } 
+                });
+                if (storeRes.ok) {
+                    const storeData = await storeRes.json();
+                    phone = storeData.phone || storeData.whatsapp || r.whatsapp || '-';
+                    paymentProofImage = storeData.payment_proof_image || '';
+                    if (storeData.city_id) {
+                        const cityRes = await fetch(`/api/cities/${storeData.city_id}`, {
+                            headers: { 'Authorization': `Bearer ${adminToken}` }
+                        });
+                        if (cityRes.ok) {
+                            const cityData = await cityRes.json();
+                            cityName = cityData.name;
+                        }
+                    }
+                }
+            } catch(e) {}
+            
+            tbody.innerHTML += `
+                <tr>
+                    <td>${r.name}</td>
+                    <td>${r.vendor_id ? 'user_' + r.vendor_id : '-'}</td>
+                    <td>${phone}</td>
+                    <td><span style="color:#A0E0C0;">${cityName}</span></td>
+                    <td>${paymentProofImage ? `<img src="${paymentProofImage}" class="payment-proof-img" onclick="showImageModal('${paymentProofImage}', 'صورة شام كاش - ${r.name}')">` : '<span style="color:#FF8A7A;">لا توجد</span>'}</td>
+                    <td>${r.status}</td>
+                    <td><button class="action-btn btn-success" onclick="approveVendor(${r.id})">✅ ${t('approve')}</button> <button class="action-btn btn-danger" onclick="rejectVendor(${r.id})">❌ ${t('reject')}</button></td>
+                </tr>
+            `;
+        }
+    }
+    
+    async function approveVendor(id) { await fetchAPI(`/api/admin/vendor-requests/${id}/approve`, { method: 'POST' }); loadVendorRequests(); }
+    async function rejectVendor(id) { await fetchAPI(`/api/admin/vendor-requests/${id}/reject`, { method: 'POST', body: JSON.stringify({}) }); loadVendorRequests(); }
+
+    // ========== إدارة المدن ==========
+    let citiesList = [];
+    
+    async function loadCitiesList() {
+        try {
+            const cities = await fetchAPI('/api/admin/cities');
+            citiesList = cities;
+            const container = document.getElementById('citiesGrid');
+            if (cities.length === 0) {
+                container.innerHTML = '<div class="glass-card" style="padding:2rem; text-align:center;">✨ لا توجد مدن مسجلة بعد ✨<br><button class="action-btn" style="margin-top:1rem;" onclick="openAddCityModal()">+ إضافة مدينة جديدة</button></div>';
+                return;
+            }
+            container.innerHTML = cities.map(city => `
+                <div class="city-card">
+                    <div class="city-name">📍 ${city.name}</div>
+                    <div class="city-status">💰 رسوم التوصيل: ${city.delivery_fee || 0} ل.س</div>
+                    <div class="city-status">📊 الحالة: <span style="color: ${city.status === 'active' ? '#28a745' : '#856404'}">${city.status === 'active' ? t('active') : t('inactive')}</span></div>
+                    <div class="city-actions">
+                        <button class="action-btn" onclick="openEditCityModal(${city.id}, '${city.name}', ${city.delivery_fee || 0}, '${city.status}')">✏️ ${t('edit')}</button>
+                        <button class="action-btn btn-danger" onclick="deleteCity(${city.id})">🗑️ ${t('delete')}</button>
+                        <button class="action-btn ${city.status === 'active' ? 'btn-danger' : 'btn-success'}" onclick="toggleCityStatus(${city.id}, '${city.status}')">${city.status === 'active' ? '⏸️ ' + t('suspend') : '▶️ ' + t('activate')}</button>
+                    </div>
+                </div>
+            `).join('');
+        } catch(e) { console.error(e); document.getElementById('citiesGrid').innerHTML = '<div class="glass-card" style="padding:2rem; text-align:center;">❌ خطأ في تحميل المدن</div>'; }
+    }
+    
+    function openAddCityModal() {
+        document.getElementById('cityModalTitle').innerHTML = t('addCity');
+        document.getElementById('editCityId').value = '';
+        document.getElementById('cityName').value = '';
+        document.getElementById('cityDeliveryFee').value = '';
+        document.getElementById('cityStatus').value = 'active';
+        document.getElementById('cityModal').style.display = 'flex';
+    }
+    
+    function openEditCityModal(id, name, deliveryFee, status) {
+        document.getElementById('cityModalTitle').innerHTML = t('edit') + ' ' + t('city');
+        document.getElementById('editCityId').value = id;
+        document.getElementById('cityName').value = name;
+        document.getElementById('cityDeliveryFee').value = deliveryFee;
+        document.getElementById('cityStatus').value = status;
+        document.getElementById('cityModal').style.display = 'flex';
+    }
+    
+    function closeCityModal() { document.getElementById('cityModal').style.display = 'none'; }
+    
+    async function saveCity() {
+        const id = document.getElementById('editCityId').value;
+        const name = document.getElementById('cityName').value;
+        const deliveryFee = document.getElementById('cityDeliveryFee').value;
+        const status = document.getElementById('cityStatus').value;
+        
+        if (!name) { alert('❌ الرجاء إدخال اسم المدينة'); return; }
+        
+        const body = { name, delivery_fee: parseFloat(deliveryFee) || 0, status };
+        
+        try {
+            let res;
+            if (id) { res = await fetchAPI(`/api/admin/cities/${id}`, { method: 'PUT', body: JSON.stringify(body) }); }
+            else { res = await fetchAPI('/api/admin/cities', { method: 'POST', body: JSON.stringify(body) }); }
+            
+            if (res.id || res.success) {
+                alert(id ? '✅ تم تعديل المدينة بنجاح' : '✅ تم إضافة المدينة بنجاح');
+                closeCityModal();
+                loadCitiesList();
+            } else { alert('❌ فشل حفظ المدينة: ' + (res.error || 'خطأ غير معروف')); }
+        } catch(e) { console.error(e); alert('❌ خطأ في الاتصال بالخادم'); }
+    }
+    
+    async function deleteCity(id) {
+        if (!confirm('⚠️ هل أنت متأكد من حذف هذه المدينة؟\n\nسيتم إلغاء ربطها بجميع المتاجر المرتبطة بها.')) return;
+        try {
+            await fetchAPI(`/api/admin/cities/${id}`, { method: 'DELETE' });
+            alert('✅ تم حذف المدينة بنجاح');
+            loadCitiesList();
+        } catch(e) { console.error(e); alert('❌ فشل حذف المدينة'); }
+    }
+    
+    async function toggleCityStatus(id, currentStatus) {
+        const newStatus = currentStatus === 'active' ? 'inactive' : 'active';
+        try {
+            await fetchAPI(`/api/admin/cities/${id}`, { method: 'PUT', body: JSON.stringify({ status: newStatus }) });
+            loadCitiesList();
+        } catch(e) { console.error(e); alert('❌ فشل تغيير حالة المدينة'); }
+    }
+
+    // ========== الأقسام والإضافة ==========
+    function openAddCategoryModal() { document.getElementById('addCategoryModal').style.display = 'flex'; }
+    function closeAddCategoryModal() { document.getElementById('addCategoryModal').style.display = 'none'; }
+    
+    async function addCategory() {
+        const name = document.getElementById('newCategoryName').value;
+        if (!name) return;
+        const categories = await fetchAPI('/api/admin/categories');
+        const mainCats = categories.filter(c => c.parent_id === 0);
+        let parentId = mainCats.length > 0 ? mainCats[0].id : 0;
+        await fetchAPI('/api/admin/categories', { method: 'POST', body: JSON.stringify({ name, parent_id: parentId }) });
+        closeAddCategoryModal();
+        loadCategories();
+        document.getElementById('newCategoryName').value = '';
+    }
+
+    // ========== إضافة منتج إلى القسم ==========
+    function openAddProductToCategoryModal() { document.getElementById('addProductToCategoryModal').style.display = 'flex'; }
+    function closeAddProductToCategoryModal() {
+        document.getElementById('addProductToCategoryModal').style.display = 'none';
+        document.getElementById('newProductForm').style.display = 'none';
+        document.getElementById('existingProductsList').style.display = 'none';
+    }
+    function showNewProductForm() { document.getElementById('newProductForm').style.display = 'block'; document.getElementById('existingProductsList').style.display = 'none'; }
+    function showExistingProductsList() {
+        closeAddProductToCategoryModal();
+        window.location.href = `/add-existing-product.html?category_id=${currentCategoryId}`;
+    }
+    
+    async function addNewProductToCategory() {
+        const formData = new FormData();
+        formData.append('name', document.getElementById('newProductName').value);
+        formData.append('base_price', document.getElementById('newProductPrice').value);
+        formData.append('fabric_type', document.getElementById('newProductFabric').value);
+        formData.append('sizes', document.getElementById('newProductSizes').value);
+        formData.append('colors', document.getElementById('newProductColors').value);
+        formData.append('description', document.getElementById('newProductDescription').value);
+        formData.append('category_id', currentCategoryId);
+        
+        selectedNewProductImages.forEach(file => { formData.append('images', file); });
+        
+        try {
+            const res = await fetch('/api/admin/products', { 
+                method: 'POST', 
+                headers: { 'Authorization': `Bearer ${adminToken}` }, 
+                body: formData 
+            });
+            const data = await res.json();
+            if (res.ok) {
+                alert('تم إضافة المنتج الجديد');
+                closeAddProductToCategoryModal();
+                openCategoryProducts(currentCategoryId, '');
+                loadProducts();
+            } else { alert('فشل إضافة المنتج: ' + (data.error || 'خطأ غير معروف')); }
+        } catch(e) { console.error(e); alert('خطأ في الاتصال بالخادم'); }
+    }
+
+    // ========== إدارة الشحن ==========
+    async function loadShippingOrders() {
+        try {
+            const orders = await fetchAPI('/api/admin/orders');
+            const pendingOrders = orders.filter(o => o.status === 'pending' || o.status === 'confirmed');
+            const container = document.getElementById('shippingOrdersList');
+            if (pendingOrders.length === 0) {
+                container.innerHTML = '<tr><td colspan="6" class="empty-state">✨ لا توجد طلبات تنتظر تحديد الشحن ✨</td></tr>';
+                return;
+            }
+            container.innerHTML = pendingOrders.map(order => {
+                const items = JSON.parse(order.items || '[]');
+                const uniqueVendors = [...new Set(items.map(i => i.store_id))];
+                return `
+                    <tr>
+                        <td>${order.order_number}</td>
+                        <td>${order.customer_name}</td>
+                        <td>${items.length}</td>
+                        <td>${uniqueVendors.length}</td>
+                        <td>${order.status === 'pending' ? 'قيد الانتظار' : 'مؤكد'}</td>
+                        <td><button class="action-btn" onclick="openShippingModal(${order.id}, '${order.order_number}', '${order.customer_name}', ${JSON.stringify(items).replace(/"/g, '&quot;')})">${t('setShipping')}</button></td>
+                    </tr>
+                `;
+            }).join('');
+        } catch(e) { console.error(e); }
+    }
+
+    function openShippingModal(orderId, orderNumber, customerName, items) {
+        currentShippingOrder = { id: orderId, orderNumber, customerName, items };
+        document.getElementById('shippingOrderNumber').innerText = orderNumber;
+        document.getElementById('shippingCustomerName').innerText = customerName;
+        document.getElementById('shippingTotalCost').value = '';
+        
+        const vendorMap = new Map();
+        items.forEach(item => {
+            const vendorId = item.store_id || 1;
+            const vendorName = item.store_name || 'متجر HELAXIA';
+            const totalPrice = (item.price || 0) * (item.quantity || 1);
+            if (vendorMap.has(vendorId)) {
+                const existing = vendorMap.get(vendorId);
+                existing.totalSales += totalPrice;
+                existing.items.push(item);
+            } else {
+                vendorMap.set(vendorId, { vendorId, vendorName, totalSales: totalPrice, items: [item] });
+            }
+        });
+        
+        const vendorsList = Array.from(vendorMap.values());
+        const totalSales = vendorsList.reduce((sum, v) => sum + v.totalSales, 0);
+        
+        const listHtml = `
+            <h4 style="color:#C0E0FF; margin:0.5rem 0;">توزيع حصة التجار من الشحن:</h4>
+            ${vendorsList.map(v => `
+                <div class="vendor-shipping-item">
+                    <span><strong>${v.vendorName}</strong> (مبيعات: ${v.totalSales} ل.س)</span>
+                    <span>حصة الشحن: <span id="vendor-share-${v.vendorId}">0</span> ل.س</span>
+                </div>
+            `).join('')}
+            <div class="vendor-shipping-item" style="border-top:2px solid #C0E0FF;">
+                <span><strong>الإجمالي</strong></span>
+                <span><span id="totalVendorsShare">0</span> ل.س</span>
+            </div>
+            <div class="vendor-shipping-item">
+                <span><strong>حصة العميل (50%)</strong></span>
+                <span><span id="customerShare">0</span> ل.س</span>
+            </div>
+        `;
+        document.getElementById('shippingVendorsList').innerHTML = listHtml;
+        document.getElementById('shippingModal').style.display = 'flex';
+        
+        const costInput = document.getElementById('shippingTotalCost');
+        const updateDistribution = () => {
+            const totalCost = parseFloat(costInput.value) || 0;
+            const vendorsShare = totalCost / 2;
+            const customerShare = totalCost / 2;
+            vendorsList.forEach(v => {
+                const share = (v.totalSales / totalSales) * vendorsShare;
+                const shareSpan = document.getElementById(`vendor-share-${v.vendorId}`);
+                if (shareSpan) shareSpan.innerText = share.toFixed(2);
+            });
+            document.getElementById('totalVendorsShare').innerText = vendorsShare.toFixed(2);
+            document.getElementById('customerShare').innerText = customerShare.toFixed(2);
+        };
+        costInput.oninput = updateDistribution;
+        costInput.onchange = updateDistribution;
+    }
+
+    function closeShippingModal() {
+        document.getElementById('shippingModal').style.display = 'none';
+        currentShippingOrder = null;
+    }
+
+    async function saveShippingCost() {
+        if (!currentShippingOrder) return;
+        const totalCost = parseFloat(document.getElementById('shippingTotalCost').value);
+        if (isNaN(totalCost) || totalCost <= 0) {
+            alert('الرجاء إدخال تكلفة شحن صحيحة');
+            return;
+        }
+        
+        try {
+            const response = await fetch('/api/admin/set-shipping-cost', {
+                method: 'POST',
+                headers: { 'Authorization': `Bearer ${adminToken}`, 'Content-Type': 'application/json' },
+                body: JSON.stringify({ orderId: currentShippingOrder.id, totalShippingCost: totalCost })
+            });
+            const result = await response.json();
+            if (response.ok) {
+                alert('✅ تم حفظ تكلفة الشحن بنجاح');
+                closeShippingModal();
+                loadShippingOrders();
+                loadOrders();
+            } else { alert('❌ فشل حفظ تكلفة الشحن: ' + (result.error || 'خطأ غير معروف')); }
+        } catch(e) { console.error(e); alert('❌ خطأ في الاتصال بالخادم'); }
+    }
+
+    // ========== التقارير المالية ==========
+    async function loadFinancialReport() {
+        const startDate = document.getElementById('reportStartDate').value;
+        const endDate = document.getElementById('reportEndDate').value;
+        if (!startDate || !endDate) { alert('الرجاء اختيار تاريخ البداية والنهاية'); return; }
+        
+        try {
+            const report = await fetchAPI(`/api/admin/financial-report?start=${startDate}&end=${endDate}`);
+            const container = document.getElementById('financialReportContainer');
+            if (!report.vendors || report.vendors.length === 0) {
+                container.innerHTML = '<div class="empty-state">✨ لا توجد بيانات في هذه الفترة ✨</div>';
+                return;
+            }
+            
+            let vendorsHtml = '';
+            let totalSales = 0, totalShipping = 0, totalNet = 0;
+            report.vendors.forEach(v => {
+                totalSales += v.total_sales;
+                totalShipping += v.total_shipping_share;
+                totalNet += v.net_amount;
+                vendorsHtml += `
+                    <div class="vendor-shipping-item">
+                        <span><strong>${v.store_name}</strong> (📞 ${v.whatsapp || '-'})</span>
+                        <span>المبيعات: ${v.total_sales.toLocaleString()} ل.س</span>
+                        <span>حصة الشحن: ${v.total_shipping_share.toLocaleString()} ل.س</span>
+                        <span>المستحق: ${v.net_amount.toLocaleString()} ل.س</span>
+                        <span>الحالة: ${v.paid ? '✅ تم الدفع' : '⏳ لم يدفع'}</span>
+                        <button class="action-btn" onclick="generateVendorReport(${v.vendor_id}, '${v.store_name}', '${startDate}', '${endDate}')">📄 تقرير مفصل</button>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = `
+                <div style="margin-bottom:1rem;"><h3 style="color:#C0E0FF;">الفترة: ${startDate} إلى ${endDate}</h3></div>
+                <div class="vendor-shipping-list">${vendorsHtml}</div>
+                <div class="vendor-shipping-item" style="border-top:2px solid #C0E0FF; margin-top:1rem; padding-top:1rem;">
+                    <span><strong>الإجمالي الكلي</strong></span>
+                    <span>المبيعات: ${totalSales.toLocaleString()} ل.س</span>
+                    <span>الشحن: ${totalShipping.toLocaleString()} ل.س</span>
+                    <span>المستحق: ${totalNet.toLocaleString()} ل.س</span>
+                </div>
+            `;
+        } catch(e) { console.error(e); }
+    }
+
+    async function generateVendorReport(vendorId, storeName, startDate, endDate) {
+        try {
+            const report = await fetchAPI(`/api/admin/vendor-report/${vendorId}?start=${startDate}&end=${endDate}`);
+            if (!report.orders || report.orders.length === 0) { alert('لا توجد طلبات في هذه الفترة'); return; }
+            
+            let ordersHtml = '';
+            report.orders.forEach(o => {
+                ordersHtml += `
+                    <div class="vendor-shipping-item">
+                        <span>رقم الطلب: ${o.order_number}</span>
+                        <span>التاريخ: ${new Date(o.created_at).toLocaleDateString()}</span>
+                        <span>المبلغ: ${o.total_amount.toLocaleString()} ل.س</span>
+                        <span>حصة الشحن: ${o.shipping_share.toLocaleString()} ل.س</span>
+                        <span>الصافي: ${o.net_amount.toLocaleString()} ل.س</span>
+                    </div>
+                `;
+            });
+            
+            const modalHtml = `
+                <div style="background: rgba(20,35,45,0.95); border-radius: 28px; padding: 1.5rem; max-width: 600px; margin: auto;">
+                    <h3 style="color:#C0E0FF;">تقرير ${storeName}</h3>
+                    <p>الفترة: ${startDate} إلى ${endDate}</p>
+                    <p>إجمالي المبيعات: ${report.summary.total_sales.toLocaleString()} ل.س</p>
+                    <p>إجمالي الشحن: ${report.summary.total_shipping.toLocaleString()} ل.س</p>
+                    <p>المبلغ المستحق: ${report.summary.net_amount.toLocaleString()} ل.س</p>
+                    <div style="margin-top:1rem;"><h4 style="color:#C0E0FF;">تفاصيل الطلبات:</h4><div class="vendor-shipping-list" style="max-height:300px; overflow-y:auto;">${ordersHtml}</div></div>
+                    <button class="action-btn" style="margin-top:1rem;" onclick="this.parentElement.parentElement.remove()">إغلاق</button>
+                </div>
+            `;
+            const modalDiv = document.createElement('div');
+            modalDiv.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); backdrop-filter:blur(12px); z-index:2000; display:flex; justify-content:center; align-items:center;';
+            modalDiv.innerHTML = modalHtml;
+            document.body.appendChild(modalDiv);
+            modalDiv.onclick = (e) => { if (e.target === modalDiv) modalDiv.remove(); };
+        } catch(e) { console.error(e); }
+    }
+
+    function exportReportAsImage() { alert('📸 سيتم إضافة هذه الميزة قريباً (تصدير التقرير كصورة باستخدام html-to-image)'); }
+
+    // ========== المدير التنفيذي ==========
+    async function requestExecutiveCode() {
+        executiveAccessGranted = false;
+        document.getElementById('executiveCodeModal').style.display = 'flex';
+        try {
+            const res = await fetch('/api/admin/send-executive-code', { method: 'POST', headers: { 'Authorization': `Bearer ${adminToken}` } });
+            const data = await res.json();
+            if (data.tempToken) currentExecutiveTempToken = data.tempToken;
+        } catch(e) { console.error(e); }
+    }
+    
+    async function verifyExecutiveCode() {
+        const code = document.getElementById('executiveCodeInput').value;
+        if (!code) return;
+        const res = await fetch('/api/admin/verify-executive-code', { 
+            method: 'POST', 
+            headers: { 'Authorization': `Bearer ${adminToken}`, 'Content-Type': 'application/json' }, 
+            body: JSON.stringify({ code, tempToken: currentExecutiveTempToken }) 
+        });
+        if (res.ok) {
+            executiveAccessGranted = true;
+            document.getElementById('executiveCodeModal').style.display = 'none';
+            document.getElementById('executiveCodeInput').value = '';
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector('.tab-btn[data-tab="executive"]').classList.add('active');
+            document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
+            document.getElementById('executive').classList.add('active');
+            loadExecutiveData();
+        } else { document.getElementById('executiveCodeError').innerText = '❌ كود غير صحيح'; }
+    }
+    
+    function resendExecutiveCode() { requestExecutiveCode(); }
+    function closeExecutiveCodeModal() { 
+        document.getElementById('executiveCodeModal').style.display = 'none'; 
+        document.getElementById('executiveCodeError').innerText = '';
+        document.getElementById('executiveCodeInput').value = '';
+    }
+
+    async function loadExecutiveData() {
+        if (!executiveAccessGranted) return;
+        try {
+            const settings = await fetchAPI('/api/admin/settings');
+            document.getElementById('exchangeRateInput').value = settings.exchange_rate || '15000';
+            document.getElementById('whatsappPaymentInput').value = settings.admin_whatsapp || '';
+            document.getElementById('executiveEmail').value = settings.executive_email || '';
+            
+            const admins = await fetchAPI('/api/admin/admins');
+            const tbody = document.querySelector('#adminsTable tbody');
+            tbody.innerHTML = '';
+            admins.forEach(admin => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td>${admin.email}</td>
+                        <td>${admin.name || '-'}</td>
+                        <td>${admin.status === 'active' ? '<span style="color:#28a745;">' + t('active') + '</span>' : '<span style="color:#856404;">' + t('suspended') + '</span>'}</td>
+                        <td>
+                            <button class="action-btn" onclick="toggleAdminStatus(${admin.id}, '${admin.status}')">${admin.status === 'active' ? '⏸️ ' + t('suspend') : '▶️ ' + t('activate')}</button>
+                            <button class="action-btn" onclick="forceLogoutAdmin(${admin.id})">🚪 ${t('forceLogout')}</button>
+                            <button class="action-btn btn-danger" onclick="deleteAdmin(${admin.id})">🗑️ ${t('delete')}</button>
+                        </td>
+                    </tr>
+                `;
+            });
+        } catch(e) { console.error(e); }
+    }
+
+    async function saveAllExecutiveSettings() {
+        if (!executiveAccessGranted) { alert('❌ الرجاء إدخال كود الوصول أولاً'); return; }
+        const exchangeRate = document.getElementById('exchangeRateInput').value;
+        const whatsappPayment = document.getElementById('whatsappPaymentInput').value;
+        const executiveEmail = document.getElementById('executiveEmail').value;
+        try {
+            await fetchAPI('/api/admin/settings', { method: 'PUT', body: JSON.stringify({ exchange_rate: exchangeRate, admin_whatsapp: whatsappPayment, executive_email: executiveEmail }) });
+            alert('✅ تم حفظ جميع التغييرات بنجاح');
+            loadExecutiveData();
+        } catch(e) { console.error(e); alert('❌ فشل حفظ التغييرات'); }
+    }
+
+    // ========== معاينة الصور للإضافة ==========
+    document.getElementById('newProductImages')?.addEventListener('change', function(e) {
+        const preview = document.getElementById('newProductImagesPreview');
+        preview.innerHTML = '';
+        selectedNewProductImages = [];
+        const files = Array.from(e.target.files).slice(0, 6);
+        files.forEach((file, index) => {
+            const reader = new FileReader();
+            reader.onload = function(ev) {
+                const div = document.createElement('div');
+                div.className = 'image-preview-item';
+                div.innerHTML = `<img src="${ev.target.result}"><span class="remove-img" onclick="removeNewProductImage(${index})">×</span>`;
+                preview.appendChild(div);
+            };
+            reader.readAsDataURL(file);
+            selectedNewProductImages.push(file);
+        });
+    });
+
+    function removeNewProductImage(index) {
+        selectedNewProductImages.splice(index, 1);
+        const input = document.getElementById('newProductImages');
+        const dt = new DataTransfer();
+        selectedNewProductImages.forEach(f => dt.items.add(f));
+        input.files = dt.files;
+        input.dispatchEvent(new Event('change'));
+    }
+
+    // ========== معاينة الصور للتعديل ==========
+    document.getElementById('editProductImages')?.addEventListener('change', function(e) {
+        const preview = document.getElementById('editProductImagesPreview');
+        preview.innerHTML = '';
+        selectedEditProductImages = [];
+        const files = Array.from(e.target.files).slice(0, 6);
+        files.forEach((file, index) => {
+            const reader = new FileReader();
+            reader.onload = function(ev) {
+                const div = document.createElement('div');
+                div.className = 'image-preview-item';
+                div.innerHTML = `<img src="${ev.target.result}"><span class="remove-img" onclick="removeEditProductImage(${index})">×</span>`;
+                preview.appendChild(div);
+            };
+            reader.readAsDataURL(file);
+            selectedEditProductImages.push(file);
+        });
+    });
+
+    function removeEditProductImage(index) {
+        selectedEditProductImages.splice(index, 1);
+        const input = document.getElementById('editProductImages');
+        const dt = new DataTransfer();
+        selectedEditProductImages.forEach(f => dt.items.add(f));
+        input.files = dt.files;
+        input.dispatchEvent(new Event('change'));
+    }
+
+    // إدارة المدراء
+    function openAddAdminModal() { document.getElementById('addAdminModal').style.display = 'flex'; }
+    function closeAddAdminModal() { document.getElementById('addAdminModal').style.display = 'none'; }
+    
+    async function addNewAdmin() {
+        const name = document.getElementById('newAdminName').value;
+        const email = document.getElementById('newAdminEmail').value;
+        const password = document.getElementById('newAdminPassword').value;
+        const phone = document.getElementById('newAdminPhone').value;
+        if (!name || !email || !password) { alert('❌ الرجاء إدخال الاسم، البريد الإلكتروني وكلمة السر'); return; }
+        const res = await fetch('/api/admin/signup-request', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, email, password, phone }) });
+        const data = await res.json();
+        if (res.ok) {
+            alert('✅ تم إرسال طلب إنشاء حساب المدير. سيتم إرسال كود إلى إيميل المدير التنفيذي');
+            closeAddAdminModal();
+            document.getElementById('newAdminName').value = '';
+            document.getElementById('newAdminEmail').value = '';
+            document.getElementById('newAdminPassword').value = '';
+            document.getElementById('newAdminPhone').value = '';
+            if (executiveAccessGranted) loadExecutiveData();
+        } else { alert('❌ فشل إنشاء حساب المدير: ' + data.error); }
+    }
+    
+    async function toggleAdminStatus(id, currentStatus) {
+        if (!executiveAccessGranted) { alert('❌ الرجاء إدخال كود الوصول أولاً'); return; }
+        const newStatus = currentStatus === 'active' ? 'suspended' : 'active';
+        await fetchAPI(`/api/admin/admins/${id}/toggle`, { method: 'PUT', body: JSON.stringify({ status: newStatus }) });
+        loadExecutiveData();
+    }
+    
+    async function forceLogoutAdmin(id) {
+        if (!executiveAccessGranted) { alert('❌ الرجاء إدخال كود الوصول أولاً'); return; }
+        if (confirm('⚠️ هل أنت متأكد من تسجيل خروج هذا المدير من جميع أجهزته؟')) {
+            await fetchAPI(`/api/admin/admins/${id}/force-logout`, { method: 'POST' });
+            alert('✅ تم تسجيل خروج المدير');
+            loadExecutiveData();
+        }
+    }
+    
+    async function deleteAdmin(id) {
+        if (!executiveAccessGranted) { alert('❌ الرجاء إدخال كود الوصول أولاً'); return; }
+        if (confirm('⚠️ هل أنت متأكد من حذف حساب هذا المدير نهائياً؟')) {
+            await fetchAPI(`/api/admin/admins/${id}`, { method: 'DELETE' });
+            alert('✅ تم حذف حساب المدير');
+            loadExecutiveData();
+        }
+    }
+
+    async function deleteCategory(categoryId) {
+        if (!confirm('⚠️ هل أنت متأكد من حذف هذا القسم؟\n\nسيتم حذف جميع المنتجات المرتبطة به أيضاً.')) return;
+        try {
+            await fetchAPI(`/api/admin/categories/${categoryId}`, { method: 'DELETE' });
+            alert('✅ تم حذف القسم بنجاح');
+            loadCategories();
+            closeCategoryProducts();
+        } catch (error) { alert('❌ فشل حذف القسم: ' + (error.message || 'خطأ في الخادم')); console.error(error); }
+    }
+
+    function toggleLanguage() {
+        isEnglish = !isEnglish;
+        updateUILanguage();
+        loadStats(); loadCategories(); loadProducts(); loadOrders(); loadVendorRequests(); loadCitiesList(); loadShippingOrders();
+        if (executiveAccessGranted) loadExecutiveData();
+    }
+    
+    function logout() { localStorage.clear(); window.location.href = '/login'; }
+
+    updateUILanguage();
+    loadStats(); loadCategories(); loadProducts(); loadOrders(); loadVendorRequests(); loadCitiesList(); loadShippingOrders();
+</script>
+</body>
+</html>

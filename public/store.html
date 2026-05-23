@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    
+    <!-- ========== SEO Meta Tags (سيتم تعبئة ديناميكياً) ========== -->
+    <title id="pageTitle">HELAXIA - متجر أزياء</title>
+    <meta name="description" id="metaDescription" content="اكتشف أحدث صيحات الموضة من هذا المتجر على HELAXIA. تشكيلات مميزة من الملابس العصرية.">
+    <meta name="keywords" content="متجر, أزياء, ملابس, تسوق, HELAXIA, موضة, فاشون">
+    <meta name="author" content="HELAXIA">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Arabic">
+    <meta name="revisit-after" content="7 days">
+    <meta name="theme-color" content="#4477ab">
+    
+    <!-- ========== Open Graph (لـ Facebook, WhatsApp, Telegram, LinkedIn) ========== -->
+    <meta property="og:title" id="ogTitle" content="HELAXIA - متجر أزياء">
+    <meta property="og:description" id="ogDescription" content="اكتشف أحدث صيحات الموضة من هذا المتجر على HELAXIA.">
+    <meta property="og:image" id="ogImage" content="https://helaxia.com/images/logo.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" id="ogUrl" content="https://helaxia.com/store/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ar_SY">
+    <meta property="og:site_name" content="HELAXIA">
+    
+    <!-- ========== Twitter Card ========== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" id="twitterTitle" content="HELAXIA - متجر أزياء">
+    <meta name="twitter:description" id="twitterDescription" content="اكتشف أحدث صيحات الموضة من هذا المتجر">
+    <meta name="twitter:image" id="twitterImage" content="https://helaxia.com/images/logo.png">
+    
+    <!-- ========== Canonical URL ========== -->
+    <link rel="canonical" id="canonicalUrl" href="https://helaxia.com/store/">
+    
+    <!-- ========== Favicon ========== -->
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
+    <script src="/currency.js"></script>
+    <!-- ✅ جديد: shared.js -->
+    <script src="/shared.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: radial-gradient(circle at 10% 20%, #4477ab, #1A3A50);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            direction: rtl;
+            position: relative;
+            min-height: 100vh;
+        }
+        .star {
+            position: fixed;
+            background: white;
+            border-radius: 50%;
+            opacity: 0;
+            pointer-events: none;
+            animation: twinkle 4s infinite;
+        }
+        @keyframes twinkle {
+            0% { opacity: 0; transform: scale(0.8); }
+            50% { opacity: 0.8; transform: scale(1.2); }
+            100% { opacity: 0; transform: scale(0.8); }
+        }
+        .glass-nav {
+            background: rgba(10,20,30,0.45);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(200,220,250,0.3);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            z-index: 100;
+        }
+        .glass-card {
+            background: rgba(20,35,45,0.45);
+            backdrop-filter: blur(14px);
+            border-radius: 28px;
+            border: 1px solid rgba(200,220,250,0.25);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: rgba(200,220,250,0.6);
+            box-shadow: 0 0 28px rgba(192,224,255,0.5);
+            transform: translateY(-5px);
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            background: linear-gradient(135deg, #F0F4FA, #C0D0E0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .nav-icons { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+        .nav-icon {
+            background: rgba(10,20,30,0.3);
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            color: #E0E8F0;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .nav-icon:hover {
+            background: rgba(192,224,255,0.15);
+            transform: scale(1.02);
+            box-shadow: 0 0 12px #C0E0FF;
+        }
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #C0E0FF;
+            color: #1A3A50;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .icon-svg {
+            width: 20px;
+            height: 20px;
+            stroke: #C0D0E0;
+            stroke-width: 1.5;
+            fill: none;
+        }
+        .currency-toggle {
+            background: rgba(196, 148, 92, 0.2);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(196, 148, 92, 0.5);
+            padding: 0.3rem 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .currency-toggle:hover {
+            background: rgba(196, 148, 92, 0.4);
+            border-color: #c4905c;
+            box-shadow: 0 0 12px rgba(196, 148, 92, 0.6);
+        }
+        .store-hero {
+            padding-top: 7rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            text-align: center;
+        }
+        .store-logo { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem; border: 2px solid #C0E0FF; }
+        .store-name { font-size: 2rem; color: #E0E8F0; }
+        .store-rating { color: #C0E0FF; margin: 0.5rem 0; }
+        .store-description { color: #A0B8D0; max-width: 500px; margin: 0.5rem auto; }
+        .store-city { color: #A0E0C0; font-size: 0.9rem; margin: 0.5rem auto; display: flex; align-items: center; justify-content: center; gap: 0.3rem; }
+        .sections-container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
+        .section { margin-bottom: 3rem; }
+        .section-header { display: flex; justify-content: space-between; margin-bottom: 1rem; }
+        .section-title { font-size: 1.5rem; color: #E0E8F0; border-right: 3px solid #C0E0FF; padding-right: 1rem; }
+        .section-arrow { background: rgba(0,0,0,0.3); padding: 0.3rem 1rem; border-radius: 40px; cursor: pointer; transition: 0.3s; font-size: 0.8rem; color: #C0D0E0; }
+        .section-arrow:hover { background: rgba(192,224,255,0.2); box-shadow: 0 0 10px #C0E0FF; }
+        .carousel-container { position: relative; overflow: hidden; }
+        .carousel-track { display: flex; gap: 1.5rem; transition: transform 0.6s; }
+        .product-card { flex: 0 0 calc(33.333% - 1rem); padding: 0.8rem; }
+        .product-card .glass-card { padding: 0; overflow: hidden; cursor: pointer; }
+        .fifa-top { display: flex; height: 70%; }
+        .fifa-image { width: 50%; }
+        .fifa-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+        .fifa-image:hover img { transform: scale(1.03); }
+        .fifa-info { width: 50%; padding: 0.8rem; display: flex; flex-direction: column; justify-content: center; }
+        .fifa-name { font-weight: bold; color: #E0E8F0; margin-bottom: 0.5rem; }
+        .fifa-detail { font-size: 0.7rem; color: #A0B8D0; margin-bottom: 0.3rem; }
+        .fifa-bottom { height: 30%; padding: 0.5rem 0.8rem; border-top: 1px solid rgba(200,220,250,0.2); }
+        .fifa-price { color: #C0E0FF; font-weight: bold; }
+        .fifa-store { font-size: 0.7rem; color: #A0B8D0; margin-top: 0.2rem; }
+        .add-to-cart {
+            background: rgba(90,140,170,0.3);
+            border: 1px solid #C0E0FF;
+            border-radius: 40px;
+            width: calc(100% - 1rem);
+            margin: 0.5rem;
+            padding: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #E0E8F0;
+        }
+        .add-to-cart:hover {
+            background: rgba(192,224,255,0.3);
+            box-shadow: 0 0 15px #C0E0FF;
+            transform: scale(1.01);
+        }
+        .carousel-btn {
+            position: absolute;
+            top: 45%;
+            width: 36px;
+            height: 36px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.2s;
+            z-index: 10;
+        }
+        .carousel-btn:hover { background: rgba(192,224,255,0.3); box-shadow: 0 0 10px #C0E0FF; }
+        .carousel-btn.prev { left: 5px; }
+        .carousel-btn.next { right: 5px; }
+        .carousel-btn svg { width: 20px; stroke: #C0D0E0; }
+        .smoke-cloud {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(192,224,255,0.35), rgba(100,140,170,0.1));
+            filter: blur(50px);
+            z-index: 20;
+            pointer-events: none;
+            opacity: 0;
+        }
+        @keyframes smokePass { 0% { left: -100%; opacity: 0; } 15% { opacity: 0.7; } 85% { opacity: 0.7; } 100% { left: 100%; opacity: 0; } }
+        
+        /* مودال المنتج العادي */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: rgba(20,35,45,0.95);
+            border-radius: 28px;
+            padding: 1.5rem;
+            width: 90%;
+            max-width: 550px;
+            border: 1px solid #C0E0FF;
+            position: relative;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #C0E0FF;
+            transition: 0.2s;
+        }
+        .close-modal:hover { text-shadow: 0 0 10px #C0E0FF; }
+        .modal-img { width: 100%; border-radius: 20px; margin-bottom: 1rem; }
+        .modal-title { font-size: 1.5rem; color: #C0E0FF; margin-bottom: 0.5rem; }
+        .modal-detail { color: #A0B8D0; margin-bottom: 0.5rem; font-size: 1rem; }
+        .modal-price { color: #C0E0FF; font-size: 1.3rem; font-weight: bold; margin: 0.5rem 0; }
+        
+        /* معرض الصور الجديد */
+        .gallery-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(16px);
+            z-index: 1100;
+            justify-content: center;
+            align-items: center;
+        }
+        .gallery-content {
+            max-width: 90%;
+            max-height: 90%;
+            text-align: center;
+            position: relative;
+        }
+        .gallery-image {
+            max-width: 100%;
+            max-height: 70vh;
+            border-radius: 20px;
+            border: 2px solid #C0E0FF;
+            box-shadow: 0 0 30px rgba(192,224,255,0.3);
+        }
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 1101;
+        }
+        .gallery-nav:hover {
+            background: rgba(192,224,255,0.3);
+            box-shadow: 0 0 15px #C0E0FF;
+        }
+        .gallery-nav.prev { left: 20px; }
+        .gallery-nav.next { right: 20px; }
+        .gallery-nav svg { width: 30px; height: 30px; stroke: #C0E0FF; }
+        .gallery-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1101;
+        }
+        .gallery-close svg { width: 24px; height: 24px; stroke: #C0E0FF; }
+        .gallery-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            color: #C0E0FF;
+            font-size: 0.8rem;
+        }
+        
+        .empty-state { text-align: center; padding: 2rem; }
+        
+        /* تحسين التجاوب مع الشاشات */
+        @media (max-width: 900px) { 
+            .product-card { flex: 0 0 calc(50% - 1rem); }
+            .nav-icons { gap: 0.5rem; }
+        }
+        @media (max-width: 768px) {
+            .glass-nav { padding: 0.8rem 1rem; }
+            .logo { font-size: 1.3rem; }
+            .store-hero { padding-top: 6rem; }
+            .store-name { font-size: 1.3rem; }
+            .section-title { font-size: 1rem; }
+        }
+        @media (max-width: 600px) { 
+            .product-card { flex: 0 0 100%; }
+        }
+        @media (max-width: 480px) {
+            .nav-icon span:not(.cart-count) { display: none; }
+            .nav-icon { padding: 0.2rem 0.5rem; }
+            .store-logo { width: 60px; height: 60px; }
+        }
+    </style>
+</head>
+<body>
+<div id="stars"></div>
+<nav class="glass-nav">
+    <div class="logo">HELAXIA</div>
+    <div class="nav-icons">
+        <div class="nav-icon" onclick="window.location.href='/stores.html'">
+            <svg class="icon-svg" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <span>المتاجر</span>
+        </div>
+        <div class="nav-icon" onclick="window.location.href='/cart.html'">
+            <svg class="icon-svg" viewBox="0 0 24 24" stroke="currentColor"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            <span id="cartCount" class="cart-count">0</span>
+        </div>
+        <div class="nav-icon currency-toggle" onclick="toggleGlobalCurrency()">
+            <svg class="icon-svg" viewBox="0 0 24 24" stroke="currentColor">
+                <path d="M3 12h18M12 3v18M9 6l3-3 3 3M9 18l3 3 3-3"/>
+            </svg>
+            <span id="globalCurrencyText">ل.س</span>
+        </div>
+        <div class="nav-icon" onclick="logout()">
+            <svg class="icon-svg" viewBox="0 0 24 24" stroke="currentColor"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        </div>
+    </div>
+</nav>
+<div id="storeHero" class="store-hero">جاري التحميل...</div>
+<div id="sectionsContainer" class="sections-container"></div>
+
+<!-- مودال المنتج العادي -->
+<div id="productModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeProductModal()">&times;</span>
+        <div id="productModalBody"></div>
+        <button class="add-to-cart" style="width:100%; margin-top:1rem; padding:0.8rem;" onclick="addToCartFromModal()">+ أضف إلى السلة</button>
+    </div>
+</div>
+
+<!-- معرض الصور الجديد -->
+<div id="galleryModal" class="gallery-modal">
+    <div class="gallery-content">
+        <div class="gallery-close" onclick="closeGallery()">
+            <svg viewBox="0 0 24 24" stroke="currentColor"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </div>
+        <div class="gallery-nav prev" onclick="prevGalleryImage()">
+            <svg viewBox="0 0 24 24" stroke="currentColor"><path d="M15 18l-6-6 6-6"/></svg>
+        </div>
+        <img id="galleryImage" class="gallery-image" src="">
+        <div class="gallery-nav next" onclick="nextGalleryImage()">
+            <svg viewBox="0 0 24 24" stroke="currentColor"><path d="M9 18l6-6-6-6"/></svg>
+        </div>
+        <div id="galleryCounter" class="gallery-counter"></div>
+    </div>
+</div>
+
+<script>
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!user) window.location.href = '/login';
+    
+    // ========== متغيرات المعرض ==========
+    let currentGalleryImages = [];
+    let currentGalleryIndex = 0;
+    
+    // ✅ createStars(), cart, updateCartCount(), addToCart(), showToast(), logout() محذوفة (موجودة في shared.js)
+    
+    let currentProduct = null;
+    
+    // ========== تحديث SEO ديناميكياً بناءً على بيانات المتجر ==========
+    function updateSEOMeta(store) {
+        document.title = `${store.name} | متجر أزياء على HELAXIA`;
+        document.getElementById('pageTitle').innerHTML = document.title;
+        
+        const metaDesc = store.description || `تسوق أحدث صيحات الموضة من متجر ${store.name} على HELAXIA. تشكيلات مميزة من الملابس العصرية مع توصيل سريع.`;
+        const metaDescElement = document.getElementById('metaDescription');
+        if (metaDescElement) metaDescElement.setAttribute('content', metaDesc);
+        
+        const ogTitleElement = document.getElementById('ogTitle');
+        if (ogTitleElement) ogTitleElement.setAttribute('content', `${store.name} | متجر أزياء على HELAXIA`);
+        
+        const ogDescElement = document.getElementById('ogDescription');
+        if (ogDescElement) ogDescElement.setAttribute('content', metaDesc.substring(0, 200));
+        
+        const ogUrlElement = document.getElementById('ogUrl');
+        if (ogUrlElement) ogUrlElement.setAttribute('content', `https://helaxia.com/store/${store.slug}`);
+        
+        const ogImageElement = document.getElementById('ogImage');
+        if (ogImageElement && store.logo) ogImageElement.setAttribute('content', store.logo);
+        
+        const twitterTitleElement = document.getElementById('twitterTitle');
+        if (twitterTitleElement) twitterTitleElement.setAttribute('content', `${store.name} | متجر أزياء`);
+        
+        const twitterDescElement = document.getElementById('twitterDescription');
+        if (twitterDescElement) twitterDescElement.setAttribute('content', metaDesc.substring(0, 150));
+        
+        const twitterImageElement = document.getElementById('twitterImage');
+        if (twitterImageElement && store.logo) twitterImageElement.setAttribute('content', store.logo);
+        
+        const canonicalElement = document.getElementById('canonicalUrl');
+        if (canonicalElement) canonicalElement.setAttribute('href', `https://helaxia.com/store/${store.slug}`);
+    }
+    
+    // ========== وظائف المعرض ==========
+    function openGallery(images, startIndex) {
+        if (!images || images.length === 0) return;
+        currentGalleryImages = images;
+        currentGalleryIndex = startIndex || 0;
+        const galleryImg = document.getElementById('galleryImage');
+        const counter = document.getElementById('galleryCounter');
+        galleryImg.src = images[currentGalleryIndex];
+        counter.innerText = `${currentGalleryIndex + 1} / ${images.length}`;
+        document.getElementById('galleryModal').style.display = 'flex';
+    }
+    
+    function closeGallery() {
+        document.getElementById('galleryModal').style.display = 'none';
+        currentGalleryImages = [];
+        currentGalleryIndex = 0;
+    }
+    
+    function nextGalleryImage() {
+        if (currentGalleryImages.length === 0) return;
+        currentGalleryIndex = (currentGalleryIndex + 1) % currentGalleryImages.length;
+        document.getElementById('galleryImage').src = currentGalleryImages[currentGalleryIndex];
+        document.getElementById('galleryCounter').innerText = `${currentGalleryIndex + 1} / ${currentGalleryImages.length}`;
+    }
+    
+    function prevGalleryImage() {
+        if (currentGalleryImages.length === 0) return;
+        currentGalleryIndex = (currentGalleryIndex - 1 + currentGalleryImages.length) % currentGalleryImages.length;
+        document.getElementById('galleryImage').src = currentGalleryImages[currentGalleryIndex];
+        document.getElementById('galleryCounter').innerText = `${currentGalleryIndex + 1} / ${currentGalleryImages.length}`;
+    }
+    
+    function openGalleryFromModal() {
+        if (currentProduct && currentProduct.images && currentProduct.images.length > 0) {
+            closeProductModal();
+            openGallery(currentProduct.images, 0);
+        } else if (currentProduct && currentProduct.image) {
+            closeProductModal();
+            openGallery([currentProduct.image], 0);
+        }
+    }
+    
+    function openProductModal(p) {
+        currentProduct = p;
+        const formattedPrice = window.formatPrice ? window.formatPrice(p.price) : `${p.price} ل.س`;
+        let firstImage = (p.images && p.images.length > 0) ? p.images[0] : (p.image || 'https://placehold.co/400x400/2A4A6A/7BA5C0?text=HELAXIA');
+        let imagesCount = (p.images && p.images.length > 0) ? p.images.length : (p.image ? 1 : 0);
+        document.getElementById('productModalBody').innerHTML = `
+            <div style="position:relative; cursor:pointer;" onclick="openGalleryFromModal()">
+                <img src="${firstImage}" class="modal-img" onerror="this.src='https://placehold.co/400x400/2A4A6A/7BA5C0?text=HELAXIA'">
+                ${imagesCount > 1 ? '<div style="position:absolute; bottom:10px; right:10px; background:rgba(0,0,0,0.6); border-radius:20px; padding:2px 8px; font-size:0.7rem;">' + imagesCount + ' صور</div>' : ''}
+            </div>
+            <div class="modal-title">${p.name}</div>
+            <div class="modal-price">السعر: ${formattedPrice}</div>
+            <div class="modal-detail">نوع القماش: ${p.fabric_type || 'غير محدد'}</div>
+            <div class="modal-detail">القياسات المتوفرة: ${p.sizes || 'غير محدد'}</div>
+            <div class="modal-detail">الألوان المتوفرة: ${p.colors || 'غير محدد'}</div>
+            <div class="modal-detail">الوصف: ${p.description || 'لا يوجد وصف'}</div>
+        `;
+        document.getElementById('productModal').style.display = 'flex';
+    }
+    
+    function closeProductModal() { document.getElementById('productModal').style.display = 'none'; currentProduct = null; }
+    function addToCartFromModal() { if (currentProduct) { addToCart(currentProduct); closeProductModal(); } }
+    
+    const slug = window.location.pathname.split('/').pop();
+    
+    async function loadStore() {
+        try {
+            const storeRes = await fetch(`/api/stores/${slug}`);
+            const store = await storeRes.json();
+            
+            updateSEOMeta(store);
+            
+            let cityName = '-';
+            if (store.city_id) {
+                try {
+                    const cityRes = await fetch(`/api/cities/${store.city_id}`);
+                    if (cityRes.ok) {
+                        const cityData = await cityRes.json();
+                        cityName = cityData.name;
+                    }
+                } catch(e) { console.error('Error loading city:', e); }
+            }
+            
+            document.getElementById('storeHero').innerHTML = `
+                <img class="store-logo" src="${store.logo || 'https://placehold.co/100x100/2A4A6A/C0E0FF?text=Store'}" alt="شعار متجر ${store.name}">
+                <div class="store-name">${store.name}</div>
+                <div class="store-rating">⭐ ${store.rating || 4.5}</div>
+                <div class="store-description">${store.description || 'متجر موثوق على منصة HELAXIA'}</div>
+                <div class="store-city">📍 المدينة: ${cityName}</div>
+            `;
+            
+            const catsRes = await fetch('/api/categories/all');
+            let allCats = await catsRes.json();
+            let storeCategories = allCats.filter(c => c.parent_id !== 0 && c.store_id == store.id);
+            const container = document.getElementById('sectionsContainer');
+            container.innerHTML = '';
+            
+            if (storeCategories.length === 0) {
+                container.innerHTML = '<div class="empty-state glass-card">لا توجد أقسام في هذا المتجر بعد</div>';
+                return;
+            }
+            
+            let storesRes = await fetch('/api/stores');
+            let stores = await storesRes.json();
+            let storeNames = {};
+            stores.forEach(s => { storeNames[s.id] = s.name; });
+            
+            for (let cat of storeCategories) {
+                const prodRes = await fetch(`/api/products/by-category/${cat.id}`);
+                let products = await prodRes.json();
+                if (products.length === 0) continue;
+                
+                container.innerHTML += `
+                    <div class="section">
+                        <div class="section-header">
+                            <div class="section-title">${cat.name}</div>
+                            <div class="section-arrow" onclick="window.location.href='/section?id=${cat.id}&name=${encodeURIComponent(cat.name)}'">عرض الكل →</div>
+                        </div>
+                        <div class="carousel-container" id="carousel-${cat.id}">
+                            <div class="carousel-track" id="track-${cat.id}"></div>
+                            <div class="carousel-btn prev" onclick="slideCarousel('${cat.id}',-1)"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M15 18l-6-6 6-6"/></svg></div>
+                            <div class="carousel-btn next" onclick="slideCarousel('${cat.id}',1)"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M9 18l6-6-6-6"/></svg></div>
+                        </div>
+                    </div>
+                `;
+                
+                let track = document.getElementById(`track-${cat.id}`);
+                track.innerHTML = products.map(p => {
+                    let firstImage = (p.images && p.images.length > 0) ? p.images[0] : (p.image_url || 'https://placehold.co/400x400/2A4A6A/7BA5C0?text=HELAXIA');
+                    let imagesArray = (p.images && p.images.length > 0) ? p.images : (p.image_url ? [p.image_url] : []);
+                    return `
+                        <div class="product-card">
+                            <div class="glass-card">
+                                <div class="fifa-top" onclick='openProductModal({id:${p.id}, name:"${p.name}", price:${p.base_price}, image:"${firstImage}", images:${JSON.stringify(imagesArray)}, fabric_type:"${p.fabric_type || ''}", sizes:"${p.sizes || ''}", colors:"${p.colors || ''}", description:"${p.description || ''}"})'>
+                                    <div class="fifa-image"><img src="${firstImage}" alt="${p.name}"></div>
+                                    <div class="fifa-info">
+                                        <div class="fifa-name">${p.name}</div>
+                                        <div class="fifa-detail">نوع القماش: ${p.fabric_type || 'غير محدد'}</div>
+                                        <div class="fifa-detail">القياسات: ${p.sizes || 'غير محدد'}</div>
+                                        <div class="fifa-detail">الألوان: ${p.colors || 'غير محدد'}</div>
+                                    </div>
+                                </div>
+                                <div class="fifa-bottom">
+                                    <div class="fifa-price price-value" data-syp="${p.base_price}">${window.formatPrice ? window.formatPrice(p.base_price) : p.base_price + ' ل.س'}</div>
+                                    <div class="fifa-store">${storeNames[p.store_id] || 'HELAXIA'}</div>
+                                </div>
+                                <button class="add-to-cart" onclick='addToCart({id:${p.id}, name:"${p.name}", price:${p.base_price}, image:"${firstImage}"})'>+ أضف إلى السلة</button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+                
+                window.indices = window.indices || {};
+                window.indices[cat.id] = 0;
+                startAutoSlide(cat.id);
+            }
+            
+            if (window.updateAllPrices) {
+                window.updateAllPrices();
+            }
+        } catch(e) { 
+            console.error(e);
+            document.getElementById('storeHero').innerHTML = '<div class="empty-state glass-card">المتجر غير موجود</div>';
+        }
+    }
+    
+    function startAutoSlide(catId) { 
+        setInterval(() => { 
+            let track = document.getElementById(`track-${catId}`); 
+            if(!track) return; 
+            let total = track.children.length; 
+            if(total<=1) return; 
+            let cloud = track.closest('.carousel-container').querySelector('.smoke-cloud'); 
+            if(!cloud){
+                let c=document.createElement('div'); 
+                c.className='smoke-cloud'; 
+                track.closest('.carousel-container').appendChild(c); 
+                cloud=c;
+            } 
+            cloud.style.animation='none'; 
+            cloud.offsetHeight; 
+            cloud.style.animation='smokePass 1.2s forwards'; 
+            setTimeout(()=>{ 
+                let idx=(window.indices[catId]+1)%total; 
+                window.indices[catId]=idx; 
+                let w=track.children[0]?.offsetWidth+24; 
+                if(w) track.style.transform=`translateX(-${idx*w}px)`; 
+            },250); 
+        },5000); 
+    }
+    
+    function slideCarousel(catId, dir) { 
+        let idx=(window.indices[catId]||0)+dir; 
+        let track=document.getElementById(`track-${catId}`); 
+        if(!track) return; 
+        let total=track.children.length; 
+        if(total===0) return; 
+        idx=(idx+total)%total; 
+        window.indices[catId]=idx; 
+        let w=track.children[0]?.offsetWidth+24; 
+        if(w) track.style.transform=`translateX(-${idx*w}px)`; 
+    }
+    
+    async function initCurrency() {
+        if (window.loadExchangeRate) {
+            await window.loadExchangeRate();
+        }
+        if (window.updateAllPrices) {
+            window.updateAllPrices();
+        }
+        const currencyText = document.getElementById('globalCurrencyText');
+        if (currencyText) {
+            const currentCurrency = localStorage.getItem('helaxia_currency') || 'SYP';
+            currencyText.innerText = currentCurrency === 'SYP' ? 'ل.س' : '$';
+        }
+    }
+    
+    function toggleGlobalCurrency() {
+        if (typeof window.toggleGlobalCurrency === 'function') {
+            window.toggleGlobalCurrency();
+        } else {
+            let currentCurrency = localStorage.getItem('helaxia_currency') || 'SYP';
+            currentCurrency = currentCurrency === 'SYP' ? 'USD' : 'SYP';
+            localStorage.setItem('helaxia_currency', currentCurrency);
+            if (window.updateAllPrices) window.updateAllPrices();
+            const currencyText = document.getElementById('globalCurrencyText');
+            if (currencyText) currencyText.innerText = currentCurrency === 'SYP' ? 'ل.س' : '$';
+        }
+    }
+    
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeGallery();
+            closeProductModal();
+        }
+    });
+    
+    loadStore();
+    initCurrency();
+    updateCartCount();
+</script>
+</body>
+</html>

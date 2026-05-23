@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>HELAXIA | لوحة أمين الصندوق</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Cairo', 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at 30% 20%, #1A2A3A, #0F1A24);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        .star {
+            position: fixed;
+            background: radial-gradient(circle, #FFFFFF, #C0E0FF);
+            border-radius: 50%;
+            opacity: 0;
+            pointer-events: none;
+            animation: starTwinkle 4s infinite ease-in-out;
+            z-index: 0;
+        }
+        @keyframes starTwinkle {
+            0% { opacity: 0; transform: scale(0.8); }
+            50% { opacity: 0.9; transform: scale(1.2); }
+            100% { opacity: 0; transform: scale(0.8); }
+        }
+        .glass-nav {
+            background: rgba(10, 20, 30, 0.45);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(200, 220, 250, 0.3);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+        }
+        .glass-card {
+            background: rgba(20, 35, 45, 0.45);
+            backdrop-filter: blur(14px);
+            border-radius: 28px;
+            border: 1px solid rgba(200, 220, 250, 0.25);
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        .glass-card:hover {
+            border-color: rgba(200, 220, 250, 0.6);
+            box-shadow: 0 0 28px rgba(192, 224, 255, 0.4);
+            transform: translateY(-2px);
+        }
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+        .cashier-name { color: #C0D0E0; font-size: 0.9rem; }
+        .cashier-name span { color: #C0E0FF; font-weight: bold; }
+        .top-icons { display: flex; gap: 1.5rem; align-items: center; }
+        .icon-btn {
+            background: rgba(10, 20, 30, 0.3);
+            padding: 0.4rem 0.8rem;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #C0D0E0;
+        }
+        .icon-btn:hover {
+            background: rgba(192, 224, 255, 0.2);
+            box-shadow: 0 0 12px #C0E0FF;
+            transform: scale(1.02);
+        }
+        .icon-svg {
+            width: 20px;
+            height: 20px;
+            stroke: #C0D0E0;
+            stroke-width: 1.5;
+            fill: none;
+        }
+        .tabs-container {
+            padding-top: 5.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+        .tabs-header {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(10, 20, 30, 0.3);
+            border-radius: 60px;
+            padding: 0.3rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .tab-btn {
+            flex: 1;
+            background: transparent;
+            border: none;
+            padding: 0.8rem 1rem;
+            border-radius: 50px;
+            color: #A0B8D0;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .tab-btn svg { width: 20px; height: 20px; stroke: #A0B8D0; }
+        .tab-btn.active { background: rgba(192, 224, 255, 0.2); color: #C0E0FF; box-shadow: 0 0 15px rgba(192, 224, 255, 0.3); }
+        .tab-btn.active svg { stroke: #C0E0FF; }
+        .tab-btn:hover:not(.active) { background: rgba(192, 224, 255, 0.1); color: #C0D0E0; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .data-table { width: 100%; border-collapse: collapse; color: #C0D0E0; }
+        .data-table th, .data-table td { padding: 1rem; text-align: right; border-bottom: 1px solid rgba(200, 220, 250, 0.2); }
+        .data-table th { color: #C0E0FF; font-weight: 600; }
+        .action-btn {
+            background: rgba(90, 140, 170, 0.3);
+            border: 1px solid rgba(200, 220, 250, 0.3);
+            border-radius: 30px;
+            padding: 0.3rem 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            color: #C0D0E0;
+        }
+        .action-btn:hover { background: rgba(192, 224, 255, 0.2); box-shadow: 0 0 10px #C0E0FF; }
+        .btn-success { border-color: rgba(100, 255, 150, 0.5); color: #A0E0C0; }
+        .btn-danger { border-color: rgba(255, 100, 100, 0.5); color: #FF8A7A; }
+        .badge-pending { background: rgba(255,165,0,0.3); color: #FFA500; padding: 0.2rem 0.5rem; border-radius: 20px; font-size: 0.7rem; }
+        .badge-approved { background: rgba(0,200,0,0.3); color: #00CC00; padding: 0.2rem 0.5rem; border-radius: 20px; font-size: 0.7rem; }
+        
+        /* صورة شام كاش */
+        .payment-proof-img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .payment-proof-img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 12px #C0E0FF;
+        }
+        .modal-img-full {
+            width: 100%;
+            max-height: 500px;
+            object-fit: contain;
+            border-radius: 16px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: rgba(20, 35, 45, 0.95);
+            border-radius: 28px;
+            padding: 2rem;
+            width: 90%;
+            max-width: 600px;
+            border: 1px solid #C0E0FF;
+            position: relative;
+        }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+        .close-modal { cursor: pointer; color: #C0E0FF; font-size: 1.5rem; }
+        
+        /* حقل مكان التسليم */
+        .pickup-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+            align-items: flex-end;
+        }
+        .pickup-row input {
+            flex: 2;
+            background: rgba(10,20,30,0.5);
+            border: 1px solid rgba(200,220,250,0.3);
+            border-radius: 60px;
+            padding: 0.8rem;
+            color: #E0E8F0;
+        }
+        .pickup-row button {
+            flex: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .tabs-header { flex-direction: column; border-radius: 20px; }
+            .data-table { font-size: 0.7rem; }
+            .pickup-row { flex-direction: column; }
+            .pickup-row button { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+<div id="starsContainer"></div>
+
+<nav class="glass-nav">
+    <div class="top-bar">
+        <div class="cashier-name"><svg class="icon-svg" viewBox="0 0 24 24" stroke="currentColor" style="width:16px;height:16px;display:inline;"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> <span id="cashierName">أمين الصندوق</span></div>
+        <div class="top-icons">
+            <div class="icon-btn" onclick="logout()"><svg class="icon-svg" viewBox="0 0 24 24" stroke="currentColor"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg> خروج</div>
+        </div>
+    </div>
+</nav>
+
+<div class="tabs-container">
+    <div class="tabs-header">
+        <button class="tab-btn active" data-tab="withdrawals"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M12 2v4M12 22v-4M4 12H2M22 12h-2"/><circle cx="12" cy="12" r="4"/><path d="M6 6l2 2M18 18l2 2M18 6l2-2M6 18l2-2"/></svg> طلبات السحب</button>
+        <button class="tab-btn" data-tab="payments"><svg viewBox="0 0 24 24" stroke="currentColor"><rect x="2" y="6" width="20" height="12" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg> تأكيد الدفعات</button>
+    </div>
+
+    <!-- طلبات السحب (مع إضافة عمود صورة الدفع) -->
+    <div id="withdrawals" class="tab-content active">
+        <h2 style="color: #C0E0FF; margin-bottom: 1rem;">📋 طلبات السحب قيد الانتظار</h2>
+        <div style="overflow-x: auto;">
+            <table class="data-table" id="withdrawalsTable">
+                <thead>
+                    <tr>
+                        <th>رقم الطلب</th>
+                        <th>التاجر</th>
+                        <th>صورة الدفع (شام كاش)</th>
+                        <th>المبلغ</th>
+                        <th>تاريخ الطلب</th>
+                        <th>الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- تأكيد الدفعات -->
+    <div id="payments" class="tab-content">
+        <h2 style="color: #C0E0FF; margin-bottom: 1rem;">💳 طلبات تنتظر تأكيد الدفع</h2>
+        <div style="overflow-x: auto;">
+            <table class="data-table" id="paymentsTable">
+                <thead>
+                    <tr>
+                        <th>رقم الطلب</th>
+                        <th>العميل</th>
+                        <th>المبلغ</th>
+                        <th>تاريخ الطلب</th>
+                        <th>الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- ========== تحديد تكلفة الشحن ومكان التسليم ========== -->
+<div class="glass-card" style="margin-bottom: 2rem; padding: 1.5rem;">
+    <h3 style="color: #C0E0FF; margin-bottom: 1rem;">🚚 تحديد بيانات الطلب</h3>
+    
+    <!-- حقل رقم الطلب -->
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem;">
+        <input type="text" id="shippingOrderNumber" placeholder="رقم الطلب" style="flex: 1; background: rgba(10,20,30,0.5); border: 1px solid rgba(200,220,250,0.3); border-radius: 60px; padding: 0.8rem; color: #E0E8F0;">
+    </div>
+    
+    <!-- صف تحديد تكلفة الشحن -->
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem;">
+        <input type="number" id="shippingCost" placeholder="تكلفة الشحن (ل.س)" style="flex: 1; background: rgba(10,20,30,0.5); border: 1px solid rgba(200,220,250,0.3); border-radius: 60px; padding: 0.8rem; color: #E0E8F0;">
+        <button class="action-btn" onclick="setShippingCost()" style="flex: 0.5;">تحديد الشحن</button>
+    </div>
+    
+    <!-- صف تحديد مكان تسليم الطلب -->
+    <div class="pickup-row">
+        <input type="text" id="pickupLocation" placeholder="📍 مكان تسليم الطلب (مثال: مستودع دمشق - شارع الثورة)">
+        <button class="action-btn btn-success" onclick="setPickupLocation()">تحديد مكان التسليم</button>
+    </div>
+    
+    <div id="shippingResult" style="margin-top: 0.5rem; font-size: 0.8rem;"></div>
+    <div id="pickupResult" style="margin-top: 0.5rem; font-size: 0.8rem;"></div>
+</div>
+
+<!-- مودال عرض الصورة المكبرة -->
+<div id="imageModal" class="modal" onclick="closeImageModal()">
+    <div class="modal-content" style="max-width:600px; text-align:center;" onclick="event.stopPropagation()">
+        <div class="modal-header">
+            <h3 style="color:#C0E0FF;" id="imageModalTitle">صورة الدفع (شام كاش)</h3>
+            <span class="close-modal" onclick="closeImageModal()">&times;</span>
+        </div>
+        <img id="fullImage" class="modal-img-full" src="">
+        <button class="action-btn" style="margin-top:1rem;" onclick="closeImageModal()">إغلاق</button>
+    </div>
+</div>
+
+<script>
+    let cashierToken = localStorage.getItem('cashierToken');
+    if (!cashierToken) window.location.href = '/cashier-login';
+
+    // ========== دوال مودال الصورة ==========
+    function showImageModal(imageUrl, title) {
+        const modal = document.getElementById('imageModal');
+        const img = document.getElementById('fullImage');
+        const titleEl = document.getElementById('imageModalTitle');
+        img.src = imageUrl;
+        if (titleEl) titleEl.innerText = title || 'صورة الدفع (شام كاش)';
+        modal.style.display = 'flex';
+    }
+
+    function closeImageModal() {
+        document.getElementById('imageModal').style.display = 'none';
+        document.getElementById('fullImage').src = '';
+    }
+
+    function createStars() {
+        for (let i = 0; i < 120; i++) {
+            let star = document.createElement('div');
+            star.classList.add('star');
+            star.style.width = (Math.random() * 3 + 1) + 'px';
+            star.style.height = star.style.width;
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 5 + 's';
+            document.getElementById('starsContainer').appendChild(star);
+        }
+    }
+    createStars();
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
+            const tabId = btn.getAttribute('data-tab');
+            if (tabId === 'withdrawals') document.getElementById('withdrawals').classList.add('active');
+            if (tabId === 'payments') { document.getElementById('payments').classList.add('active'); loadPendingPayments(); }
+        });
+    });
+
+    async function fetchAPI(endpoint, options = {}) {
+        const res = await fetch(endpoint, {
+            ...options,
+            headers: { 'Authorization': `Bearer ${cashierToken}`, 'Content-Type': 'application/json', ...options.headers }
+        });
+        if (res.status === 401) { localStorage.removeItem('cashierToken'); window.location.href = '/cashier-login'; }
+        return res.json();
+    }
+
+    async function loadWithdrawals() {
+        try {
+            const withdrawals = await fetchAPI('/api/cashier/withdrawals/pending');
+            const tbody = document.querySelector('#withdrawalsTable tbody');
+            if (withdrawals.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" class="empty-state" style="text-align:center;">✨ لا توجد طلبات سحب قيد الانتظار ✨</td></tr>';
+                return;
+            }
+            tbody.innerHTML = withdrawals.map(w => {
+                let paymentProofImage = '';
+                const imageHtml = '<span style="color:#FF8A7A;">جاري التحميل...</span>';
+                return `
+                <tr>
+                    <td>${w.request_number}</td>
+                    <td>${w.store_name || 'متجر ' + w.vendor_id}</td>
+                    <td><span class="payment-proof-cell" data-vendor-id="${w.vendor_id}" data-store-name="${w.store_name || 'تاجر'}">${imageHtml}</span></td>
+                    <td>${w.amount.toLocaleString()} ل.س</td>
+                    <td>${new Date(w.requested_at).toLocaleDateString('ar-EG')}</td>
+                    <td>
+                        <button class="action-btn btn-success" onclick="approveWithdrawal(${w.id}, ${w.amount}, ${w.vendor_id})">✅ قبول</button>
+                        <button class="action-btn btn-danger" onclick="rejectWithdrawal(${w.id}, ${w.amount}, ${w.vendor_id})">❌ رفض</button>
+                      </td>
+                 </tr>
+            `}).join('');
+            
+            // جلب صور شام كاش للتجار
+            for (let i = 0; i < withdrawals.length; i++) {
+                const w = withdrawals[i];
+                try {
+                    const storeRes = await fetch(`/api/stores/${w.vendor_id}`, {
+                        headers: { 'Authorization': `Bearer ${cashierToken}` }
+                    });
+                    if (storeRes.ok) {
+                        const storeData = await storeRes.json();
+                        const paymentProofImage = storeData.payment_proof_image || '';
+                        const rows = tbody.querySelectorAll('tr');
+                        if (rows[i]) {
+                            const cell = rows[i].querySelector('.payment-proof-cell');
+                            if (cell) {
+                                if (paymentProofImage) {
+                                    cell.innerHTML = `<img src="${paymentProofImage}" class="payment-proof-img" onclick="showImageModal('${paymentProofImage}', 'صورة شام كاش - ${w.store_name || 'تاجر'}')">`;
+                                } else {
+                                    cell.innerHTML = '<span style="color:#FF8A7A;">لا توجد</span>';
+                                }
+                            }
+                        }
+                    }
+                } catch(e) {}
+            }
+        } catch(e) { console.error(e); }
+    }
+
+    async function approveWithdrawal(id, amount, vendorId) {
+        if (!confirm(`⚠️ هل أنت متأكد من قبول طلب السحب بمبلغ ${amount} ل.س؟`)) return;
+        try {
+            const res = await fetchAPI(`/api/cashier/withdrawals/${id}/approve`, { method: 'POST', body: JSON.stringify({ vendorId, amount }) });
+            alert(res.message || '✅ تم قبول طلب السحب');
+            loadWithdrawals();
+        } catch(e) { alert('❌ فشل قبول طلب السحب'); }
+    }
+
+    async function rejectWithdrawal(id, amount, vendorId) {
+        if (!confirm(`⚠️ هل أنت متأكد من رفض طلب السحب بمبلغ ${amount} ل.س؟`)) return;
+        try {
+            const res = await fetchAPI(`/api/cashier/withdrawals/${id}/reject`, { method: 'POST', body: JSON.stringify({ vendorId, amount }) });
+            alert(res.message || '✅ تم رفض طلب السحب');
+            loadWithdrawals();
+        } catch(e) { alert('❌ فشل رفض طلب السحب'); }
+    }
+
+    async function loadPendingPayments() {
+        try {
+            const orders = await fetchAPI('/api/cashier/orders/pending-payment');
+            const tbody = document.querySelector('#paymentsTable tbody');
+            if (orders.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" class="empty-state" style="text-align:center;">✨ لا توجد طلبات تنتظر تأكيد الدفع ✨</td></tr>';
+                return;
+            }
+            tbody.innerHTML = orders.map(o => `
+                <tr>
+                    <td>${o.order_number}</td>
+                    <td>${o.customer_name}</td>
+                    <td>${(o.total || 0).toLocaleString()} ل.س</td>
+                    <td>${new Date(o.created_at).toLocaleDateString('ar-EG')}</td>
+                    <td><button class="action-btn btn-success" onclick="confirmPayment(${o.id})">✅ تأكيد الدفع</button></td>
+                 </tr>
+            `).join('');
+        } catch(e) { console.error(e); }
+    }
+
+    async function confirmPayment(orderId) {
+        if (!confirm('⚠️ هل أنت متأكد من تأكيد استلام الدفع لهذا الطلب؟')) return;
+        try {
+            const res = await fetchAPI(`/api/cashier/orders/${orderId}/confirm-payment`, { method: 'POST' });
+            alert(res.message || '✅ تم تأكيد الدفع');
+            loadPendingPayments();
+        } catch(e) { alert('❌ فشل تأكيد الدفع'); }
+    }
+
+    function logout() { localStorage.clear(); window.location.href = '/cashier-login'; }
+
+    loadWithdrawals();
+    loadPendingPayments();
+
+    async function setShippingCost() {
+        const orderNumber = document.getElementById('shippingOrderNumber').value.trim();
+        const totalShippingCost = parseFloat(document.getElementById('shippingCost').value);
+        
+        if (!orderNumber || !totalShippingCost || totalShippingCost <= 0) {
+            document.getElementById('shippingResult').innerHTML = '<span style="color: #FF8A7A;">❌ الرجاء إدخال رقم الطلب وتكلفة الشحن</span>';
+            return;
+        }
+        
+        try {
+            const searchRes = await fetch(`/api/admin/orders/search/${orderNumber}`, {
+                headers: { 'Authorization': `Bearer ${cashierToken}` }
+            });
+            const searchData = await searchRes.json();
+            
+            if (!searchData.order) {
+                document.getElementById('shippingResult').innerHTML = '<span style="color: #FF8A7A;">❌ لا يوجد طلب بهذا الرقم</span>';
+                return;
+            }
+            
+            const orderId = searchData.order.id;
+            
+            const res = await fetch('/api/cashier/set-shipping-cost', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${cashierToken}`
+                },
+                body: JSON.stringify({ orderId, totalShippingCost })
+            });
+            
+            const data = await res.json();
+            if (!res.ok) {
+                document.getElementById('shippingResult').innerHTML = `<span style="color: #FF8A7A;">❌ ${data.error}</span>`;
+                return;
+            }
+            
+            document.getElementById('shippingResult').innerHTML = `<span style="color: #A0E0C0;">✅ ${data.message}</span><br><span style="font-size: 0.7rem;">العميل يدفع نصف التكلفة: ${data.customer_shipping} ل.س</span>`;
+            
+            document.getElementById('shippingCost').value = '';
+            
+            setTimeout(() => { document.getElementById('shippingResult').innerHTML = ''; }, 3000);
+            
+        } catch (err) {
+            document.getElementById('shippingResult').innerHTML = '<span style="color: #FF8A7A;">⚠️ خطأ في الاتصال بالخادم</span>';
+        }
+    }
+
+    // ========== تحديد مكان تسليم الطلب ==========
+    async function setPickupLocation() {
+        const orderNumber = document.getElementById('shippingOrderNumber').value.trim();
+        const pickupLocation = document.getElementById('pickupLocation').value.trim();
+        
+        if (!orderNumber) {
+            document.getElementById('pickupResult').innerHTML = '<span style="color: #FF8A7A;">❌ الرجاء إدخال رقم الطلب أولاً</span>';
+            return;
+        }
+        
+        if (!pickupLocation) {
+            document.getElementById('pickupResult').innerHTML = '<span style="color: #FF8A7A;">❌ الرجاء إدخال مكان تسليم الطلب</span>';
+            return;
+        }
+        
+        try {
+            const searchRes = await fetch(`/api/admin/orders/search/${orderNumber}`, {
+                headers: { 'Authorization': `Bearer ${cashierToken}` }
+            });
+            const searchData = await searchRes.json();
+            
+            if (!searchData.order) {
+                document.getElementById('pickupResult').innerHTML = '<span style="color: #FF8A7A;">❌ لا يوجد طلب بهذا الرقم</span>';
+                return;
+            }
+            
+            const orderId = searchData.order.id;
+            
+            const res = await fetch('/api/cashier/set-pickup-location', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${cashierToken}`
+                },
+                body: JSON.stringify({ orderId, pickupLocation })
+            });
+            
+            const data = await res.json();
+            if (!res.ok) {
+                document.getElementById('pickupResult').innerHTML = `<span style="color: #FF8A7A;">❌ ${data.error}</span>`;
+                return;
+            }
+            
+            document.getElementById('pickupResult').innerHTML = `<span style="color: #A0E0C0;">✅ ${data.message}</span>`;
+            document.getElementById('pickupLocation').value = '';
+            
+            setTimeout(() => { document.getElementById('pickupResult').innerHTML = ''; }, 3000);
+            
+        } catch (err) {
+            document.getElementById('pickupResult').innerHTML = '<span style="color: #FF8A7A;">⚠️ خطأ في الاتصال بالخادم</span>';
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    
+    <!-- ========== SEO Meta Tags ========== -->
+    <title>HELAXIA | سلة المشتريات - أزياء بتصميمك</title>
+    <meta name="description" content="سلة المشتريات في HELAXIA. راجع منتجاتك، عدل الكميات، وأكمل طلبك بسهولة. تسوق أحدث صيحات الموضة من أفضل المتاجر السورية.">
+    <meta name="keywords" content="سلة مشتريات, تسوق, ملابس, أزياء, HELAXIA, طلب, شراء">
+    <meta name="author" content="HELAXIA">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="language" content="Arabic">
+    
+    <!-- ========== Open Graph (لـ Facebook, WhatsApp, Telegram) ========== -->
+    <meta property="og:title" content="HELAXIA | سلة المشتريات">
+    <meta property="og:description" content="سلة المشتريات في HELAXIA - راجع منتجاتك وأكمل طلبك">
+    <meta property="og:image" content="https://helaxia.com/images/logo.png">
+    <meta property="og:url" content="https://helaxia.com/cart.html">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ar_SY">
+    
+    <!-- ========== Twitter Card ========== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="HELAXIA | سلة المشتريات">
+    <meta name="twitter:description" content="سلة المشتريات في HELAXIA">
+    
+    <!-- ========== Canonical URL ========== -->
+    <link rel="canonical" href="https://helaxia.com/cart.html">
+    
+    <!-- ========== Favicon ========== -->
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
+    <!-- ✅ جديد: shared.js -->
+    <script src="/shared.js"></script>
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', 'Playfair Display', Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle at 10% 20%, #2A4A6A, #1A3A50);
+            min-height: 100vh;
+            direction: rtl;
+            position: relative;
+        }
+        .star {
+            position: fixed;
+            background: radial-gradient(circle, #FFFFFF, #C0E0FF);
+            border-radius: 50%;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 0;
+            animation: twinkle 4s infinite ease-in-out;
+        }
+        @keyframes twinkle {
+            0% { opacity: 0; transform: scale(0.8); }
+            50% { opacity: 0.9; transform: scale(1.2); }
+            100% { opacity: 0; transform: scale(0.8); }
+        }
+        .glass-nav { background: rgba(10,20,30,0.45); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(200,220,250,0.3); }
+        .glass-card { background: rgba(20,35,45,0.35); backdrop-filter: blur(18px); border-radius: 28px; border: 1px solid rgba(200,220,250,0.25); transition: all 0.3s ease; }
+        .glass-card:hover { border-color: rgba(200,220,250,0.6); box-shadow: 0 0 28px rgba(192,224,255,0.4); transform: translateY(-4px); }
+        .navbar { position: fixed; top: 0; left: 0; width: 100%; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; z-index: 100; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 2rem; background: linear-gradient(135deg, #F0F4FA, #C0D0E0); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .nav-icon { cursor: pointer; transition: 0.2s; background: rgba(10,20,30,0.3); padding: 0.4rem 1rem; border-radius: 40px; color: #E0E8F0; }
+        .nav-icon:hover { background: rgba(192,224,255,0.15); transform: scale(1.02); box-shadow: 0 0 12px #C0E0FF; }
+        .cart-container { max-width: 1400px; margin: 0 auto; padding: 7rem 2rem 2rem; display: flex; flex-wrap: wrap; gap: 2rem; }
+        .sidebar { flex: 1.2; min-width: 280px; }
+        .summary-card { padding: 1.5rem; }
+        .summary-card h3 { color: #C0E0FF; margin-bottom: 1rem; }
+        .summary-row { display: flex; justify-content: space-between; margin-bottom: 0.8rem; color: #E0E8F0; }
+        .shipping-row { border-top: 1px dashed rgba(200,220,250,0.2); padding-top: 0.5rem; margin-top: 0.5rem; }
+        .total-row { border-top: 1px solid rgba(200,220,250,0.3); padding-top: 1rem; margin-top: 0.5rem; font-size: 1.2rem; font-weight: bold; color: #C0E0FF; }
+        .checkout-btn { width: 100%; background: rgba(90,140,170,0.6); border: 1px solid #C0E0FF; border-radius: 40px; padding: 0.8rem; font-weight: bold; margin-top: 1.5rem; cursor: pointer; color: #E0E8F0; transition: 0.2s; }
+        .checkout-btn:hover { background: rgba(192,224,255,0.2); box-shadow: 0 0 15px #C0E0FF; transform: scale(1.01); }
+        .notes-input { width: 100%; padding: 0.6rem; background: rgba(255,255,255,0.1); border: 1px solid #C0E0FF; border-radius: 20px; color: #E0E8F0; margin-top: 1rem; }
+        .cart-table-wrapper { flex: 3; overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 1rem 0.8rem; text-align: center; border-bottom: 1px solid rgba(200,220,250,0.2); }
+        th { color: #C0E0FF; }
+        .product-img { width: 60px; height: 60px; object-fit: cover; border-radius: 12px; }
+        .quantity-control { display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
+        .qty-btn { background: rgba(192,224,255,0.2); border: none; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; color: #E0E8F0; transition: 0.2s; }
+        .qty-btn:hover { background: rgba(192,224,255,0.5); box-shadow: 0 0 8px #C0E0FF; }
+        .delete-btn { background: rgba(200,100,100,0.3); border: none; border-radius: 20px; padding: 4px 12px; cursor: pointer; color: #FFB5B5; transition: 0.2s; }
+        .delete-btn:hover { background: rgba(200,100,100,0.6); box-shadow: 0 0 8px #FF8888; }
+        .empty-cart { text-align: center; padding: 3rem; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(12px); z-index: 1000; justify-content: center; align-items: center; }
+        .modal-content { background: rgba(20,35,45,0.95); border-radius: 28px; padding: 2rem; text-align: center; border: 1px solid #C0E0FF; width: 90%; max-width: 400px; }
+        .order-number { font-size: 2rem; font-weight: bold; color: #C0E0FF; margin: 1rem 0; }
+        .copy-btn, .confirm-btn { background: rgba(90,140,170,0.6); border: 1px solid #C0E0FF; border-radius: 40px; padding: 0.5rem 1rem; margin: 0.5rem; cursor: pointer; color: #E0E8F0; transition: 0.2s; }
+        .copy-btn:hover, .confirm-btn:hover { background: rgba(192,224,255,0.2); box-shadow: 0 0 12px #C0E0FF; }
+        
+        /* أيقونة تحويل العملة الزجاجية الذهبية */
+        .currency-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(196, 148, 92, 0.2);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(196, 148, 92, 0.5);
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 6px;
+        }
+        .currency-icon svg {
+            width: 16px;
+            height: 16px;
+            stroke: #c4905c;
+            stroke-width: 1.8;
+            fill: none;
+        }
+        .currency-icon:hover {
+            background: rgba(196, 148, 92, 0.4);
+            border-color: #c4905c;
+            box-shadow: 0 0 12px rgba(196, 148, 92, 0.6);
+            transform: scale(1.05);
+        }
+        .price-with-currency {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        
+        /* تحسين التجاوب مع الشاشات الصغيرة */
+        @media (max-width: 900px) { 
+            .cart-container { flex-direction: column; }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar { padding: 0.8rem 1rem; }
+            .logo { font-size: 1.3rem; }
+            .nav-icon { padding: 0.3rem 0.7rem; font-size: 0.8rem; }
+            .cart-container { padding: 6rem 1rem 1rem; }
+            th, td { padding: 0.5rem 0.3rem; font-size: 0.8rem; }
+            .product-img { width: 40px; height: 40px; }
+            .qty-btn { width: 22px; height: 22px; font-size: 0.7rem; }
+            .summary-card { padding: 1rem; }
+        }
+        
+        @media (max-width: 480px) {
+            .cart-table-wrapper { overflow-x: scroll; }
+            table { min-width: 500px; }
+        }
+    </style>
+</head>
+<body>
+<div id="stars"></div>
+<nav class="navbar glass-nav">
+    <div class="logo">HELAXIA</div>
+    <div class="nav-icon" onclick="window.location.href='/shop'">← المتجر</div>
+</nav>
+<div class="cart-container" id="cartContainer"></div>
+<div id="orderModal" class="modal"><div class="modal-content"><h3>✨ تم استلام طلبك ✨</h3><p>رقم طلبك هو:</p><div class="order-number" id="orderNumberDisplay"></div><button class="copy-btn" id="copyOrderBtn">📋 نسخ الرقم</button><button class="confirm-btn" id="confirmOrderBtn">✅ تأكيد وإتمام الدفع</button></div></div>
+
+<script>
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!user) window.location.href = '/login';
+    
+    let exchangeRate = 13000;
+    let paymentWhatsapp = '963995607915';
+    
+    async function loadSettings() {
+        try {
+            const res = await fetch('/api/settings');
+            const settings = await res.json();
+            if (settings.exchange_rate) exchangeRate = parseFloat(settings.exchange_rate);
+            if (settings.admin_whatsapp) paymentWhatsapp = settings.admin_whatsapp;
+        } catch(e) { console.error(e); }
+    }
+    
+    function toggleCurrency(event, priceSYP, elementId) {
+        event.stopPropagation();
+        const container = document.getElementById(elementId);
+        if (!container) return;
+        const currentText = container.innerText;
+        if (currentText.includes('ل.س')) {
+            const usd = (priceSYP / exchangeRate).toFixed(2);
+            container.innerHTML = `${usd} $`;
+        } else {
+            container.innerHTML = `${priceSYP} ل.س`;
+        }
+    }
+    
+    // ✅ createStars(), cart محذوفة (موجودة في shared.js)
+    
+    let currentOrderNumber = '';
+    let currentOrderTotal = 0;
+    let currentOrderNotes = '';
+    let currentShippingCost = 0;
+    
+    function generateOrderNumber() { 
+        return 'HEL-' + Math.floor(10000000 + Math.random() * 90000000).toString(); 
+    }
+    
+    function renderCart() {
+        const container = document.getElementById('cartContainer');
+        if (cart.length === 0) { container.innerHTML = `<div class="empty-cart glass-card">🛒 سلة فارغة <br><br><button class="checkout-btn" onclick="window.location.href='/shop'">تسوق الآن</button></div>`; return; }
+        let total = 0;
+        let tableRows = '';
+        cart.forEach((item, idx) => {
+            let itemTotal = item.price * item.quantity;
+            total += itemTotal;
+            const unitPriceId = `unit-price-${idx}`;
+            const itemTotalId = `item-total-${idx}`;
+            tableRows += `<tr>
+                <td><img class="product-img" src="${item.image || 'https://placehold.co/60x60/2A4A6A/7BA5C0?text=HELAXIA'}" onerror="this.src='https://placehold.co/60x60/2A4A6A/7BA5C0?text=HELAXIA'"></td>
+                <td>${item.name}</td>
+                <td><div class="price-with-currency"><span id="${unitPriceId}">${item.price} ل.س</span><div class="currency-icon" onclick="toggleCurrency(event, ${item.price}, '${unitPriceId}')"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M3 12h18M12 3v18M9 6l3-3 3 3M9 18l3 3 3-3"/></svg></div></div></td>
+                <td class="quantity-control"><button class="qty-btn" onclick="updateQuantity(${idx}, -1)">-</button><span>${item.quantity}</span><button class="qty-btn" onclick="updateQuantity(${idx}, 1)">+</button></td>
+                <td><div class="price-with-currency"><span id="${itemTotalId}">${itemTotal} ل.س</span><div class="currency-icon" onclick="toggleCurrency(event, ${itemTotal}, '${itemTotalId}')"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M3 12h18M12 3v18M9 6l3-3 3 3M9 18l3 3 3-3"/></svg></div></div></td>
+                <td><button class="delete-btn" onclick="removeItem(${idx})">حذف</button></td>
+            `;
+        });
+        const totalId = 'cart-total';
+        const grandTotalId = 'grand-total';
+        const shippingCost = 0;
+        const grandTotal = total + shippingCost;
+        
+        container.innerHTML = `<div class="cart-table-wrapper glass-card" style="padding:1rem;">
+            <table>
+            <thead><tr><th>المنتج</th><th>الاسم</th><th>سعر الوحدة</th><th>الكمية</th><th>الإجمالي</th><th></th></tr></thead>
+            <tbody>${tableRows}</tbody>
+        </table></div>
+        <div class="sidebar">
+            <div class="summary-card glass-card">
+                <h3>📊 ملخص الطلب</h3>
+                <div class="summary-row"><span>المجموع الفرعي</span><div class="price-with-currency"><span id="${totalId}">${total} ل.س</span><div class="currency-icon" onclick="toggleCurrency(event, ${total}, '${totalId}')"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M3 12h18M12 3v18M9 6l3-3 3 3M9 18l3 3 3-3"/></svg></div></div></div>
+                <div class="summary-row shipping-row" id="shippingRow" style="display: none;"><span>رسوم الشحن</span><span id="shippingCostDisplay">0 ل.س</span></div>
+                <div class="summary-row total-row"><span>الإجمالي</span><div class="price-with-currency"><span id="${grandTotalId}">${grandTotal} ل.س</span><div class="currency-icon" onclick="toggleCurrency(event, ${grandTotal}, '${grandTotalId}')"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M3 12h18M12 3v18M9 6l3-3 3 3M9 18l3 3 3-3"/></svg></div></div></div>
+                <textarea class="notes-input" id="orderNotes" placeholder="ملاحظاتك (اختياري)"></textarea>
+                <button class="checkout-btn" id="checkoutBtn">💎 إتمام الطلب</button>
+            </div>
+        </div>`;
+        document.getElementById('checkoutBtn').addEventListener('click', () => completeOrder(total));
+    }
+    
+    function updateQuantity(idx, delta) { let newQty = cart[idx].quantity + delta; if (newQty <= 0) cart.splice(idx, 1); else cart[idx].quantity = newQty; localStorage.setItem('helaxia_cart', JSON.stringify(cart)); renderCart(); }
+    function removeItem(idx) { cart.splice(idx, 1); localStorage.setItem('helaxia_cart', JSON.stringify(cart)); renderCart(); }
+    
+    async function completeOrder(total) {
+        const notes = document.getElementById('orderNotes')?.value || '';
+        currentOrderNumber = generateOrderNumber();
+        currentOrderTotal = total;
+        currentOrderNotes = notes;
+        currentShippingCost = 0;
+        
+        const orderData = {
+            order_number: currentOrderNumber,
+            customer_name: user?.name || 'زائر',
+            customer_phone: user?.phone || '',
+            notes: notes,
+            items: JSON.stringify(cart),
+            total: total + currentShippingCost
+        };
+        
+        try {
+            const response = await fetch('/api/orders', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(orderData)
+            });
+            
+            const text = await response.text();
+            let result;
+            try { result = JSON.parse(text); } catch(e) { result = { message: text }; }
+            
+            if (response.ok) {
+                let orders = JSON.parse(localStorage.getItem('helaxia_orders')) || [];
+                orders.push({ ...orderData, date: new Date().toISOString() });
+                localStorage.setItem('helaxia_orders', JSON.stringify(orders));
+                
+                document.getElementById('orderNumberDisplay').innerText = currentOrderNumber;
+                document.getElementById('orderModal').style.display = 'flex';
+            } else {
+                alert('❌ فشل إنشاء الطلب: ' + (result.error || 'خطأ غير معروف'));
+            }
+        } catch (error) {
+            alert('❌ خطأ في الاتصال بالخادم');
+        }
+    }
+
+    document.getElementById('copyOrderBtn')?.addEventListener('click', () => { 
+        navigator.clipboard.writeText(currentOrderNumber); 
+        alert('✅ تم نسخ رقم الطلب'); 
+    });
+    
+    document.getElementById('confirmOrderBtn')?.addEventListener('click', async () => {
+        await loadSettings();
+        
+        let cleanPhone = paymentWhatsapp.toString().replace(/\D/g, '');
+        if (cleanPhone.startsWith('0')) cleanPhone = cleanPhone.substring(1);
+        
+        let message = `🛍️ طلب جديد من HELAXIA\n`;
+        message += `━━━━━━━━━━━━━━━━━━━━━━\n`;
+        message += `📋 رقم الطلب: ${currentOrderNumber}\n`;
+        message += `👤 اسم العميل: ${user?.name || 'زائر'}\n`;
+        message += `📞 رقم العميل: ${user?.phone || 'غير موجود'}\n`;
+        message += `━━━━━━━━━━━━━━━━━━━━━━\n`;
+        message += `📦 المنتجات:\n`;
+        cart.forEach(i => message += `• ${i.name} x ${i.quantity} = ${i.price * i.quantity} ل.س\n`);
+        message += `━━━━━━━━━━━━━━━━━━━━━━\n`;
+        message += `💰 إجمالي المنتجات: ${currentOrderTotal} ل.س\n`;
+        message += `🚚 رسوم الشحن: ${currentShippingCost} ل.س\n`;
+        message += `💎 الإجمالي الكلي: ${currentOrderTotal + currentShippingCost} ل.س\n`;
+        if (currentOrderNotes) message += `\n📝 ملاحظات: ${currentOrderNotes}\n`;
+        message += `━━━━━━━━━━━━━━━━━━━━━━\n`;
+        message += `✅ يرجى تأكيد استلام الدفع.`;
+        
+        localStorage.removeItem('helaxia_cart');
+        document.getElementById('orderModal').style.display = 'none';
+        
+        const whatsappUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
+        
+        setTimeout(() => { window.location.href = '/shop'; }, 2000);
+    });
+    
+    loadSettings();
+    renderCart();
+</script>
+</body>
+</html>

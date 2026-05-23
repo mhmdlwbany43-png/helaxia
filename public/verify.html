@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HELAXIA - تأكيد البريد</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle at 10% 20%, #2A4A6A, #1A3A50);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            direction: rtl;
+        }
+        .glass-card {
+            background: rgba(59, 21, 68, 0.811);
+            backdrop-filter: blur(18px);
+            border-radius: 28px;
+            border: 1px solid rgba(200, 220, 250, 0.25);
+            padding: 2rem;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+        h1 { color: #C0E0FF; margin-bottom: 1rem; }
+        p { color: #A0B8D0; margin-bottom: 1rem; }
+        input {
+            width: 100%;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid #C0E0FF;
+            border-radius: 40px;
+            color: #E0E8F0;
+            text-align: center;
+            letter-spacing: 4px;
+            font-size: 1.2rem;
+        }
+        input:focus {
+            border-color: rgba(200, 220, 250, 0.8);
+            box-shadow: 0 0 15px rgba(192, 224, 255, 0.3);
+            outline: none;
+        }
+        button {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(90,140,170,0.6);
+            border: 1px solid #C0E0FF;
+            border-radius: 40px;
+            color: #E0E8F0;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+        button:hover {
+            background: rgba(192,224,255,0.2);
+            box-shadow: 0 0 12px #C0E0FF;
+        }
+        .error { color: #FFB5B5; margin-top: 0.5rem; display: none; }
+        .resend-link {
+            margin-top: 1rem;
+            font-size: 0.8rem;
+        }
+        .resend-link a {
+            color: #A0B8D0;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .resend-link a:hover {
+            color: #C0E0FF;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="glass-card">
+        <h1>تأكيد البريد</h1>
+        <p>أدخل الرمز المرسل إلى بريدك الإلكتروني</p>
+        <form id="verifyForm" onsubmit="event.preventDefault(); verify();">
+            <input type="text" id="code" maxlength="6" placeholder="_ _ _ _ _ _" autocomplete="off">
+            <button type="submit">تأكيد</button>
+        </form>
+        <div class="error" id="errorMsg"></div>
+        <div class="resend-link">
+            <a onclick="resendCode()">لم يصلك الرمز؟ إعادة إرسال</a>
+        </div>
+    </div>
+    <script>
+        const email = localStorage.getItem('verifyEmail');
+        if (!email) {
+            window.location.href = '/signup';
+        }
+
+        async function verify() {
+            const code = document.getElementById('code').value.trim();
+            if (code.length !== 6) {
+                showError('الرجاء إدخال الرمز المكون من 6 أرقام');
+                return;
+            }
+            
+            try {
+                const res = await fetch('/api/auth/verify', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, code })
+                });
+                const data = await res.json();
+                
+                if (data.success) {
+                    localStorage.removeItem('verifyEmail');
+                    window.location.href = '/login';
+                } else {
+                    showError(data.error || 'رمز غير صحيح');
+                }
+            } catch(err) {
+                showError('خطأ في الاتصال بالخادم');
+            }
+        }
+        
+      async function resendCode() {
+    try {
+        showError('جاري إعادة إرسال الرمز...');
+        
+        const res = await fetch('/api/auth/resend-code', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email })
+        });
+        const data = await res.json();
+        
+        if (data.success) {
+            showError('✅ تم إعادة إرسال الرمز، يرجى التحقق من بريدك');
+            setTimeout(() => document.getElementById('errorMsg').style.display = 'none', 3000);
+        } else {
+            showError(data.error || '❌ فشل إعادة إرسال الرمز');
+        }
+    } catch(err) {
+        showError('⚠️ خطأ في الاتصال بالخادم');
+    }
+}
+        
+        function showError(msg) {
+            const errDiv = document.getElementById('errorMsg');
+            errDiv.innerText = msg;
+            errDiv.style.display = 'block';
+            setTimeout(() => {
+                if (errDiv.innerText === msg) errDiv.style.display = 'none';
+            }, 5000);
+        }
+        
+        // التركيز التلقائي على حقل الرمز
+        document.getElementById('code').focus();
+    </script>
+</body>
+</html>

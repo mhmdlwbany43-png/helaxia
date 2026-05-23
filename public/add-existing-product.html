@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>HELAXIA | إضافة منتج موجود إلى القسم</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at 30% 20%, #1A2A3A, #0F1A24);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .star {
+            position: fixed;
+            background: radial-gradient(circle, #FFFFFF, #C0E0FF);
+            border-radius: 50%;
+            opacity: 0;
+            pointer-events: none;
+            animation: starTwinkle 4s infinite ease-in-out;
+            z-index: 0;
+        }
+        @keyframes starTwinkle {
+            0% { opacity: 0; transform: scale(0.8); }
+            50% { opacity: 0.9; transform: scale(1.2); }
+            100% { opacity: 0; transform: scale(0.8); }
+        }
+
+        .glass-nav {
+            background: rgba(10, 20, 30, 0.45);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(200, 220, 250, 0.3);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, #F0F4FA, #C0D0E0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .back-btn {
+            background: rgba(90, 140, 170, 0.3);
+            border: 1px solid #C0E0FF;
+            border-radius: 40px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            color: #C0E0FF;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .back-btn:hover {
+            background: rgba(192, 224, 255, 0.2);
+            box-shadow: 0 0 12px #C0E0FF;
+        }
+
+        .container {
+            padding-top: 7rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .page-title {
+            color: #C0E0FF;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .product-card {
+            background: rgba(20, 35, 45, 0.45);
+            backdrop-filter: blur(14px);
+            border-radius: 24px;
+            border: 1px solid rgba(200, 220, 250, 0.25);
+            padding: 1rem;
+            transition: all 0.3s ease;
+        }
+        .product-card:hover {
+            border-color: rgba(200, 220, 250, 0.6);
+            box-shadow: 0 0 28px rgba(192, 224, 255, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-bottom: 0.8rem;
+        }
+
+        .product-name {
+            font-weight: bold;
+            color: #E0E8F0;
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .product-price {
+            color: #C0E0FF;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .product-store {
+            color: #A0B8D0;
+            font-size: 0.75rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .add-btn {
+            background: rgba(90, 140, 170, 0.3);
+            border: 1px solid #C0E0FF;
+            border-radius: 40px;
+            width: 100%;
+            padding: 8px 0;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #C0E0FF;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .add-btn:hover {
+            background: rgba(192, 224, 255, 0.2);
+            box-shadow: 0 0 12px #C0E0FF;
+            transform: scale(1.01);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: #A0B8D0;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: #A0B8D0;
+            background: rgba(20, 35, 45, 0.45);
+            border-radius: 28px;
+        }
+
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div id="starsContainer"></div>
+
+<nav class="glass-nav">
+    <div class="logo">HELAXIA</div>
+    <button class="back-btn" onclick="window.location.href='/admin'">← رجوع إلى لوحة الإدارة</button>
+</nav>
+
+<div class="container">
+    <h1 class="page-title">📦 إضافة منتج موجود إلى القسم</h1>
+    <div id="productsGrid" class="products-grid">
+        <div class="loading">✨ جاري تحميل المنتجات... ✨</div>
+    </div>
+</div>
+
+<script>
+    // توليد النجوم
+    function createStars() {
+        const starsContainer = document.getElementById('starsContainer');
+        for (let i = 0; i < 120; i++) {
+            let star = document.createElement('div');
+            star.classList.add('star');
+            let size = Math.random() * 3 + 1;
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 5 + 's';
+            star.style.animationDuration = Math.random() * 3 + 2 + 's';
+            starsContainer.appendChild(star);
+        }
+    }
+    createStars();
+
+    // الحصول على التوكن ومعرف القسم من الرابط
+    const urlParams = new URLSearchParams(window.location.search);
+    const categoryId = urlParams.get('category_id');
+    const adminToken = localStorage.getItem('adminToken');
+
+    if (!adminToken) {
+        window.location.href = '/admin-login';
+    }
+
+    if (!categoryId) {
+        document.getElementById('productsGrid').innerHTML = '<div class="empty-state">❌ خطأ: لم يتم تحديد القسم</div>';
+    }
+
+    async function fetchAPI(endpoint, options = {}) {
+        const res = await fetch(endpoint, {
+            ...options,
+            headers: {
+                'Authorization': `Bearer ${adminToken}`,
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
+        if (res.status === 401) {
+            localStorage.removeItem('adminToken');
+            window.location.href = '/admin-login';
+        }
+        return res.json();
+    }
+
+    async function loadAllProducts() {
+        try {
+            const products = await fetchAPI('/api/admin/products');
+            const grid = document.getElementById('productsGrid');
+            
+            if (products.length === 0) {
+                grid.innerHTML = '<div class="empty-state">✨ لا توجد منتجات في المنصة حالياً ✨</div>';
+                return;
+            }
+
+            grid.innerHTML = products.map(p => `
+                <div class="product-card">
+                    <img src="${p.image_url || 'https://placehold.co/400x400/2A4A6A/7BA5C0?text=HELAXIA'}" onerror="this.src='https://placehold.co/400x400/2A4A6A/7BA5C0?text=HELAXIA'">
+                    <div class="product-name">${p.name}</div>
+                    <div class="product-price">${p.base_price} ل.س</div>
+                    <div class="product-store">🏪 ${p.store_name || 'المنصة'}</div>
+                    <button class="add-btn" onclick="addProductToCategory(${p.id})">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                        إضافة إلى القسم
+                    </button>
+                </div>
+            `).join('');
+        } catch (error) {
+            console.error('Error loading products:', error);
+            document.getElementById('productsGrid').innerHTML = '<div class="empty-state">❌ خطأ في تحميل المنتجات</div>';
+        }
+    }
+
+    async function addProductToCategory(productId) {
+        try {
+            const response = await fetch(`/api/admin/categories/${categoryId}/add-product`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${adminToken}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ product_id: productId })
+            });
+            
+            const data = await response.json();
+            
+            if (response.ok) {
+                alert('✅ تم إضافة المنتج إلى القسم بنجاح');
+                // إعادة تحميل الصفحة لتحديث القائمة (اختياري)
+                // window.location.reload();
+            } else {
+                alert('❌ فشل إضافة المنتج: ' + (data.error || 'خطأ غير معروف'));
+            }
+        } catch (error) {
+            console.error('Error adding product:', error);
+            alert('❌ فشل إضافة المنتج: خطأ في الاتصال بالخادم');
+        }
+    }
+
+    // تحميل المنتجات
+    loadAllProducts();
+</script>
+</body>
+</html>

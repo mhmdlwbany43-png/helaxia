@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HELAXIA - تسجيل دخول العميل</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle at 10% 20%, #2A4A6A, #1A3A50);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            direction: rtl;
+        }
+        .glass-card {
+            background: rgba(20, 35, 45, 0.35);
+            backdrop-filter: blur(18px);
+            border-radius: 28px;
+            border: 1px solid rgba(200, 220, 250, 0.25);
+            padding: 2rem;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+        h1 { color: #C0E0FF; margin-bottom: 1rem; }
+        
+        #email {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            margin-bottom: 1rem;
+            background: rgba(10, 20, 30, 0.5);
+            border: 1px solid rgba(200, 220, 250, 0.3);
+            border-radius: 40px;
+            color: #E0E8F0;
+            font-size: 1rem;
+            outline: none;
+        }
+        #email:focus {
+            border-color: rgba(200, 220, 250, 0.8);
+            box-shadow: 0 0 15px rgba(192, 224, 255, 0.3);
+        }
+        
+        .password-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .password-wrapper input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: rgba(10, 20, 30, 0.5);
+            border: 1px solid rgba(200, 220, 250, 0.3);
+            border-radius: 40px;
+            color: #E0E8F0;
+            font-size: 1rem;
+            outline: none;
+        }
+        .password-wrapper input:focus {
+            border-color: rgba(200, 220, 250, 0.8);
+            box-shadow: 0 0 15px rgba(192, 224, 255, 0.3);
+        }
+        .toggle-password {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #C0D0E0;
+            font-size: 1.2rem;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .toggle-password:hover {
+            color: #C0E0FF;
+            text-shadow: 0 0 8px #C0E0FF;
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(90,140,170,0.6);
+            border: 1px solid #C0E0FF;
+            border-radius: 40px;
+            color: #E0E8F0;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+        .login-btn:hover { background: rgba(192,224,255,0.2); box-shadow: 0 0 12px #C0E0FF; }
+        
+        .error { color: #FFB5B5; margin-top: 0.5rem; display: none; }
+        .link { margin-top: 1rem; }
+        .link a { color: #A0B8D0; text-decoration: none; }
+        
+        .forgot-password {
+            text-align: left;
+            margin-top: -0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .forgot-password a {
+            color: #A0B8D0;
+            font-size: 0.75rem;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .forgot-password a:hover {
+            color: #C0E0FF;
+            text-decoration: underline;
+        }
+        
+        /* مودال عام */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-container {
+            background: rgba(20, 35, 45, 0.95);
+            border-radius: 28px;
+            padding: 2rem;
+            width: 90%;
+            max-width: 400px;
+            border: 1px solid #C0E0FF;
+            text-align: center;
+        }
+        .modal-container h3 {
+            color: #C0E0FF;
+            margin-bottom: 1rem;
+        }
+        .modal-container p {
+            color: #A0B8D0;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        .modal-input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            margin-bottom: 1rem;
+            background: rgba(10, 20, 30, 0.5);
+            border: 1px solid rgba(200, 220, 250, 0.3);
+            border-radius: 40px;
+            color: #E0E8F0;
+            font-size: 1rem;
+            outline: none;
+            text-align: center;
+            letter-spacing: 4px;
+        }
+        .modal-input:focus {
+            border-color: rgba(200, 220, 250, 0.8);
+            box-shadow: 0 0 15px rgba(192, 224, 255, 0.3);
+        }
+        .modal-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(90, 140, 170, 0.6);
+            border: 1px solid #C0E0FF;
+            border-radius: 40px;
+            color: #E0E8F0;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+        .modal-btn:hover {
+            background: rgba(192, 224, 255, 0.2);
+            box-shadow: 0 0 12px #C0E0FF;
+        }
+        .modal-btn-cancel {
+            background: none;
+            border: 1px solid rgba(200, 220, 250, 0.3);
+        }
+        .modal-error {
+            color: #FF8A7A;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="glass-card">
+        <h1>HELAXIA</h1>
+        <form id="loginForm" onsubmit="event.preventDefault(); login();">
+            <input type="email" id="email" placeholder="البريد الإلكتروني" autocomplete="email">
+            <div class="password-wrapper">
+                <input type="password" id="password" placeholder="كلمة السر" autocomplete="current-password">
+                <button type="button" class="toggle-password" onclick="togglePassword('password')">👁️</button>
+            </div>
+            <div class="forgot-password">
+                <a onclick="showForgotPassword()">نسيت كلمة المرور؟</a>
+            </div>
+            <button type="submit" class="login-btn">تسجيل دخول</button>
+        </form>
+        <div class="error" id="errorMsg"></div>
+        <div class="link">ليس لديك حساب؟ <a href="/signup">إنشاء حساب جديد</a></div>
+    </div>
+
+    <!-- مودال 1: إدخال البريد الإلكتروني -->
+    <div id="forgotModal" class="modal-overlay">
+        <div class="modal-container">
+            <h3>🔐 إعادة تعيين كلمة المرور</h3>
+            <input type="email" id="forgotEmail" class="modal-input" placeholder="البريد الإلكتروني">
+            <button class="modal-btn" onclick="sendResetCode()">إرسال رمز إعادة التعيين</button>
+            <button class="modal-btn modal-btn-cancel" onclick="closeForgotModal()">إلغاء</button>
+            <div id="forgotError" class="modal-error"></div>
+        </div>
+    </div>
+
+    <!-- مودال 2: إدخال الرمز -->
+    <div id="codeModal" class="modal-overlay">
+        <div class="modal-container">
+            <h3>📨 أدخل رمز التحقق</h3>
+            <p>تم إرسال رمز مكون من 6 أرقام إلى بريدك الإلكتروني</p>
+            <input type="text" id="resetCodeInput" class="modal-input" placeholder="_ _ _ _ _ _" maxlength="6">
+            <button class="modal-btn" onclick="verifyResetCode()">تحقق من الرمز</button>
+            <button class="modal-btn modal-btn-cancel" onclick="closeCodeModal()">إلغاء</button>
+            <div id="codeError" class="modal-error"></div>
+        </div>
+    </div>
+
+    <!-- مودال 3: تعيين كلمة مرور جديدة -->
+    <div id="newPasswordModal" class="modal-overlay">
+        <div class="modal-container">
+            <h3>🔒 كلمة مرور جديدة</h3>
+            <p>أدخل كلمة المرور الجديدة (6 أحرف على الأقل)</p>
+            <div class="password-wrapper" style="margin-bottom: 1rem;">
+                <input type="password" id="newPassword" class="modal-input" placeholder="كلمة المرور الجديدة" style="text-align: right; letter-spacing: normal;">
+                <button type="button" class="toggle-password" onclick="togglePassword('newPassword')">👁️</button>
+            </div>
+            <div class="password-wrapper" style="margin-bottom: 1rem;">
+                <input type="password" id="confirmNewPassword" class="modal-input" placeholder="تأكيد كلمة المرور" style="text-align: right; letter-spacing: normal;">
+                <button type="button" class="toggle-password" onclick="togglePassword('confirmNewPassword')">👁️</button>
+            </div>
+            <button class="modal-btn" onclick="submitNewPassword()">حفظ كلمة المرور</button>
+            <button class="modal-btn modal-btn-cancel" onclick="closeNewPasswordModal()">إلغاء</button>
+            <div id="newPasswordError" class="modal-error"></div>
+        </div>
+    </div>
+
+    <script>
+        let resetTempToken = null;
+        let resetEmail = null;
+
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            input.type = input.type === 'password' ? 'text' : 'password';
+        }
+
+        // ========== مودال 1 ==========
+        function showForgotPassword() {
+            document.getElementById('forgotModal').style.display = 'flex';
+        }
+
+        function closeForgotModal() {
+            document.getElementById('forgotModal').style.display = 'none';
+            document.getElementById('forgotEmail').value = '';
+            document.getElementById('forgotError').innerText = '';
+        }
+
+        async function sendResetCode() {
+            const email = document.getElementById('forgotEmail').value.trim();
+            if (!email) {
+                document.getElementById('forgotError').innerText = '❌ الرجاء إدخال البريد الإلكتروني';
+                return;
+            }
+            
+            try {
+                const res = await fetch('/api/auth/forgot-password', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+                const data = await res.json();
+                
+                if (!res.ok) {
+                    document.getElementById('forgotError').innerText = data.error || '❌ فشل إرسال الرمز';
+                    return;
+                }
+                
+                resetTempToken = data.tempToken;
+                resetEmail = email;
+                
+                closeForgotModal();
+                showCodeModal();
+            } catch(err) {
+                document.getElementById('forgotError').innerText = '⚠️ خطأ في الاتصال بالخادم';
+            }
+        }
+
+        // ========== مودال 2 ==========
+        function showCodeModal() {
+            document.getElementById('codeModal').style.display = 'flex';
+            document.getElementById('resetCodeInput').value = '';
+            document.getElementById('codeError').innerText = '';
+        }
+
+        function closeCodeModal() {
+            document.getElementById('codeModal').style.display = 'none';
+        }
+
+        async function verifyResetCode() {
+            const code = document.getElementById('resetCodeInput').value.trim();
+            
+            if (!code || code.length !== 6) {
+                document.getElementById('codeError').innerText = '❌ الرجاء إدخال رمز صحيح مكون من 6 أرقام';
+                return;
+            }
+            
+            if (!resetTempToken) {
+                document.getElementById('codeError').innerText = '❌ جلسة منتهية، يرجى إعادة المحاولة';
+                return;
+            }
+            
+            try {
+                const res = await fetch('/api/auth/verify-reset-code', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ tempToken: resetTempToken, code: code })
+                });
+                const data = await res.json();
+                
+                if (!res.ok) {
+                    document.getElementById('codeError').innerText = data.error || '❌ رمز غير صحيح';
+                    return;
+                }
+                
+                resetTempToken = data.tempToken;
+                closeCodeModal();
+                showNewPasswordModal();
+            } catch(err) {
+                document.getElementById('codeError').innerText = '⚠️ خطأ في الاتصال بالخادم';
+            }
+        }
+
+        // ========== مودال 3 ==========
+        function showNewPasswordModal() {
+            document.getElementById('newPasswordModal').style.display = 'flex';
+            document.getElementById('newPassword').value = '';
+            document.getElementById('confirmNewPassword').value = '';
+            document.getElementById('newPasswordError').innerText = '';
+        }
+
+        function closeNewPasswordModal() {
+            document.getElementById('newPasswordModal').style.display = 'none';
+        }
+
+        async function submitNewPassword() {
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmNewPassword').value;
+            
+            if (!newPassword || !confirmPassword) {
+                document.getElementById('newPasswordError').innerText = '❌ الرجاء إدخال كلمة المرور';
+                return;
+            }
+            if (newPassword.length < 6) {
+                document.getElementById('newPasswordError').innerText = '❌ كلمة المرور يجب أن تكون 6 أحرف على الأقل';
+                return;
+            }
+            if (newPassword !== confirmPassword) {
+                document.getElementById('newPasswordError').innerText = '❌ كلمة المرور غير متطابقة';
+                return;
+            }
+            
+            if (!resetTempToken) {
+                document.getElementById('newPasswordError').innerText = '❌ جلسة منتهية، يرجى إعادة المحاولة';
+                return;
+            }
+            
+            try {
+                const res = await fetch('/api/auth/reset-password', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ tempToken: resetTempToken, newPassword: newPassword })
+                });
+                const data = await res.json();
+                
+                if (!res.ok) {
+                    document.getElementById('newPasswordError').innerText = data.error || '❌ فشل تغيير كلمة المرور';
+                    return;
+                }
+                
+                closeNewPasswordModal();
+                alert('✅ تم تغيير كلمة المرور بنجاح');
+                resetTempToken = null;
+            } catch(err) {
+                document.getElementById('newPasswordError').innerText = '⚠️ خطأ في الاتصال بالخادم';
+            }
+        }
+
+        // ========== تسجيل الدخول ==========
+        async function login() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            if (!email || !password) {
+                showError('الرجاء إدخال البريد الإلكتروني وكلمة السر');
+                return;
+            }
+            try {
+                const res = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('user', JSON.stringify(data.user));
+                    window.location.href = '/shop';
+                } else {
+                    showError(data.error);
+                }
+            } catch(err) {
+                showError('خطأ في الاتصال بالخادم');
+            }
+        }
+        
+        function showError(msg) {
+            const errDiv = document.getElementById('errorMsg');
+            errDiv.innerText = msg;
+            errDiv.style.display = 'block';
+            setTimeout(() => errDiv.style.display = 'none', 5000);
+        }
+    </script>
+</body>
+</html>

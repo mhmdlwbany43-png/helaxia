@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HELAXIA - إنشاء حساب</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle at 10% 20%, #2A4A6A, #1A3A50);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            direction: rtl;
+        }
+        .glass-card {
+            background: rgba(20, 35, 45, 0.35);
+            backdrop-filter: blur(18px);
+            border-radius: 28px;
+            border: 1px solid rgba(200, 220, 250, 0.25);
+            padding: 2rem;
+            width: 90%;
+            max-width: 450px;
+        }
+        h1 { color: #C0E0FF; text-align: center; margin-bottom: 1.5rem; }
+        input {
+            width: 100%;
+            padding: 0.7rem;
+            margin: 0.4rem 0;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid #C0E0FF;
+            border-radius: 40px;
+            color: #E0E8F0;
+        }
+        button {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(90,140,170,0.6);
+            border: 1px solid #C0E0FF;
+            border-radius: 40px;
+            color: #E0E8F0;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+        button:hover {
+            background: rgba(192,224,255,0.2);
+            box-shadow: 0 0 12px #C0E0FF;
+        }
+        .error { color: #FFB5B5; margin-top: 0.5rem; text-align: center; display: none; }
+        .success { color: #A8E6CF; margin-top: 0.5rem; text-align: center; display: none; }
+        .link { text-align: center; margin-top: 1rem; }
+        .link a { color: #A0B8D0; text-decoration: none; }
+        .row { display: flex; gap: 0.5rem; }
+        
+        /* password wrapper */
+        .password-wrapper {
+            position: relative;
+            width: 100%;
+        }
+        .password-wrapper input {
+            width: 100%;
+            padding: 0.7rem;
+            padding-left: 2.5rem;
+        }
+        .toggle-password {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #C0D0E0;
+            font-size: 1.1rem;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+        }
+        .toggle-password:hover {
+            color: #C0E0FF;
+            text-shadow: 0 0 8px #C0E0FF;
+            background: none;
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="glass-card">
+        <h1>إنشاء حساب</h1>
+        <form id="signupForm" onsubmit="event.preventDefault(); signup();">
+            <input type="text" id="name" placeholder="الاسم الكامل" autocomplete="name" required>
+            <input type="email" id="email" placeholder="البريد الإلكتروني" autocomplete="email" required>
+            <div class="row">
+                <div class="password-wrapper">
+                    <input type="password" id="password" placeholder="كلمة السر" autocomplete="new-password" required>
+                    <button type="button" class="toggle-password" onclick="togglePassword('password')">👁️</button>
+                </div>
+                <div class="password-wrapper">
+                    <input type="password" id="confirm" placeholder="تأكيد" autocomplete="off" required>
+                    <button type="button" class="toggle-password" onclick="togglePassword('confirm')">👁️</button>
+                </div>
+            </div>
+            <input type="tel" id="phone" placeholder="رقم الهاتف (اختياري)" autocomplete="tel">
+            <button type="submit">إنشاء حساب</button>
+        </form>
+        <div class="error" id="errorMsg"></div>
+        <div class="success" id="successMsg"></div>
+        <div class="link">لديك حساب بالفعل؟ <a href="/login">تسجيل الدخول</a></div>
+    </div>
+    <script>
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            if (input) {
+                input.type = input.type === 'password' ? 'text' : 'password';
+            }
+        }
+
+        async function signup() {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const confirm = document.getElementById('confirm').value;
+            const phone = document.getElementById('phone').value.trim();
+            
+            if (!name || !email || !password) {
+                showError('جميع الحقول المطلوبة يجب تعبئتها');
+                return;
+            }
+            if (password !== confirm) {
+                showError('كلمة السر غير متطابقة');
+                return;
+            }
+            if (password.length < 6) {
+                showError('كلمة السر يجب أن تكون 6 أحرف على الأقل');
+                return;
+            }
+            
+            try {
+                const res = await fetch('/api/auth/signup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, password, phone })
+                });
+                const data = await res.json();
+                
+                if (data.success) {
+                    localStorage.setItem('verifyEmail', email);
+                    showSuccess('تم إرسال رمز التأكيد إلى بريدك الإلكتروني');
+                    setTimeout(() => window.location.href = '/verify', 2000);
+                } else {
+                    showError(data.error || 'فشل إنشاء الحساب');
+                }
+            } catch(err) {
+                showError('خطأ في الاتصال بالخادم');
+            }
+        }
+        
+        function showError(msg) { 
+            const e = document.getElementById('errorMsg'); 
+            e.innerText = msg; 
+            e.style.display = 'block'; 
+            setTimeout(() => e.style.display = 'none', 5000); 
+        }
+        
+        function showSuccess(msg) { 
+            const s = document.getElementById('successMsg'); 
+            s.innerText = msg; 
+            s.style.display = 'block'; 
+            setTimeout(() => s.style.display = 'none', 3000); 
+        }
+    </script>
+</body>
+</html>

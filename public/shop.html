@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    
+    <!-- ========== SEO Meta Tags ========== -->
+    <title>HELAXIA | متجر الأزياء - تسوق أحدث صيحات الموضة في سوريا</title>
+    <meta name="description" content="تسوق أحدث صيحات الموضة من أفضل المتاجر السورية على HELAXIA. اكتشف تشكيلات مميزة من الملابس الرجالية والنسائية والأطفال مع توصيل سريع لجميع المدن السورية.">
+    <meta name="keywords" content="ملابس, أزياء, موضة, تسوق, سوريا, دمشق, حلب, حمص, HELAXIA, هلاكسيا, فاشون, ملابس رجالية, ملابس نسائية, ملابس أطفال, اونلاين">
+    <meta name="author" content="HELAXIA">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Arabic">
+    <meta name="revisit-after" content="7 days">
+    <meta name="theme-color" content="#164563">
+    
+    <!-- ========== Open Graph (لـ Facebook, WhatsApp, Telegram, LinkedIn) ========== -->
+    <meta property="og:title" content="HELAXIA | متجر الأزياء - تسوق أحدث صيحات الموضة">
+    <meta property="og:description" content="تسوق أحدث صيحات الموضة من أفضل المتاجر السورية. اكتشف تشكيلات مميزة من الملابس مع توصيل سريع لجميع المدن السورية.">
+    <meta property="og:image" content="https://helaxia.com/images/logo.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://helaxia.com/shop.html">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ar_SY">
+    <meta property="og:site_name" content="HELAXIA">
+    
+    <!-- ========== Twitter Card ========== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="HELAXIA | متجر الأزياء - تسوق أحدث صيحات الموضة">
+    <meta name="twitter:description" content="تسوق أحدث صيحات الموضة من أفضل المتاجر السورية. توصيل سريع لجميع المدن.">
+    <meta name="twitter:image" content="https://helaxia.com/images/logo.png">
+    
+    <!-- ========== Canonical URL ========== -->
+    <link rel="canonical" href="https://helaxia.com/shop.html">
+    
+    <!-- ========== Favicon ========== -->
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
+    <!-- ========== Schema Markup (لـ Google) ========== -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "HELAXIA - متجر الأزياء",
+      "description": "تسوق أحدث صيحات الموضة من أفضل المتاجر السورية",
+      "url": "https://helaxia.com/shop.html",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "HELAXIA",
+        "url": "https://helaxia.com"
+      }
+    }
+    </script>
+    
+    <!-- ========== Organization Schema ========== -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "HELAXIA",
+      "url": "https://helaxia.com",
+      "logo": "https://helaxia.com/images/logo.png",
+      "description": "منصة الأزياء الأولى في سوريا",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "SY"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "availableLanguage": "Arabic"
+      }
+    }
+    </script>
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: radial-gradient(circle at 10% 20%, #164563, #592140);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            direction: rtl;
+            position: relative;
+            min-height: 100vh;
+        }
+        .star {
+            position: fixed;
+            background: white;
+            border-radius: 50%;
+            opacity: 0;
+            pointer-events: none;
+            animation: twinkle 4s infinite;
+        }
+        @keyframes twinkle {
+            0% { opacity: 0; transform: scale(0.8); }
+            50% { opacity: 0.8; transform: scale(1.2); }
+            100% { opacity: 0; transform: scale(0.8); }
+        }
+        .glass-nav {
+            background: rgba(10,20,30,0.45);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(200,220,250,0.3);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            z-index: 100;
+        }
+        .glass-card {
+            background: rgba(20,35,45,0.45);
+            backdrop-filter: blur(14px);
+            border-radius: 28px;
+            border: 1px solid rgba(200,220,250,0.25);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: rgba(200,220,250,0.6);
+            box-shadow: 0 0 28px rgba(192,224,255,0.5);
+            transform: translateY(-5px);
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            background: linear-gradient(135deg, #F0F4FA, #C0D0E0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .nav-icons { display: flex; gap: 1rem; align-items: center; }
+        .nav-icon {
+            background: rgba(10,20,30,0.3);
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            color: #C0D0E0;
+        }
+        .nav-icon:hover {
+            background: rgba(192,224,255,0.2);
+            box-shadow: 0 0 12px #C0E0FF;
+            transform: scale(1.02);
+        }
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #C0E0FF;
+            color: #1A3A50;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .icon-svg {
+            width: 20px;
+            height: 20px;
+            stroke: #C0D0E0;
+            stroke-width: 1.5;
+            fill: none;
+        }
+        .currency-toggle {
+            background: rgba(196, 148, 92, 0.2);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(196, 148, 92, 0.5);
+            padding: 0.3rem 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .currency-toggle:hover {
+            background: rgba(196, 148, 92, 0.4);
+            border-color: #c4905c;
+            box-shadow: 0 0 12px rgba(196, 148, 92, 0.6);
+        }
+        .hero { padding-top: 7rem; max-width: 1200px; margin: 0 auto 2rem; }
+        .slider-container { overflow: hidden; border-radius: 32px; }
+        .slider-track { display: flex; transition: transform 0.6s; }
+        .slider-slide { flex: 0 0 100%; }
+        .slider-slide img { width: 100%; height: 350px; object-fit: cover; }
+        .sections-container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
+        .section { margin-bottom: 3rem; }
+        .section-header { display: flex; justify-content: space-between; margin-bottom: 1rem; }
+        .section-title { font-size: 1.5rem; color: #E0E8F0; border-right: 3px solid #C0E0FF; padding-right: 1rem; }
+        .section-arrow { background: rgba(0,0,0,0.3); padding: 0.3rem 1rem; border-radius: 40px; cursor: pointer; transition: 0.3s; font-size: 0.8rem; color: #C0D0E0; }
+        .section-arrow:hover { background: rgba(192,224,255,0.2); box-shadow: 0 0 10px #C0E0FF; }
+        .carousel-container { position: relative; overflow: hidden; }
+        .carousel-track { display: flex; gap: 1.5rem; transition: transform 0.6s; }
+        .product-card { flex: 0 0 calc(33.333% - 1rem); padding: 0.8rem; }
+        .product-card .glass-card { padding: 0; overflow: hidden; cursor: pointer; }
+        .fifa-top { display: flex; height: 70%; }
+        .fifa-image { width: 50%; }
+        .fifa-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+        .fifa-image:hover img { transform: scale(1.03); }
+        .fifa-info { width: 50%; padding: 0.8rem; display: flex; flex-direction: column; justify-content: center; }
+        .fifa-name { font-weight: bold; color: #E0E8F0; margin-bottom: 0.5rem; }
+        .fifa-detail { font-size: 0.7rem; color: #A0B8D0; margin-bottom: 0.3rem; }
+        .fifa-bottom { height: 30%; padding: 0.5rem 0.8rem; border-top: 1px solid rgba(200,220,250,0.2); }
+        .fifa-store { font-size: 0.7rem; color: #A0B8D0; margin-top: 0.2rem; }
+        .add-to-cart {
+            background: rgba(90,140,170,0.3);
+            border: 1px solid #C0E0FF;
+            border-radius: 40px;
+            width: calc(100% - 1rem);
+            margin: 0.5rem;
+            padding: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #E0E8F0;
+        }
+        .add-to-cart:hover {
+            background: rgba(192,224,255,0.3);
+            box-shadow: 0 0 15px #C0E0FF;
+            transform: scale(1.01);
+        }
+        .carousel-btn {
+            position: absolute;
+            top: 45%;
+            width: 36px;
+            height: 36px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.2s;
+            z-index: 10;
+        }
+        .carousel-btn:hover { background: rgba(192,224,255,0.3); box-shadow: 0 0 10px #C0E0FF; }
+        .carousel-btn.prev { left: 5px; }
+        .carousel-btn.next { right: 5px; }
+        .carousel-btn svg { width: 20px; stroke: #C0D0E0; }
+        .smoke-cloud {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(192,224,255,0.35), rgba(100,140,170,0.1));
+            filter: blur(50px);
+            z-index: 20;
+            pointer-events: none;
+            opacity: 0;
+        }
+        @keyframes smokePass { 0% { left: -100%; opacity: 0; } 15% { opacity: 0.7; } 85% { opacity: 0.7; } 100% { left: 100%; opacity: 0; } }
+        
+        /* مودال المنتج العادي */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: rgba(20,35,45,0.95);
+            border-radius: 28px;
+            padding: 1.5rem;
+            width: 90%;
+            max-width: 550px;
+            border: 1px solid #C0E0FF;
+            position: relative;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #C0E0FF;
+            transition: 0.2s;
+        }
+        .close-modal:hover { text-shadow: 0 0 10px #C0E0FF; }
+        .modal-img { width: 100%; border-radius: 20px; margin-bottom: 1rem; }
+        .modal-title { font-size: 1.5rem; color: #C0E0FF; margin-bottom: 0.5rem; }
+        .modal-detail { color: #A0B8D0; margin-bottom: 0.5rem; font-size: 1rem; }
+        .modal-price { color: #C0E0FF; font-size: 1.3rem; font-weight: bold; margin: 0.5rem 0; }
+        
+        /* معرض الصور الجديد */
+        .gallery-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(16px);
+            z-index: 1100;
+            justify-content: center;
+            align-items: center;
+        }
+        .gallery-content {
+            max-width: 90%;
+            max-height: 90%;
+            text-align: center;
+            position: relative;
+        }
+        .gallery-image {
+            max-width: 100%;
+            max-height: 70vh;
+            border-radius: 20px;
+            border: 2px solid #C0E0FF;
+            box-shadow: 0 0 30px rgba(192,224,255,0.3);
+        }
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 1101;
+        }
+        .gallery-nav:hover {
+            background: rgba(192,224,255,0.3);
+            box-shadow: 0 0 15px #C0E0FF;
+        }
+        .gallery-nav.prev { left: 20px; }
+        .gallery-nav.next { right: 20px; }
+        .gallery-nav svg { width: 30px; height: 30px; stroke: #C0E0FF; }
+        .gallery-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1101;
+        }
+        .gallery-close svg { width: 24px; height: 24px; stroke: #C0E0FF; }
+        .gallery-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            color: #C0E0FF;
+            font-size: 0.8rem;
+        }
+        
+        .empty-state { text-align: center; padding: 2rem; }
+        @media (max-width: 900px) { .product-card { flex: 0 0 calc(50% - 1rem); } }
+        @media (max-width: 600px) { .product-card { flex: 0 0 100%; } }
+        
+        /* تحسين التجاوب مع الشاشات الصغيرة جداً */
+        @media (max-width: 480px) {
+            .glass-nav { padding: 0.5rem 1rem; }
+            .nav-icons { gap: 0.3rem; flex-wrap: wrap; justify-content: center; }
+            .nav-icon { padding: 0.2rem 0.5rem; font-size: 0.7rem; }
+            .logo { font-size: 1.2rem; }
+            .section-title { font-size: 1rem; }
+            .hero { padding-top: 8rem; }
+            .slider-slide img { height: 150px; }
+        }
+        
+        @media (max-width: 380px) {
+            .nav-icon span:not(.cart-count) { display: none; }
+            .nav-icon { padding: 0.2rem 0.4rem; }
+        }
+        
+        .carousel-progress {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            z-index: 15;
+        }
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: #C0E0FF;
+            border-radius: 10px;
+            transition: width 0.1s linear;
+        }
+        
+        /* ========== إضافات نظام المدن ========== */
+        .city-filter {
+            position: relative;
+        }
+        .city-dropdown {
+            position: absolute;
+            top: 55px;
+            right: 0;
+            background: rgba(20,35,45,0.95);
+            backdrop-filter: blur(14px);
+            border-radius: 20px;
+            border: 1px solid rgba(200,220,250,0.3);
+            min-width: 180px;
+            z-index: 200;
+            overflow: hidden;
+        }
+        .city-dropdown-item {
+            padding: 0.8rem 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #C0D0E0;
+            border-bottom: 1px solid rgba(200,220,250,0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .city-dropdown-item:hover {
+            background: rgba(192,224,255,0.15);
+            color: #C0E0FF;
+        }
+        .city-dropdown-item:last-child {
+            border-bottom: none;
+        }
+        .warning-banner {
+            background: linear-gradient(135deg, rgba(255,165,0,0.2), rgba(255,100,0,0.1));
+            border: 1px solid #FFA500;
+            border-radius: 60px;
+            padding: 0.8rem 1.5rem;
+            margin: 1rem auto;
+            text-align: center;
+            max-width: 600px;
+            backdrop-filter: blur(8px);
+            animation: glow 2s infinite;
+        }
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px rgba(255,165,0,0.3); border-color: #FFA500; }
+            50% { box-shadow: 0 0 20px rgba(255,165,0,0.8); border-color: #FFD700; }
+            100% { box-shadow: 0 0 5px rgba(255,165,0,0.3); border-color: #FFA500; }
+        }
+    </style>
+    
+    <!-- ✅ جديد: shared.js -->
+    <script src="/shared.js"></script>
+</head>
+<body>
+<div id="stars"></div>
+<nav class="glass-nav">
+    <div class="logo">HELAXIA</div>
+    <div class="nav-icons">
+        <div class="nav-icon" onclick="window.location.href='/stores.html'">
+            <svg class="icon-svg" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <span>المتاجر</span>
+        </div>
+        <div class="nav-icon" onclick="window.location.href='/cart.html'" style="padding: 0.4rem 0.8rem;">
+            <svg class="icon-svg" viewBox="0 0 24 24" stroke="currentColor"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            <span id="cartCount" class="cart-count">0</span>
+        </div>
+        <div class="nav-icon" onclick="window.location.href='/my-orders.html'">
+            <svg class="icon-svg" viewBox="0 0 24 24" stroke="currentColor"><path d="M4 4v16h16V4H4zm2 2h12v12H6V6zm2 2v8h8V8H8zm2 2h4v4h-4v-4z"/></svg>
+            <span>طلباتي</span>
+        </div>
+        
+        <!-- زر فلتر المدن -->
+        <div class="nav-icon city-filter" id="cityFilterBtn" onclick="toggleCityDropdown()">
+            <svg class="icon-svg" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 2v4M12 22v-4M4 12H2M22 12h-2"/><circle cx="12" cy="12" r="4"/><path d="M6 6l2 2M18 18l2 2M18 6l2-2M6 18l2-2"/></svg>
+            <span id="selectedCityName">اختر مدينتك</span>
+            <svg class="icon-svg" viewBox="0 0 24 24" stroke="currentColor" style="width:16px;"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div id="cityDropdown" class="city-dropdown" style="display: none;">
+            <div class="city-dropdown-item" data-city-id="0" onclick="selectCity(0, 'كل المدن')">🌍 كل المدن</div>
+        </div>
+        
+        <div class="nav-icon" id="vendorBtn" onclick="vendorAction()">
+            <svg class="icon-svg" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 2a3 3 0 0 0-3 3c0 1.5 1 2 2 3"/><path d="M19 7.5V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v2.5"/><path d="M5 10v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8"/></svg>
+            <span id="vendorBtnText">تاجر</span>
+        </div>
+        <div class="nav-icon currency-toggle" id="currencyToggleBtn" onclick="toggleGlobalCurrency()">
+            <svg class="icon-svg" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 12h18M12 3v18M9 6l3-3 3 3M9 18l3 3 3-3"/></svg>
+            <span id="globalCurrencyText">ل.س</span>
+        </div>
+        <div class="nav-icon" onclick="logout()">
+            <svg class="icon-svg" viewBox="0 0 24 24" stroke="currentColor"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        </div>
+    </div>
+</nav>
+
+<!-- رسالة تحذير توهجية -->
+<div id="warningBanner" class="warning-banner" style="display: none;">
+    ✨ يرجى اختيار مدينتك من القائمة أعلاه لتظهر لك المنتجات المناسبة لموقعك ✨
+</div>
+
+<div class="hero"><div class="slider-container glass-card"><div class="slider-track" id="sliderTrack"></div></div></div>
+<div id="sectionsContainer" class="sections-container"></div>
+
+<div id="productModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeProductModal()">&times;</span>
+        <div id="productModalBody"></div>
+        <button class="add-to-cart" style="width:100%; margin-top:1rem; padding:0.8rem;" onclick="addToCartFromModal()">+ أضف إلى السلة</button>
+    </div>
+</div>
+
+<div id="galleryModal" class="gallery-modal">
+    <div class="gallery-content">
+        <div class="gallery-close" onclick="closeGallery()">
+            <svg viewBox="0 0 24 24" stroke="currentColor"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </div>
+        <div class="gallery-nav prev" onclick="prevGalleryImage()">
+            <svg viewBox="0 0 24 24" stroke="currentColor"><path d="M15 18l-6-6 6-6"/></svg>
+        </div>
+        <img id="galleryImage" class="gallery-image" src="">
+        <div class="gallery-nav next" onclick="nextGalleryImage()">
+            <svg viewBox="0 0 24 24" stroke="currentColor"><path d="M9 18l6-6-6-6"/></svg>
+        </div>
+        <div id="galleryCounter" class="gallery-counter"></div>
+    </div>
+</div>
+
+<script>
+    let currentCurrency = localStorage.getItem('helaxia_currency') || 'SYP';
+    let exchangeRate = 13000;
+    let currentGalleryImages = [];
+    let currentGalleryIndex = 0;
+    
+    async function loadExchangeRate() {
+        try {
+            const res = await fetch('/api/settings');
+            const settings = await res.json();
+            if (settings.exchange_rate) exchangeRate = parseFloat(settings.exchange_rate);
+        } catch(e) { console.error(e); }
+    }
+    
+    function formatPrice(priceSYP) {
+        const price = parseFloat(priceSYP);
+        if (isNaN(price)) return '0 ل.س';
+        if (currentCurrency === 'USD') return `${(price / exchangeRate).toFixed(2)} $`;
+        return `${price} ل.س`;
+    }
+    
+    function updateAllPrices() {
+        document.querySelectorAll('.price-value').forEach(el => {
+            const syp = el.getAttribute('data-syp');
+            if (syp) el.innerHTML = formatPrice(parseFloat(syp));
+        });
+        const ct = document.getElementById('globalCurrencyText');
+        if (ct) ct.innerText = currentCurrency === 'USD' ? '$' : 'ل.س';
+    }
+    
+    function toggleGlobalCurrency() {
+        currentCurrency = currentCurrency === 'SYP' ? 'USD' : 'SYP';
+        localStorage.setItem('helaxia_currency', currentCurrency);
+        updateAllPrices();
+    }
+    
+    function openGallery(images, startIndex) {
+        if (!images || images.length === 0) return;
+        currentGalleryImages = images;
+        currentGalleryIndex = startIndex || 0;
+        const galleryImg = document.getElementById('galleryImage');
+        const counter = document.getElementById('galleryCounter');
+        if (!galleryImg) return;
+        galleryImg.src = images[currentGalleryIndex];
+        if (counter) counter.innerText = `${currentGalleryIndex + 1} / ${images.length}`;
+        document.getElementById('galleryModal').style.display = 'flex';
+    }
+    
+    function closeGallery() {
+        document.getElementById('galleryModal').style.display = 'none';
+        currentGalleryImages = [];
+        currentGalleryIndex = 0;
+    }
+    
+    function nextGalleryImage() {
+        if (currentGalleryImages.length === 0) return;
+        currentGalleryIndex = (currentGalleryIndex + 1) % currentGalleryImages.length;
+        document.getElementById('galleryImage').src = currentGalleryImages[currentGalleryIndex];
+        document.getElementById('galleryCounter').innerText = `${currentGalleryIndex + 1} / ${currentGalleryImages.length}`;
+    }
+    
+    function prevGalleryImage() {
+        if (currentGalleryImages.length === 0) return;
+        currentGalleryIndex = (currentGalleryIndex - 1 + currentGalleryImages.length) % currentGalleryImages.length;
+        document.getElementById('galleryImage').src = currentGalleryImages[currentGalleryIndex];
+        document.getElementById('galleryCounter').innerText = `${currentGalleryIndex + 1} / ${currentGalleryImages.length}`;
+    }
+    
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!user) window.location.href = '/login';
+    
+    // ✅ createStars(), cart, updateCartCount(), addToCart(), showToast(), logout() محذوفة (موجودة في shared.js)
+    
+    let currentProduct = null;
+    
+    function openProductModal(p) {
+        console.log('openProductModal called with:', p);
+        currentProduct = p;
+        const formattedPrice = formatPrice(p.price);
+        let firstImage = (p.images && p.images.length > 0) ? p.images[0] : (p.image || 'https://placehold.co/400x400/2A4A6A/7BA5C0?text=HELAXIA');
+        let imagesCount = (p.images && p.images.length > 0) ? p.images.length : (p.image ? 1 : 0);
+        
+        document.getElementById('productModalBody').innerHTML = `
+            <div style="position:relative; cursor:pointer;" onclick="openGalleryFromModal()">
+                <img src="${firstImage}" class="modal-img" onerror="this.src='https://placehold.co/400x400/2A4A6A/7BA5C0?text=HELAXIA'">
+                ${imagesCount > 1 ? `<div style="position:absolute; bottom:10px; right:10px; background:rgba(0,0,0,0.6); border-radius:20px; padding:2px 8px; font-size:0.7rem;">${imagesCount} صور</div>` : ''}
+            </div>
+            <div class="modal-title">${p.name}</div>
+            <div class="modal-price">السعر: ${formattedPrice}</div>
+            <div class="modal-detail">نوع القماش: ${p.fabric_type || 'غير محدد'}</div>
+            <div class="modal-detail">القياسات: ${p.sizes || 'غير محدد'}</div>
+            <div class="modal-detail">الألوان: ${p.colors || 'غير محدد'}</div>
+            <div class="modal-detail">الوصف: ${p.description || 'لا يوجد وصف'}</div>
+        `;
+        document.getElementById('productModal').style.display = 'flex';
+    }
+    
+    function openGalleryFromModal() {
+        console.log('openGalleryFromModal - currentProduct:', currentProduct);
+        if (!currentProduct) {
+            console.error('currentProduct is null, cannot open gallery');
+            return;
+        }
+        if (currentProduct.images && currentProduct.images.length > 0) {
+            const imagesToShow = [...currentProduct.images];
+            closeProductModal();
+            openGallery(imagesToShow, 0);
+        } else if (currentProduct.image) {
+            closeProductModal();
+            openGallery([currentProduct.image], 0);
+        } else {
+            console.error('No images found in product');
+        }
+    }
+    
+    function closeProductModal() { 
+        document.getElementById('productModal').style.display = 'none'; 
+        currentProduct = null; 
+    }
+    
+    function addToCartFromModal() { 
+        if (currentProduct) { 
+            addToCart(currentProduct); 
+            closeProductModal(); 
+        } 
+    }
+    
+    async function loadSlider() { 
+        let res = await fetch('/api/products'); 
+        let products = await res.json(); 
+        let featured = products.filter(p=>p.is_featured===1).slice(0,4); 
+        let track = document.getElementById('sliderTrack'); 
+        if(featured.length===0){
+            track.innerHTML='<div class="slider-slide"><img src="https://placehold.co/1200x400/2A4A6A/7BA5C0?text=HELAXIA"></div>';
+            return;
+        } 
+        track.innerHTML=featured.map(p=>{
+            let img = (p.images && p.images.length > 0) ? p.images[0] : (p.image_url || 'https://placehold.co/1200x400/2A4A6A/7BA5C0?text=HELAXIA');
+            return `<div class="slider-slide"><img src="${img}"></div>`;
+        }).join(''); 
+        let c=0; 
+        setInterval(()=>{c=(c+1)%featured.length; track.style.transform=`translateX(-${c*100}%)`;},5000); 
+    }
+    
+    async function loadSections() {
+        let res = await fetch('/api/categories/all');
+        let allCats = await res.json();
+        let subCategories = allCats.filter(c => c.parent_id !== 0);
+        let container = document.getElementById('sectionsContainer');
+        container.innerHTML = '';
+        if (subCategories.length === 0) { 
+            container.innerHTML = '<div class="empty-state glass-card">لا توجد أقسام فرعية بعد</div>'; 
+            return; 
+        }
+        let storesRes = await fetch('/api/stores');
+        let stores = await storesRes.json();
+        let storeNames = {};
+        stores.forEach(s => { storeNames[s.id] = s.name; });
+        
+        for (let sub of subCategories) {
+            let prodRes = await fetch(`/api/products/by-category/${sub.id}`);
+            let products = await prodRes.json();
+            if (products.length === 0) continue;
+            
+            container.innerHTML += `<div class="section">
+                <div class="section-header">
+                    <div class="section-title">${sub.name}</div>
+                    <div class="section-arrow" onclick="window.location.href='/section?id=${sub.id}&name=${encodeURIComponent(sub.name)}'">عرض الكل →</div>
+                </div>
+                <div class="carousel-container" id="carousel-${sub.id}">
+                    <div class="carousel-track" id="track-${sub.id}"></div>
+                    <div class="carousel-btn prev" onclick="slideCarousel('${sub.id}',-1)"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M15 18l-6-6 6-6"/></svg></div>
+                    <div class="carousel-btn next" onclick="slideCarousel('${sub.id}',1)"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M9 18l6-6-6-6"/></svg></div>
+                    <div class="carousel-progress"><div class="progress-bar"></div></div>
+                </div>
+            </div>`;
+            
+            let track = document.getElementById(`track-${sub.id}`);
+            if (products.length === 0) {
+                track.innerHTML = '<div class="empty-state" style="padding:1rem;">لا توجد منتجات في هذا القسم بعد</div>';
+            } else {
+                track.innerHTML = products.map(p => {
+                    let firstImage = (p.images && p.images.length > 0) ? p.images[0] : (p.image_url || 'https://placehold.co/400x400/2A4A6A/7BA5C0?text=HELAXIA');
+                    let imagesArray = (p.images && p.images.length > 0) ? p.images : (p.image_url ? [p.image_url] : []);
+                    return `
+                        <div class="product-card">
+                            <div class="glass-card">
+                                <div class="fifa-top" onclick='openProductModal({id:${p.id}, name:${JSON.stringify(p.name)}, price:${p.base_price}, image:"${firstImage}", images:${JSON.stringify(imagesArray)}, fabric_type:${JSON.stringify(p.fabric_type || '')}, sizes:${JSON.stringify(p.sizes || '')}, colors:${JSON.stringify(p.colors || '')}, description:${JSON.stringify(p.description || '')}})'>
+                                    <div class="fifa-image"><img src="${firstImage}"></div>
+                                    <div class="fifa-info">
+                                        <div class="fifa-name">${p.name}</div>
+                                        <div class="fifa-detail">نوع القماش: ${p.fabric_type || 'غير محدد'}</div>
+                                        <div class="fifa-detail">القياسات: ${p.sizes || 'غير محدد'}</div>
+                                        <div class="fifa-detail">الألوان: ${p.colors || 'غير محدد'}</div>
+                                    </div>
+                                </div>
+                                <div class="fifa-bottom">
+                                    <div class="fifa-price price-value" data-syp="${p.base_price}">${formatPrice(p.base_price)}</div>
+                                    <div class="fifa-store">${storeNames[p.store_id] || 'HELAXIA'}</div>
+                                </div>
+                                <button class="add-to-cart" onclick="addToCart({id:${p.id}, name:'${p.name}', price:${p.base_price}, image:'${firstImage}'})">+ أضف إلى السلة</button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+            window.indices = window.indices || {};
+            window.indices[sub.id] = 0;
+            startAutoSlide(sub.id);
+        }
+        updateAllPrices();
+    }
+    
+    function startAutoSlide(catId) { 
+        setInterval(() => { 
+            let track = document.getElementById(`track-${catId}`); 
+            if(!track) return; 
+            let total = track.children.length; 
+            if(total<=1) return; 
+            let container = track.closest('.carousel-container'); 
+            let cloud = container.querySelector('.smoke-cloud'); 
+            if(!cloud){
+                let c=document.createElement('div'); 
+                c.className='smoke-cloud'; 
+                container.appendChild(c); 
+                cloud=c;
+            } 
+            let progressBar = container.querySelector('.progress-bar');
+            if (progressBar) {
+                progressBar.style.transition = 'none';
+                progressBar.style.width = '0%';
+                setTimeout(() => { progressBar.style.transition = 'width 5s linear'; progressBar.style.width = '100%'; }, 10);
+            }
+            cloud.style.animation='none'; 
+            cloud.offsetHeight; 
+            cloud.style.animation='smokePass 1.2s forwards'; 
+            setTimeout(()=>{ 
+                let idx=(window.indices[catId]+1)%total; 
+                window.indices[catId]=idx; 
+                let w=track.children[0]?.offsetWidth+24; 
+                if(w) track.style.transform=`translateX(-${idx*w}px)`;
+                if (progressBar) {
+                    setTimeout(() => {
+                        progressBar.style.transition = 'none';
+                        progressBar.style.width = '0%';
+                        setTimeout(() => { progressBar.style.transition = 'width 5s linear'; progressBar.style.width = '100%'; }, 10);
+                    }, 100);
+                }
+            },250); 
+        },5000); 
+    }
+    
+    function slideCarousel(catId, dir) { 
+        let idx=(window.indices[catId]||0)+dir; 
+        let track=document.getElementById(`track-${catId}`); 
+        if(!track) return; 
+        let total=track.children.length; 
+        if(total===0) return; 
+        idx=(idx+total)%total; 
+        window.indices[catId]=idx; 
+        let w=track.children[0]?.offsetWidth+24; 
+        if(w) track.style.transform=`translateX(-${idx*w}px)`; 
+    }
+    
+    function vendorAction() {
+        const user = JSON.parse(localStorage.getItem('user'));
+        const vendorToken = localStorage.getItem('vendorToken');
+        if (vendorToken && user && user.role === 'vendor') window.location.href = '/vendor/dashboard';
+        else if (user) window.location.href = '/vendor-apply';
+        else window.location.href = '/vendor-login';
+    }
+    
+    // ========== نظام المدن والفلترة ==========
+    let selectedCityId = 0;
+    let currentCityFilter = 0;
+    
+    async function loadCities() {
+        try {
+            const res = await fetch('/api/cities');
+            const cities = await res.json();
+            const dropdown = document.getElementById('cityDropdown');
+            cities.forEach(city => {
+                const div = document.createElement('div');
+                div.className = 'city-dropdown-item';
+                div.setAttribute('data-city-id', city.id);
+                div.setAttribute('data-city-name', city.name);
+                div.innerHTML = `📍 ${city.name}`;
+                div.onclick = () => selectCity(city.id, city.name);
+                dropdown.appendChild(div);
+            });
+        } catch(e) { console.error('Error loading cities:', e); }
+    }
+    
+    function toggleCityDropdown() {
+        const dropdown = document.getElementById('cityDropdown');
+        dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+    }
+    
+    function selectCity(cityId, cityName) {
+        selectedCityId = cityId;
+        document.getElementById('selectedCityName').innerText = cityName;
+        document.getElementById('cityDropdown').style.display = 'none';
+        
+        // حفظ المدينة المختارة في localStorage
+        localStorage.setItem('selectedCity', JSON.stringify({ id: cityId, name: cityName }));
+        
+        // إخفاء رسالة التحذير إذا اختار مدينة
+        const warning = document.getElementById('warningBanner');
+        if (warning) warning.style.display = 'none';
+        
+        // إعادة تحميل الأقسام مع الفلترة
+        currentCityFilter = cityId;
+        reloadSectionsWithFilter();
+    }
+    
+    async function reloadSectionsWithFilter() {
+        const container = document.getElementById('sectionsContainer');
+        container.innerHTML = '<div class="empty-state glass-card">جاري التحميل...</div>';
+        
+        try {
+            let allCatsRes = await fetch('/api/categories/all');
+            let allCats = await allCatsRes.json();
+            let subCategories = allCats.filter(c => c.parent_id !== 0);
+            
+            if (subCategories.length === 0) {
+                container.innerHTML = '<div class="empty-state glass-card">لا توجد أقسام</div>';
+                return;
+            }
+            
+            let storesRes = await fetch('/api/stores');
+            let stores = await storesRes.json();
+            let storeNames = {};
+            stores.forEach(s => { storeNames[s.id] = s.name; });
+            
+            // جلب المتاجر حسب المدينة (للتحقق من city_id)
+            let storesByCity = [];
+            if (currentCityFilter > 0) {
+                let filteredStoresRes = await fetch(`/api/stores?city_id=${currentCityFilter}`);
+                storesByCity = await filteredStoresRes.json();
+            }
+            
+            container.innerHTML = '';
+            
+            for (let sub of subCategories) {
+                let prodRes = await fetch(`/api/products/by-category/${sub.id}`);
+                let products = await prodRes.json();
+                
+                // تصفية المنتجات حسب المدينة
+                let filteredProducts = products.filter(p => {
+                    if (p.is_global === 1) return true; // المنتجات العامة تظهر للجميع
+                    if (currentCityFilter === 0) return true; // إذا لم يختر مدينة، يظهر كل شيء
+                    // نتحقق من المتجر التابع للمنتج
+                    const store = stores.find(s => s.id === p.store_id);
+                    return store && store.city_id == currentCityFilter;
+                });
+                
+                if (filteredProducts.length === 0) continue;
+                
+                container.innerHTML += `<div class="section">
+                    <div class="section-header">
+                        <div class="section-title">${sub.name}</div>
+                        <div class="section-arrow" onclick="window.location.href='/section?id=${sub.id}&name=${encodeURIComponent(sub.name)}'">عرض الكل →</div>
+                    </div>
+                    <div class="carousel-container" id="carousel-${sub.id}">
+                        <div class="carousel-track" id="track-${sub.id}"></div>
+                        <div class="carousel-btn prev" onclick="slideCarousel('${sub.id}',-1)"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M15 18l-6-6 6-6"/></svg></div>
+                        <div class="carousel-btn next" onclick="slideCarousel('${sub.id}',1)"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M9 18l6-6-6-6"/></svg></div>
+                        <div class="carousel-progress"><div class="progress-bar"></div></div>
+                    </div>
+                </div>`;
+                
+                let track = document.getElementById(`track-${sub.id}`);
+                track.innerHTML = filteredProducts.map(p => {
+                    let firstImage = (p.images && p.images.length > 0) ? p.images[0] : (p.image_url || 'https://placehold.co/400x400/2A4A6A/7BA5C0?text=HELAXIA');
+                    let imagesArray = (p.images && p.images.length > 0) ? p.images : (p.image_url ? [p.image_url] : []);
+                    return `
+                        <div class="product-card">
+                            <div class="glass-card">
+                                <div class="fifa-top" onclick='openProductModal({id:${p.id}, name:${JSON.stringify(p.name)}, price:${p.base_price}, image:"${firstImage}", images:${JSON.stringify(imagesArray)}, fabric_type:${JSON.stringify(p.fabric_type || '')}, sizes:${JSON.stringify(p.sizes || '')}, colors:${JSON.stringify(p.colors || '')}, description:${JSON.stringify(p.description || '')}})'>
+                                    <div class="fifa-image"><img src="${firstImage}"></div>
+                                    <div class="fifa-info">
+                                        <div class="fifa-name">${p.name}</div>
+                                        <div class="fifa-detail">نوع القماش: ${p.fabric_type || 'غير محدد'}</div>
+                                        <div class="fifa-detail">القياسات: ${p.sizes || 'غير محدد'}</div>
+                                        <div class="fifa-detail">الألوان: ${p.colors || 'غير محدد'}</div>
+                                    </div>
+                                </div>
+                                <div class="fifa-bottom">
+                                    <div class="fifa-price price-value" data-syp="${p.base_price}">${formatPrice(p.base_price)}</div>
+                                    <div class="fifa-store">${storeNames[p.store_id] || 'HELAXIA'}</div>
+                                </div>
+                                <button class="add-to-cart" onclick="addToCart({id:${p.id}, name:'${p.name}', price:${p.base_price}, image:'${firstImage}'})">+ أضف إلى السلة</button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+                
+                window.indices = window.indices || {};
+                window.indices[sub.id] = 0;
+                startAutoSlide(sub.id);
+            }
+            
+            updateAllPrices();
+            
+            // إذا لم يظهر أي منتج
+            if (container.innerHTML === '' || container.innerHTML.includes('جاري التحميل')) {
+                container.innerHTML = '<div class="empty-state glass-card">✨ لا توجد منتجات في هذه المدينة بعد ✨<br><span style="font-size:0.8rem;">💡 يمكنك تغيير المدينة من القائمة أعلاه</span></div>';
+            }
+            
+        } catch(e) {
+            console.error('Error reloading sections:', e);
+            container.innerHTML = '<div class="empty-state glass-card">خطأ في تحميل البيانات</div>';
+        }
+    }
+    
+    async function init() {
+        await loadExchangeRate();
+        const saved = localStorage.getItem('helaxia_currency');
+        if (saved === 'USD' || saved === 'SYP') currentCurrency = saved;
+        updateCartCount();
+        await loadCities();
+        await loadSlider();
+        
+        // التحقق من وجود مدينة مختارة مسبقاً
+        const savedCity = localStorage.getItem('selectedCity');
+        if (savedCity) {
+            try {
+                const city = JSON.parse(savedCity);
+                selectedCityId = city.id;
+                document.getElementById('selectedCityName').innerText = city.name;
+                currentCityFilter = city.id;
+                await reloadSectionsWithFilter();
+            } catch(e) { await loadSections(); }
+        } else {
+            await loadSections();
+            const warning = document.getElementById('warningBanner');
+            if (warning) warning.style.display = 'block';
+        }
+        
+        const ct = document.getElementById('globalCurrencyText');
+        if (ct) ct.innerText = currentCurrency === 'USD' ? '$' : 'ل.س';
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeGallery(); closeProductModal(); } });
+        
+        // إغلاق القائمة عند النقر خارجها
+        document.addEventListener('click', function(e) {
+            const dropdown = document.getElementById('cityDropdown');
+            const btn = document.getElementById('cityFilterBtn');
+            if (dropdown && btn && !btn.contains(e.target) && !dropdown.contains(e.target)) {
+                dropdown.style.display = 'none';
+            }
+        });
+    }
+    
+    init();
+</script>
+</body>
+</html>

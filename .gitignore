@@ -1,0 +1,31 @@
+﻿# HELAXIA .gitignore
+# يحمي الملفات الحساسة من الرفع إلى GitHub أو السيرفر
+
+# ملفات البيئة الحساسة
+.env
+.env.local
+.env.production
+
+# ملفات Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# ملفات PM2
+.pm2/
+
+# ملفات قاعدة البيانات (لو موجودة محلياً)
+*.sql
+*.db
+*.sqlite
+
+# ملفات مؤقتة
+.DS_Store
+Thumbs.db
+*.tmp
+*.log
+.idea/
+.vscode/
+
+# ملفات السيرفر المباشرة
+dump.rdb

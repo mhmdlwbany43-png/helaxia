@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    
+    <!-- ========== SEO Meta Tags ========== -->
+    <title>HELAXIA | تقديم طلب تاجر - انضم إلى منصة الأزياء الرائدة</title>
+    <meta name="description" content="تقديم طلب تاجر في HELAXIA. انضم إلى منصة الأزياء الرائدة في سوريا وابدأ ببيع منتجاتك. سجل متجرك الآن واستفد من آلاف العملاء يومياً.">
+    <meta name="keywords" content="تاجر, متجر, بيع ملابس, أزياء, HELAXIA, انضم إلينا, افتح متجر">
+    <meta name="author" content="HELAXIA">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Arabic">
+    <meta name="revisit-after" content="7 days">
+    <meta name="theme-color" content="#2A4A6A">
+    
+    <!-- ========== Open Graph (لـ Facebook, WhatsApp, Telegram, LinkedIn) ========== -->
+    <meta property="og:title" content="HELAXIA | تقديم طلب تاجر - انضم إلى منصة الأزياء الرائدة">
+    <meta property="og:description" content="انضم إلى HELAXIA كتاجر وابدأ ببيع منتجاتك. سجل متجرك الآن واستفد من منصتنا المتكاملة.">
+    <meta property="og:image" content="https://helaxia.com/images/logo.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://helaxia.com/vendor-apply.html">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ar_SY">
+    <meta property="og:site_name" content="HELAXIA">
+    
+    <!-- ========== Twitter Card ========== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="HELAXIA | تقديم طلب تاجر">
+    <meta name="twitter:description" content="انضم إلى HELAXIA كتاجر وابدأ ببيع منتجاتك">
+    <meta name="twitter:image" content="https://helaxia.com/images/logo.png">
+    
+    <!-- ========== Canonical URL ========== -->
+    <link rel="canonical" href="https://helaxia.com/vendor-apply.html">
+    
+    <!-- ========== Favicon ========== -->
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: radial-gradient(circle at 10% 20%, #2A4A6A, #1A3A50);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            direction: rtl;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        .glass-card {
+            background: rgba(20,35,45,0.45);
+            backdrop-filter: blur(14px);
+            border-radius: 28px;
+            border: 1px solid rgba(200,220,250,0.25);
+            padding: 2rem;
+            width: 90%;
+            max-width: 550px;
+        }
+        h1 { color: #C0E0FF; text-align: center; margin-bottom: 0.5rem; }
+        p { color: #A0B8D0; text-align: center; margin-bottom: 1.5rem; font-size: 0.9rem; }
+        input, textarea, select {
+            width: 100%;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid #C0E0FF;
+            border-radius: 40px;
+            color: #E0E8F0;
+        }
+        select option { background: #1A2A3A; color: #E0E8F0; }
+        textarea { border-radius: 20px; resize: vertical; }
+        .file-input {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid #C0E0FF;
+            border-radius: 40px;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            width: 100%;
+            color: #E0E8F0;
+        }
+        button {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(90,140,170,0.6);
+            border: 1px solid #C0E0FF;
+            border-radius: 40px;
+            color: #E0E8F0;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: 0.2s;
+        }
+        button:hover { background: rgba(192,224,255,0.2); box-shadow: 0 0 12px #C0E0FF; }
+        .error { color: #FFB5B5; margin-top: 0.5rem; display: none; text-align: center; }
+        .success { color: #A8E6CF; margin-top: 0.5rem; display: none; text-align: center; }
+        .preview-img { max-width: 100px; margin-top: 0.5rem; border-radius: 12px; display: block; }
+        .preview-img-payment { max-width: 100px; margin-top: 0.5rem; border-radius: 12px; display: block; }
+        .link { text-align: center; margin-top: 1rem; }
+        .link a { color: #C0E0FF; text-decoration: none; }
+        .link a:hover { text-shadow: 0 0 6px #C0E0FF; }
+        
+        /* حقل كلمة السر مع زر الإظهار */
+        .password-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .password-wrapper input {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid #C0E0FF;
+            border-radius: 40px;
+            color: #E0E8F0;
+            margin: 0.5rem 0;
+        }
+        .toggle-password {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #C0D0E0;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            padding: 0;
+        }
+        .toggle-password:hover {
+            color: #C0E0FF;
+            text-shadow: 0 0 8px #C0E0FF;
+        }
+        
+        /* مودال عام */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-container {
+            background: rgba(20, 35, 45, 0.95);
+            border-radius: 28px;
+            padding: 2rem;
+            width: 90%;
+            max-width: 400px;
+            border: 1px solid #C0E0FF;
+            text-align: center;
+        }
+        .modal-container h3 {
+            color: #C0E0FF;
+            margin-bottom: 1rem;
+        }
+        .modal-container p {
+            color: #A0B8D0;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        .modal-input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            margin-bottom: 1rem;
+            background: rgba(10, 20, 30, 0.5);
+            border: 1px solid rgba(200, 220, 250, 0.3);
+            border-radius: 40px;
+            color: #E0E8F0;
+            font-size: 1rem;
+            outline: none;
+            text-align: center;
+            letter-spacing: 4px;
+        }
+        .modal-input:focus {
+            border-color: rgba(200, 220, 250, 0.8);
+            box-shadow: 0 0 15px rgba(192, 224, 255, 0.3);
+        }
+        .modal-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(90, 140, 170, 0.6);
+            border: 1px solid #C0E0FF;
+            border-radius: 40px;
+            color: #E0E8F0;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+        .modal-btn:hover {
+            background: rgba(192, 224, 255, 0.2);
+            box-shadow: 0 0 12px #C0E0FF;
+        }
+        .modal-btn-cancel {
+            background: none;
+            border: 1px solid rgba(200, 220, 250, 0.3);
+        }
+        .modal-error {
+            color: #FF8A7A;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+        .modal-success {
+            color: #A0E0C0;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+        
+        /* معلومات إضافية صغيرة */
+        .info-text {
+            font-size: 0.7rem;
+            color: #A0B8D0;
+            margin: 0.2rem 0 0.5rem 0;
+            display: block;
+        }
+        .section-title {
+            color: #C0E0FF;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            margin-bottom: 0.2rem;
+            border-right: 2px solid #C0E0FF;
+            padding-right: 0.5rem;
+        }
+        
+        /* تحسين التجاوب مع الشاشات الصغيرة */
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            .glass-card { padding: 1.5rem; }
+            h1 { font-size: 1.3rem; }
+        }
+        
+        @media (max-width: 480px) {
+            .glass-card { padding: 1rem; }
+            input, textarea, select, .file-input { padding: 0.6rem; font-size: 0.85rem; }
+            button { padding: 0.6rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="glass-card">
+        <h1>✦ تقديم طلب تاجر ✦</h1>
+        <p>املأ البيانات التالية لإنشاء حساب تاجر</p>
+        
+        <form id="vendorApplyForm" onsubmit="event.preventDefault(); requestVendorSignup();">
+            <input type="text" id="storeName" placeholder="اسم المتجر *" autocomplete="off" required>
+            <textarea id="storeDescription" rows="3" placeholder="وصف المتجر (اختياري)"></textarea>
+            
+            <!-- شعار المتجر -->
+            <div class="section-title">🏪 شعار المتجر</div>
+            <input type="file" id="storeLogo" accept="image/*" class="file-input">
+            <div id="logoPreview"></div>
+            
+            <!-- صورة حساب شام كاش (للدفع) -->
+            <div class="section-title">💰 صورة حساب شام كاش</div>
+            <input type="file" id="paymentProofImage" accept="image/*" class="file-input">
+            <div id="paymentProofPreview"></div>
+            <small class="info-text">*يرجى رفع صورة واضحة لحسابك في شام كاش أو أي محفظة إلكترونية لتتمكن من استلام أرباحك</small>
+            
+            <input type="tel" id="storePhone" placeholder="رقم الهاتف *" autocomplete="tel" required>
+            
+            <!-- ========== حقل اختيار المدينة ========== -->
+            <div class="section-title">📍 المدينة</div>
+            <select id="storeCity" required>
+                <option value="">-- اختر المدينة --</option>
+            </select>
+            
+            <input type="email" id="storeEmail" placeholder="البريد الإلكتروني *" autocomplete="email" required>
+            
+            <!-- حقل كلمة السر مع زر إظهار -->
+            <div class="password-wrapper">
+                <input type="password" id="storePassword" placeholder="كلمة السر *" autocomplete="new-password" required>
+                <button type="button" class="toggle-password" onclick="togglePassword('storePassword')">👁️</button>
+            </div>
+            
+            <!-- حقل تأكيد كلمة السر مع زر إظهار -->
+            <div class="password-wrapper">
+                <input type="password" id="confirmPassword" placeholder="تأكيد كلمة السر *" autocomplete="off" required>
+                <button type="button" class="toggle-password" onclick="togglePassword('confirmPassword')">👁️</button>
+            </div>
+            
+            <button type="submit">طلب إنشاء حساب تاجر</button>
+        </form>
+        <div class="error" id="errorMsg"></div>
+        <div class="success" id="successMsg"></div>
+        <div class="link">
+            لديك حساب بالفعل؟ <a href="/vendor-login">تسجيل الدخول إلى حسابي</a>
+        </div>
+    </div>
+
+    <!-- مودال إدخال الكود -->
+    <div id="codeModal" class="modal-overlay">
+        <div class="modal-container">
+            <h3>📨 أدخل رمز التحقق</h3>
+            <p>تم إرسال رمز مكون من 6 أرقام إلى بريدك الإلكتروني</p>
+            <input type="text" id="verificationCode" class="modal-input" placeholder="_ _ _ _ _ _" maxlength="6">
+            <button class="modal-btn" onclick="verifyVendorCode()">✅ تفعيل الحساب</button>
+            <button class="modal-btn modal-btn-cancel" onclick="closeCodeModal()">إلغاء</button>
+            <div id="codeError" class="modal-error"></div>
+        </div>
+    </div>
+
+    <script>
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (user && user.email) {
+            document.getElementById('storeEmail').value = user.email;
+        }
+        
+        let signupTempToken = null;
+        
+        // دالة إظهار/إخفاء كلمة المرور
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            if (input) {
+                input.type = input.type === 'password' ? 'text' : 'password';
+            }
+        }
+        
+        // ========== جلب المدن من الخادم ==========
+        async function loadCities() {
+            try {
+                const res = await fetch('/api/cities');
+                const cities = await res.json();
+                const citySelect = document.getElementById('storeCity');
+                citySelect.innerHTML = '<option value="">-- اختر المدينة --</option>';
+                cities.forEach(city => {
+                    const option = document.createElement('option');
+                    option.value = city.id;
+                    option.textContent = city.name;
+                    citySelect.appendChild(option);
+                });
+            } catch(e) {
+                console.error('Error loading cities:', e);
+            }
+        }
+        
+        // معاينة شعار المتجر
+        document.getElementById('storeLogo').addEventListener('change', function(e) {
+            const preview = document.getElementById('logoPreview');
+            preview.innerHTML = '';
+            if (e.target.files && e.target.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(ev) {
+                    preview.innerHTML = `<img src="${ev.target.result}" class="preview-img" alt="شعار المتجر">`;
+                };
+                reader.readAsDataURL(e.target.files[0]);
+            }
+        });
+        
+        // معاينة صورة شام كاش
+        document.getElementById('paymentProofImage').addEventListener('change', function(e) {
+            const preview = document.getElementById('paymentProofPreview');
+            preview.innerHTML = '';
+            if (e.target.files && e.target.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(ev) {
+                    preview.innerHTML = `<img src="${ev.target.result}" class="preview-img-payment" alt="صورة حساب شام كاش">`;
+                };
+                reader.readAsDataURL(e.target.files[0]);
+            }
+        });
+        
+        function closeCodeModal() {
+            document.getElementById('codeModal').style.display = 'none';
+            document.getElementById('verificationCode').value = '';
+            document.getElementById('codeError').innerText = '';
+        }
+        
+        async function requestVendorSignup() {
+            const name = document.getElementById('storeName').value.trim();
+            const description = document.getElementById('storeDescription').value.trim();
+            const phone = document.getElementById('storePhone').value.trim();
+            const email = document.getElementById('storeEmail').value.trim();
+            const password = document.getElementById('storePassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const cityId = document.getElementById('storeCity').value;
+            
+            if (!name || !phone || !email || !password) {
+                showError('❌ الرجاء ملء جميع الحقول المطلوبة');
+                return;
+            }
+            
+            if (!cityId) {
+                showError('❌ الرجاء اختيار المدينة');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                showError('❌ كلمة السر غير متطابقة');
+                return;
+            }
+            
+            if (password.length < 6) {
+                showError('❌ كلمة السر يجب أن تكون 6 أحرف على الأقل');
+                return;
+            }
+            
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('description', description);
+            formData.append('phone', phone);
+            formData.append('email', email);
+            formData.append('password', password);
+            formData.append('city_id', cityId);
+            if (user && user.id) formData.append('userId', user.id);
+            
+            const logoFile = document.getElementById('storeLogo').files[0];
+            if (logoFile) formData.append('logo', logoFile);
+            
+            // إضافة صورة شام كاش
+            const paymentProofFile = document.getElementById('paymentProofImage').files[0];
+            if (paymentProofFile) formData.append('paymentProofImage', paymentProofFile);
+            
+            try {
+                const res = await fetch('/api/vendor/signup-request', { 
+                    method: 'POST', 
+                    body: formData 
+                });
+                const data = await res.json();
+                if (!res.ok) {
+                    showError(data.error || '❌ فشل طلب إنشاء الحساب');
+                    return;
+                }
+                
+                signupTempToken = data.tempToken;
+                document.getElementById('codeModal').style.display = 'flex';
+                document.getElementById('codeError').innerText = '';
+                document.getElementById('successMsg').style.display = 'none';
+            } catch(err) {
+                console.error(err);
+                showError('⚠️ خطأ في الاتصال بالخادم');
+            }
+        }
+        
+        async function verifyVendorCode() {
+            const code = document.getElementById('verificationCode').value.trim();
+            if (!code || code.length !== 6) {
+                document.getElementById('codeError').innerText = '❌ الرجاء إدخال رمز صحيح مكون من 6 أرقام';
+                return;
+            }
+            
+            try {
+                const res = await fetch('/api/vendor/verify-signup-code', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ tempToken: signupTempToken, code })
+                });
+                const data = await res.json();
+                if (!res.ok) {
+                    document.getElementById('codeError').innerText = data.error || '❌ كود غير صحيح';
+                    return;
+                }
+                
+                closeCodeModal();
+                document.getElementById('successMsg').innerText = '✅ تم إنشاء حساب التاجر بنجاح! جاري تحويلك...';
+                document.getElementById('successMsg').style.display = 'block';
+                
+                setTimeout(() => {
+                    window.location.href = '/vendor-login';
+                }, 2000);
+            } catch(err) {
+                document.getElementById('codeError').innerText = '⚠️ خطأ في الاتصال بالخادم';
+            }
+        }
+        
+        function showError(msg) {
+            const errorDiv = document.getElementById('errorMsg');
+            errorDiv.innerText = msg;
+            errorDiv.style.display = 'block';
+            setTimeout(() => { errorDiv.style.display = 'none'; }, 5000);
+        }
+        
+        // تحميل المدن عند بدء الصفحة
+        loadCities();
+    </script>
+</body>
+</html>

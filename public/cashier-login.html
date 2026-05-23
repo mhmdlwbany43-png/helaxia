@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>HELAXIA | أمين الصندوق</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at 30% 20%, #1A2A3A, #0F1A24);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .star {
+            position: fixed;
+            background: radial-gradient(circle, #FFFFFF, #C0E0FF);
+            border-radius: 50%;
+            opacity: 0;
+            pointer-events: none;
+            animation: starTwinkle 4s infinite ease-in-out;
+        }
+        @keyframes starTwinkle {
+            0% { opacity: 0; transform: scale(0.8); }
+            50% { opacity: 0.9; transform: scale(1.2); }
+            100% { opacity: 0; transform: scale(0.8); }
+        }
+
+        .glass-card {
+            background: rgba(20, 35, 45, 0.45);
+            backdrop-filter: blur(14px);
+            border-radius: 32px;
+            border: 1px solid rgba(200, 220, 250, 0.25);
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 500px;
+            margin: 2rem;
+            padding: 2rem;
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #F0F4FA, #C0D0E0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #A0B8D0;
+            font-size: 0.85rem;
+            margin-bottom: 2rem;
+        }
+
+        .tabs-header {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(10, 20, 30, 0.3);
+            border-radius: 60px;
+            padding: 0.3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tab-btn {
+            flex: 1;
+            background: transparent;
+            border: none;
+            padding: 0.6rem;
+            border-radius: 50px;
+            color: #A0B8D0;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            background: rgba(192, 224, 255, 0.2);
+            color: #C0E0FF;
+            box-shadow: 0 0 15px rgba(192, 224, 255, 0.3);
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group label {
+            display: block;
+            color: #C0D0E0;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .input-group .password-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-group .password-wrapper input {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            background: rgba(10, 20, 30, 0.5);
+            border: 1px solid rgba(200, 220, 250, 0.3);
+            border-radius: 60px;
+            color: #E0E8F0;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .input-group .password-wrapper input:focus {
+            border-color: rgba(200, 220, 250, 0.8);
+            box-shadow: 0 0 15px rgba(192, 224, 255, 0.3);
+        }
+
+        .toggle-password {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #C0D0E0;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .toggle-password:hover {
+            color: #C0E0FF;
+            text-shadow: 0 0 8px #C0E0FF;
+        }
+
+        .btn {
+            width: 100%;
+            background: rgba(90, 140, 170, 0.3);
+            border: 1px solid #C0E0FF;
+            border-radius: 60px;
+            padding: 0.8rem;
+            color: #E0E8F0;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 0.5rem;
+        }
+
+        .btn:hover {
+            background: rgba(192, 224, 255, 0.2);
+            box-shadow: 0 0 18px #C0E0FF;
+            transform: scale(1.01);
+        }
+
+        .btn-link {
+            background: none;
+            border: none;
+            color: #C0D0E0;
+            font-size: 0.8rem;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            text-align: center;
+            display: block;
+            width: 100%;
+        }
+
+        .btn-link:hover {
+            color: #C0E0FF;
+            text-shadow: 0 0 5px #C0E0FF;
+            background: none;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .step {
+            display: none;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        .error-msg {
+            color: #FF8A7A;
+            font-size: 0.8rem;
+            margin-top: 0.8rem;
+            text-align: center;
+        }
+
+        .success-msg {
+            color: #A0E0C0;
+            font-size: 0.8rem;
+            margin-top: 0.8rem;
+            text-align: center;
+        }
+
+        .info-text {
+            color: #A0B8D0;
+            font-size: 0.75rem;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .forgot-password {
+            text-align: left;
+            margin-top: -0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .forgot-password a {
+            color: #A0B8D0;
+            font-size: 0.75rem;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .forgot-password a:hover {
+            color: #C0E0FF;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div id="starsContainer"></div>
+
+<div class="glass-card login-container">
+    <div class="logo">HELAXIA</div>
+    <div class="subtitle">💰 أمين الصندوق 💰</div>
+
+    <div class="tabs-header">
+        <button class="tab-btn active" onclick="switchTab('login')">تسجيل الدخول</button>
+        <button class="tab-btn" onclick="switchTab('signup')">إنشاء حساب</button>
+    </div>
+
+    <!-- ========== تسجيل الدخول (نظام جديد: رمز يرسل للإيميل) ========== -->
+    <div id="loginSection" class="step active">
+        <div class="input-group">
+            <label>📧 البريد الإلكتروني</label>
+            <input type="email" id="cashierEmail" placeholder="cashier@helaxia.com">
+        </div>
+        <div class="input-group">
+            <label>🔒 كلمة السر</label>
+            <div class="password-wrapper">
+                <input type="password" id="cashierPassword" placeholder="••••••••">
+                <button type="button" class="toggle-password" onclick="togglePassword('cashierPassword')">👁️</button>
+            </div>
+        </div>
+        <div class="forgot-password">
+            <a onclick="showForgotPassword()">نسيت كلمة المرور؟</a>
+        </div>
+        <button class="btn" onclick="startCashierLogin()">➡️ تسجيل الدخول</button>
+        <div id="loginError" class="error-msg"></div>
+    </div>
+
+    <!-- ========== صفحة إدخال الرمز المرسل للإيميل ========== -->
+    <div id="verifyEmailCodeSection" class="step">
+        <div class="input-group">
+            <label>📨 رمز التأكيد (تم إرساله إلى بريدك الإلكتروني)</label>
+            <input type="text" id="emailVerifyCode" placeholder="أدخل الرمز المكون من 6 أرقام" maxlength="6">
+        </div>
+        <button class="btn" onclick="verifyEmailCode()">✅ تأكيد الرمز</button>
+        <button class="btn-link" onclick="resendEmailCode()">🔄 إعادة إرسال الرمز</button>
+        <div id="emailVerifyError" class="error-msg"></div>
+    </div>
+
+    <!-- ========== صفحة تغيير كلمة المرور (نسيت كلمة المرور) ========== -->
+    <div id="forgotPasswordSection" class="step">
+        <div class="input-group">
+            <label>📧 البريد الإلكتروني</label>
+            <input type="email" id="forgotEmail" placeholder="أدخل بريدك الإلكتروني">
+        </div>
+        <button class="btn" onclick="sendResetCode()">📧 إرسال رمز إعادة التعيين</button>
+        <button class="btn-link" onclick="backToLogin()">← العودة إلى تسجيل الدخول</button>
+        <div id="forgotError" class="error-msg"></div>
+        <div id="forgotSuccess" class="success-msg"></div>
+    </div>
+
+    <!-- ========== صفحة إدخال رمز إعادة التعيين ========== -->
+    <div id="resetCodeSection" class="step">
+        <div class="input-group">
+            <label>🔐 رمز إعادة التعيين (تم إرساله إلى بريدك)</label>
+            <input type="text" id="resetCode" placeholder="أدخل الرمز المكون من 6 أرقام" maxlength="6">
+        </div>
+        <button class="btn" onclick="verifyResetCode()">✅ تأكيد الرمز</button>
+        <div id="resetCodeError" class="error-msg"></div>
+    </div>
+
+    <!-- ========== صفحة تعيين كلمة مرور جديدة ========== -->
+    <div id="newPasswordSection" class="step">
+        <div class="input-group">
+            <label>🔒 كلمة السر الجديدة</label>
+            <div class="password-wrapper">
+                <input type="password" id="newPassword" placeholder="••••••••">
+                <button type="button" class="toggle-password" onclick="togglePassword('newPassword')">👁️</button>
+            </div>
+        </div>
+        <div class="input-group">
+            <label>🔒 تأكيد كلمة السر الجديدة</label>
+            <div class="password-wrapper">
+                <input type="password" id="confirmNewPassword" placeholder="••••••••">
+                <button type="button" class="toggle-password" onclick="togglePassword('confirmNewPassword')">👁️</button>
+            </div>
+        </div>
+        <button class="btn" onclick="setNewPassword()">💾 حفظ كلمة المرور الجديدة</button>
+        <div id="newPasswordError" class="error-msg"></div>
+        <div id="newPasswordSuccess" class="success-msg"></div>
+    </div>
+
+    <!-- ========== إنشاء حساب جديد ========== -->
+    <div id="signupSection" class="step">
+        <div class="input-group">
+            <label>👤 الاسم الكامل</label>
+            <input type="text" id="signupName" placeholder="مثال: أحمد محمد">
+        </div>
+        <div class="input-group">
+            <label>📧 البريد الإلكتروني</label>
+            <input type="email" id="signupEmail" placeholder="ahmed@helaxia.com">
+        </div>
+        <div class="input-group">
+            <label>🔒 كلمة السر</label>
+            <div class="password-wrapper">
+                <input type="password" id="signupPassword" placeholder="••••••••">
+                <button type="button" class="toggle-password" onclick="togglePassword('signupPassword')">👁️</button>
+            </div>
+        </div>
+        <div class="input-group">
+            <label>📱 رقم الهاتف (واتساب)</label>
+            <input type="text" id="signupPhone" placeholder="963XXXXXXXXX">
+        </div>
+        <button class="btn" onclick="requestCashierSignup()">📝 طلب إنشاء حساب</button>
+        <div class="info-text">*سيتم إرسال كود إلى إيميل المدير التنفيذي. أدخل الكود لإكمال التسجيل</div>
+        <div id="signupError" class="error-msg"></div>
+    </div>
+
+    <!-- ========== إدخال كود التفعيل (من المدير التنفيذي) ========== -->
+    <div id="verifyCodeSection" class="step">
+        <div class="input-group">
+            <label>🔐 كود التفعيل (تم إرساله إلى إيميل المدير التنفيذي)</label>
+            <input type="text" id="verificationCode" placeholder="أدخل الكود المكون من 6 أرقام" maxlength="6">
+        </div>
+        <button class="btn" onclick="verifyCashierCode()">✅ تفعيل الحساب</button>
+        <button class="btn-link" onclick="resendCashierSignupCode()">🔄 إعادة إرسال الكود</button>
+        <div id="verifyError" class="error-msg"></div>
+    </div>
+
+</div>
+
+<script>
+    function createStars() {
+        const starsContainer = document.getElementById('starsContainer');
+        for (let i = 0; i < 120; i++) {
+            let star = document.createElement('div');
+            star.classList.add('star');
+            let size = Math.random() * 3 + 1;
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 5 + 's';
+            starsContainer.appendChild(star);
+        }
+    }
+    createStars();
+
+    let cashierTempToken = null;
+    let signupTempToken = null;
+    let resetTempToken = null;
+    let resetEmail = null;
+
+    function togglePassword(inputId) {
+        const input = document.getElementById(inputId);
+        if (input.type === 'password') {
+            input.type = 'text';
+        } else {
+            input.type = 'password';
+        }
+    }
+
+    function switchTab(tab) {
+        document.getElementById('loginSection').classList.remove('active');
+        document.getElementById('signupSection').classList.remove('active');
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        if (tab === 'login') {
+            document.getElementById('loginSection').classList.add('active');
+            document.querySelector('.tab-btn:first-child').classList.add('active');
+        } else {
+            document.getElementById('signupSection').classList.add('active');
+            document.querySelector('.tab-btn:last-child').classList.add('active');
+        }
+        document.getElementById('loginError').innerText = '';
+        document.getElementById('signupError').innerText = '';
+    }
+
+    function showStep(stepId) {
+        document.getElementById('loginSection').classList.remove('active');
+        document.getElementById('signupSection').classList.remove('active');
+        document.getElementById('verifyCodeSection').classList.remove('active');
+        document.getElementById('verifyEmailCodeSection').classList.remove('active');
+        document.getElementById('forgotPasswordSection').classList.remove('active');
+        document.getElementById('resetCodeSection').classList.remove('active');
+        document.getElementById('newPasswordSection').classList.remove('active');
+        document.getElementById(stepId).classList.add('active');
+    }
+
+    function backToLogin() {
+        showStep('loginSection');
+    }
+
+    // ========== نسيت كلمة المرور ==========
+    function showForgotPassword() {
+        showStep('forgotPasswordSection');
+        document.getElementById('forgotEmail').value = '';
+        document.getElementById('forgotError').innerText = '';
+        document.getElementById('forgotSuccess').innerText = '';
+    }
+
+    async function sendResetCode() {
+        const email = document.getElementById('forgotEmail').value.trim();
+        if (!email) {
+            document.getElementById('forgotError').innerText = '❌ الرجاء إدخال البريد الإلكتروني';
+            return;
+        }
+
+        try {
+            const res = await fetch('/api/cashier/forgot-password', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email })
+            });
+            const data = await res.json();
+            if (!res.ok) {
+                document.getElementById('forgotError').innerText = data.error || '❌ فشل إرسال رمز إعادة التعيين';
+                return;
+            }
+            resetTempToken = data.tempToken;
+            resetEmail = email;
+            document.getElementById('forgotSuccess').innerText = '✅ تم إرسال رمز إعادة التعيين إلى بريدك الإلكتروني';
+            showStep('resetCodeSection');
+        } catch (err) {
+            document.getElementById('forgotError').innerText = '⚠️ خطأ في الاتصال بالخادم';
+        }
+    }
+
+    async function verifyResetCode() {
+        const code = document.getElementById('resetCode').value.trim();
+        if (!code) {
+            document.getElementById('resetCodeError').innerText = '❌ الرجاء إدخال الرمز';
+            return;
+        }
+
+        try {
+            const res = await fetch('/api/cashier/verify-reset-code', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ tempToken: resetTempToken, code })
+            });
+            const data = await res.json();
+            if (!res.ok) {
+                document.getElementById('resetCodeError').innerText = data.error || '❌ رمز غير صحيح';
+                return;
+            }
+            resetTempToken = data.tempToken;
+            showStep('newPasswordSection');
+        } catch (err) {
+            document.getElementById('resetCodeError').innerText = '⚠️ خطأ في الاتصال بالخادم';
+        }
+    }
+
+    async function setNewPassword() {
+        const newPassword = document.getElementById('newPassword').value;
+        const confirmPassword = document.getElementById('confirmNewPassword').value;
+
+        if (!newPassword || !confirmPassword) {
+            document.getElementById('newPasswordError').innerText = '❌ الرجاء إدخال كلمة المرور الجديدة';
+            return;
+        }
+        if (newPassword.length < 6) {
+            document.getElementById('newPasswordError').innerText = '❌ كلمة المرور يجب أن تكون 6 أحرف على الأقل';
+            return;
+        }
+        if (newPassword !== confirmPassword) {
+            document.getElementById('newPasswordError').innerText = '❌ كلمة المرور غير متطابقة';
+            return;
+        }
+
+        try {
+            const res = await fetch('/api/cashier/reset-password', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ tempToken: resetTempToken, newPassword })
+            });
+            const data = await res.json();
+            if (!res.ok) {
+                document.getElementById('newPasswordError').innerText = data.error || '❌ فشل تغيير كلمة المرور';
+                return;
+            }
+            document.getElementById('newPasswordSuccess').innerText = '✅ تم تغيير كلمة المرور بنجاح';
+            setTimeout(() => {
+                showStep('loginSection');
+                document.getElementById('cashierEmail').value = resetEmail || '';
+                document.getElementById('newPassword').value = '';
+                document.getElementById('confirmNewPassword').value = '';
+            }, 2000);
+        } catch (err) {
+            document.getElementById('newPasswordError').innerText = '⚠️ خطأ في الاتصال بالخادم';
+        }
+    }
+
+    // ========== إنشاء حساب أمين صندوق جديد ==========
+    async function requestCashierSignup() {
+        const name = document.getElementById('signupName').value.trim();
+        const email = document.getElementById('signupEmail').value.trim();
+        const password = document.getElementById('signupPassword').value.trim();
+        const phone = document.getElementById('signupPhone').value.trim();
+
+        if (!name || !email || !password) {
+            document.getElementById('signupError').innerText = '❌ الرجاء إدخال جميع البيانات';
+            return;
+        }
+
+        try {
+            const res = await fetch('/api/cashier/signup-request', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, password, phone })
+            });
+            const data = await res.json();
+            if (!res.ok) {
+                document.getElementById('signupError').innerText = data.error || '❌ فشل طلب إنشاء الحساب';
+                return;
+            }
+            
+            signupTempToken = data.tempToken;
+            document.getElementById('signupError').innerText = '';
+            
+            // الانتقال إلى صفحة إدخال الكود
+            showStep('verifyCodeSection');
+        } catch (err) {
+            document.getElementById('signupError').innerText = '⚠️ خطأ في الاتصال بالخادم';
+        }
+    }
+
+    // إعادة إرسال كود إنشاء الحساب
+    async function resendCashierSignupCode() {
+        if (!signupTempToken) {
+            document.getElementById('verifyError').innerText = '❌ جلسة منتهية، يرجى إعادة طلب إنشاء الحساب';
+            return;
+        }
+        
+        try {
+            const res = await fetch('/api/cashier/resend-signup-code', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ tempToken: signupTempToken })
+            });
+            const data = await res.json();
+            if (!res.ok) {
+                document.getElementById('verifyError').innerText = data.error || '❌ فشل إعادة إرسال الكود';
+                return;
+            }
+            document.getElementById('verifyError').innerText = '✅ تم إعادة إرسال الكود إلى إيميل المدير التنفيذي';
+            setTimeout(() => {
+                if (document.getElementById('verifyError').innerText === '✅ تم إعادة إرسال الكود إلى إيميل المدير التنفيذي') {
+                    document.getElementById('verifyError').innerText = '';
+                }
+            }, 3000);
+        } catch (err) {
+            document.getElementById('verifyError').innerText = '⚠️ خطأ في الاتصال بالخادم';
+        }
+    }
+
+    // ========== التحقق من الكود وإنشاء الحساب فوراً ==========
+    async function verifyCashierCode() {
+        const code = document.getElementById('verificationCode').value.trim();
+        if (!code) {
+            document.getElementById('verifyError').innerText = '❌ الرجاء إدخال الكود';
+            return;
+        }
+        
+        try {
+            const res = await fetch('/api/cashier/verify-signup-code', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ tempToken: signupTempToken, code })
+            });
+            const data = await res.json();
+            if (!res.ok) {
+                document.getElementById('verifyError').innerText = data.error || '❌ كود غير صحيح';
+                return;
+            }
+            
+            document.getElementById('verifyError').innerText = '';
+            alert('✅ تم إنشاء حسابك بنجاح! يمكنك الآن تسجيل الدخول.');
+            
+            // العودة إلى صفحة تسجيل الدخول
+            switchTab('login');
+            document.getElementById('signupName').value = '';
+            document.getElementById('signupEmail').value = '';
+            document.getElementById('signupPassword').value = '';
+            document.getElementById('signupPhone').value = '';
+        } catch (err) {
+            document.getElementById('verifyError').innerText = '⚠️ خطأ في الاتصال بالخادم';
+        }
+    }
+
+    // ========== تسجيل دخول أمين الصندوق (نظام جديد: رمز للإيميل) ==========
+    async function startCashierLogin() {
+        const email = document.getElementById('cashierEmail').value.trim();
+        const password = document.getElementById('cashierPassword').value.trim();
+
+        if (!email || !password) {
+            document.getElementById('loginError').innerText = '❌ الرجاء إدخال البريد الإلكتروني وكلمة السر';
+            return;
+        }
+
+        try {
+            const res = await fetch('/api/cashier/init-login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+            const data = await res.json();
+            if (!res.ok) {
+                document.getElementById('loginError').innerText = data.error || '❌ فشل التحقق من البريد أو كلمة السر';
+                return;
+            }
+            cashierTempToken = data.tempToken;
+            showStep('verifyEmailCodeSection');
+            sendEmailCode();
+        } catch (err) {
+            document.getElementById('loginError').innerText = '⚠️ خطأ في الاتصال بالخادم';
+        }
+    }
+
+    async function sendEmailCode() {
+        if (!cashierTempToken) return;
+        try {
+            const res = await fetch('/api/cashier/send-email-code', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ tempToken: cashierTempToken })
+            });
+            const data = await res.json();
+            if (!res.ok) {
+                document.getElementById('emailVerifyError').innerText = data.error || '❌ فشل إرسال الرمز';
+            } else {
+                document.getElementById('emailVerifyError').innerText = '';
+            }
+        } catch (err) {
+            document.getElementById('emailVerifyError').innerText = '⚠️ خطأ في الاتصال بالخادم';
+        }
+    }
+
+    async function verifyEmailCode() {
+        const code = document.getElementById('emailVerifyCode').value.trim();
+        if (!code) {
+            document.getElementById('emailVerifyError').innerText = '❌ الرجاء إدخال الرمز';
+            return;
+        }
+        try {
+            const res = await fetch('/api/cashier/verify-email-code', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ tempToken: cashierTempToken, code })
+            });
+            const data = await res.json();
+            if (!res.ok) {
+                document.getElementById('emailVerifyError').innerText = data.error || '❌ رمز غير صحيح';
+                return;
+            }
+            localStorage.setItem('cashierToken', data.cashierToken);
+            window.location.href = '/cashier';
+        } catch (err) {
+            document.getElementById('emailVerifyError').innerText = '⚠️ خطأ في الاتصال بالخادم';
+        }
+    }
+
+    function resendEmailCode() {
+        sendEmailCode();
+    }
+</script>
+</body>
+</html>

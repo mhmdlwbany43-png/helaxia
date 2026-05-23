@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HELAXIA - طلباتي</title>
+    <script src="/currency.js"></script>
+    <!-- ✅ جديد: shared.js -->
+    <script src="/shared.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: radial-gradient(circle at 10% 20%, #2A4A6A, #1A3A50);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            direction: rtl;
+            position: relative;
+            min-height: 100vh;
+        }
+        .star {
+            position: fixed;
+            background: white;
+            border-radius: 50%;
+            opacity: 0;
+            pointer-events: none;
+            animation: twinkle 4s infinite;
+        }
+        @keyframes twinkle {
+            0% { opacity: 0; transform: scale(0.8); }
+            50% { opacity: 0.8; transform: scale(1.2); }
+            100% { opacity: 0; transform: scale(0.8); }
+        }
+        .glass-nav {
+            background: rgba(10,20,30,0.45);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(200,220,250,0.3);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            z-index: 100;
+        }
+        .glass-card {
+            background: rgba(20,35,45,0.45);
+            backdrop-filter: blur(14px);
+            border-radius: 28px;
+            border: 1px solid rgba(200,220,250,0.25);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: rgba(200,220,250,0.6);
+            box-shadow: 0 0 28px rgba(192,224,255,0.5);
+            transform: translateY(-5px);
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            background: linear-gradient(135deg, #F0F4FA, #C0D0E0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .nav-icons { display: flex; gap: 1rem; align-items: center; }
+        .nav-icon {
+            background: rgba(10,20,30,0.3);
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            color: #E0E8F0;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .nav-icon:hover {
+            background: rgba(192,224,255,0.15);
+            transform: scale(1.02);
+            box-shadow: 0 0 12px #C0E0FF;
+        }
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #C0E0FF;
+            color: #1A3A50;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .icon-svg {
+            width: 20px;
+            height: 20px;
+            stroke: #C0D0E0;
+            stroke-width: 1.5;
+            fill: none;
+        }
+        .currency-toggle {
+            background: rgba(196, 148, 92, 0.2);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(196, 148, 92, 0.5);
+            padding: 0.3rem 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .currency-toggle:hover {
+            background: rgba(196, 148, 92, 0.4);
+            border-color: #c4905c;
+            box-shadow: 0 0 12px rgba(196, 148, 92, 0.6);
+        }
+        .page-header {
+            padding-top: 7rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .page-header h1 {
+            font-size: 2rem;
+            color: #E0E8F0;
+            border-right: 3px solid #C0E0FF;
+            display: inline-block;
+            padding-right: 1rem;
+        }
+        .orders-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem 3rem;
+        }
+        .order-card {
+            margin-bottom: 1.5rem;
+            padding: 1.2rem;
+        }
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(200,220,250,0.2);
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .order-number {
+            font-weight: bold;
+            color: #C0E0FF;
+            font-size: 1.1rem;
+        }
+        .order-date {
+            font-size: 0.8rem;
+            color: #A0B8D0;
+        }
+        .order-status {
+            background: rgba(90,140,170,0.3);
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+        }
+        .order-status.pending { background: rgba(255,165,0,0.3); color: #FFA500; }
+        .order-status.confirmed { background: rgba(0,200,0,0.3); color: #00CC00; }
+        .order-status.shipped { background: rgba(0,150,200,0.3); color: #00C8FF; }
+        .order-status.delivered { background: rgba(100,100,200,0.3); color: #8A6EFF; }
+        .payment-status {
+            background: rgba(90,140,170,0.3);
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+        }
+        .payment-status.paid { background: rgba(0,200,0,0.3); color: #00CC00; }
+        .payment-status.pending { background: rgba(255,165,0,0.3); color: #FFA500; }
+        .payment-status.transferring { background: rgba(0,150,200,0.3); color: #00C8FF; }
+        .pickup-location {
+            background: rgba(192,224,255,0.15);
+            border: 1px solid rgba(192,224,255,0.3);
+            border-radius: 40px;
+            padding: 0.3rem 1rem;
+            font-size: 0.8rem;
+            color: #C0E0FF;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .order-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+        .order-item {
+            background: rgba(20,35,45,0.3);
+            border-radius: 16px;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            min-width: 200px;
+        }
+        .order-item img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .order-item-info {
+            font-size: 0.8rem;
+        }
+        .order-item-name { color: #E0E8F0; font-weight: bold; }
+        .order-item-price { color: #C0E0FF; }
+        .order-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.8rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid rgba(200,220,250,0.2);
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .order-total {
+            font-weight: bold;
+            color: #C0E0FF;
+        }
+        .confirm-receipt-btn {
+            background: rgba(0,200,0,0.3);
+            border: 1px solid #00CC00;
+            border-radius: 40px;
+            padding: 0.3rem 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #00CC00;
+            font-size: 0.8rem;
+        }
+        .confirm-receipt-btn:hover {
+            background: rgba(0,200,0,0.5);
+            box-shadow: 0 0 10px #00CC00;
+        }
+        .empty-state { text-align: center; padding: 3rem; }
+        @media (max-width: 768px) {
+            .order-header { flex-direction: column; align-items: flex-start; }
+            .order-footer { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+<div id="stars"></div>
+<nav class="glass-nav">
+    <div class="logo">HELAXIA</div>
+    <div class="nav-icons">
+        <div class="nav-icon" onclick="window.location.href='/shop'">
+            <svg class="icon-svg" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <span>المتجر</span>
+        </div>
+        <div class="nav-icon" onclick="window.location.href='/cart.html'">
+            <svg class="icon-svg" viewBox="0 0 24 24" stroke="currentColor"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            <span id="cartCount" class="cart-count">0</span>
+        </div>
+        <div class="nav-icon currency-toggle" onclick="toggleGlobalCurrency()">
+            <svg class="icon-svg" viewBox="0 0 24 24" stroke="currentColor">
+                <path d="M3 12h18M12 3v18M9 6l3-3 3 3M9 18l3 3 3-3"/>
+            </svg>
+            <span id="globalCurrencyText">ل.س</span>
+        </div>
+        <div class="nav-icon" onclick="logout()">
+            <svg class="icon-svg" viewBox="0 0 24 24" stroke="currentColor"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        </div>
+    </div>
+</nav>
+<div class="page-header">
+    <h1>📋 طلباتي</h1>
+</div>
+<div id="ordersContainer" class="orders-container">
+    <div class="empty-state glass-card">جاري تحميل طلباتك...</div>
+</div>
+<script>
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!user) window.location.href = '/login';
+    
+    // ✅ createStars(), cart, updateCartCount(), logout() محذوفة (موجودة في shared.js)
+    
+    function getStatusText(status) {
+        switch(status) {
+            case 'pending': return { text: 'قيد الانتظار', class: 'pending' };
+            case 'confirmed': return { text: 'تم التأكيد', class: 'confirmed' };
+            case 'shipped': return { text: 'تم الشحن', class: 'shipped' };
+            case 'delivered': return { text: 'تم التوصيل', class: 'delivered' };
+            default: return { text: status, class: 'pending' };
+        }
+    }
+    
+    function getPaymentStatusText(paymentStatus) {
+        switch(paymentStatus) {
+            case 'paid': return { text: 'تم الدفع', class: 'paid' };
+            case 'transferring': return { text: 'قيد التحويل', class: 'transferring' };
+            default: return { text: 'لم يدفع', class: 'pending' };
+        }
+    }
+    
+    async function confirmReceipt(orderId) {
+        if (!confirm('⚠️ هل أنت متأكد من استلام المنتج؟\n\nبعد التأكيد، سيتم إشعار التاجر وإضافة المبلغ إلى رصيده.')) return;
+        
+        try {
+            const response = await fetch(`/api/orders/${orderId}/confirm-receipt`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('adminToken') || ''}`
+                }
+            });
+            
+            const result = await response.json();
+            
+            if (response.ok) {
+                alert('✅ تم تأكيد استلام المنتج بنجاح. شكراً لك!');
+                loadOrders();
+            } else {
+                alert('❌ فشل تأكيد الاستلام: ' + (result.error || 'خطأ غير معروف'));
+            }
+        } catch (error) {
+            console.error('Error confirming receipt:', error);
+            alert('❌ خطأ في الاتصال بالخادم');
+        }
+    }
+    
+    async function loadOrders() {
+        try {
+            const res = await fetch('/api/orders');
+            let allOrders = await res.json();
+            let myOrders = allOrders.filter(o => o.customer_name === user.name);
+            const container = document.getElementById('ordersContainer');
+            if (myOrders.length === 0) {
+                container.innerHTML = '<div class="empty-state glass-card">✨ لا توجد طلبات بعد ✨</div>';
+                return;
+            }
+            container.innerHTML = myOrders.map(order => {
+                let items = JSON.parse(order.items || '[]');
+                let statusInfo = getStatusText(order.status);
+                let paymentStatusInfo = getPaymentStatusText(order.payment_status || 'pending');
+                const totalShippingCost = order.shipping_cost || 0;
+                const customerShippingShare = totalShippingCost / 2;
+                const orderTotal = order.total || 0;
+                const totalWithShipping = orderTotal + customerShippingShare;
+                const pickupLocation = order.pickup_location || '';
+                
+                return `
+                    <div class="order-card glass-card">
+                        <div class="order-header">
+                            <div class="order-number">#${order.order_number}</div>
+                            <div class="order-date">${new Date(order.created_at).toLocaleDateString('ar-EG')}</div>
+                            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                                <div class="order-status ${statusInfo.class}">${statusInfo.text}</div>
+                                <div class="payment-status ${paymentStatusInfo.class}">💰 ${paymentStatusInfo.text}</div>
+                                ${pickupLocation ? `<div class="pickup-location">📍 ${pickupLocation}</div>` : ''}
+                            </div>
+                        </div>
+                        <div class="order-items">
+                            ${items.map(item => `
+                                <div class="order-item">
+                                    <img src="${item.image || 'https://placehold.co/50x50/2A4A6A/7BA5C0?text=HELAXIA'}" onerror="this.src='https://placehold.co/50x50/2A4A6A/7BA5C0?text=HELAXIA'">
+                                    <div class="order-item-info">
+                                        <div class="order-item-name">${item.name}</div>
+                                        <div class="order-item-price"><span class="price-value" data-syp="${item.price}">${window.formatPrice ? window.formatPrice(item.price) : item.price + ' ل.س'}</span> × ${item.quantity}</div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="order-footer">
+                            <div class="order-total">
+                                إجمالي المنتجات: <span class="price-value" data-syp="${orderTotal}">${window.formatPrice ? window.formatPrice(orderTotal) : orderTotal + ' ل.س'}</span><br>
+                                رسوم الشحن (حصة العميل): <span class="price-value" data-syp="${customerShippingShare}">${window.formatPrice ? window.formatPrice(customerShippingShare) : customerShippingShare + ' ل.س'}</span><br>
+                                <strong>الإجمالي الكلي: <span class="price-value" data-syp="${totalWithShipping}">${window.formatPrice ? window.formatPrice(totalWithShipping) : totalWithShipping + ' ل.س'}</span></strong>
+                            </div>
+                            ${order.status === 'shipped' ? `
+                                <button class="confirm-receipt-btn" onclick="confirmReceipt(${order.id})">✅ تم استلام المنتج</button>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            if (window.updateAllPrices) {
+                window.updateAllPrices();
+            }
+        } catch(e) {
+            console.error(e);
+            document.getElementById('ordersContainer').innerHTML = '<div class="empty-state glass-card">✨ خطأ في تحميل الطلبات ✨</div>';
+        }
+    }
+    
+    async function initCurrency() {
+        if (window.loadExchangeRate) {
+            await window.loadExchangeRate();
+        }
+        if (window.updateAllPrices) {
+            window.updateAllPrices();
+        }
+        const currencyText = document.getElementById('globalCurrencyText');
+        if (currencyText) {
+            const currentCurrency = localStorage.getItem('helaxia_currency') || 'SYP';
+            currencyText.innerText = currentCurrency === 'SYP' ? 'ل.س' : '$';
+        }
+    }
+    
+    initCurrency();
+    updateCartCount();
+    loadOrders();
+</script>
+</body>
+</html>
